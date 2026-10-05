@@ -40,6 +40,19 @@
 - [ ] Expand every side-source family into all individual legal variants
 - [ ] Generate and PKHeX-pass one representative from each side-source family
 
+## M0.9 — Bank / HOME provenance
+
+- [x] Separate origin evidence from local PKM legality
+- [x] Separate Bank transfer evidence from HOME provenance
+- [x] Treat HOME server verification as locally unverifiable
+- [x] Refuse fabricated/copied HOME tracker semantics
+- [x] Define post-HOME snapshot hashing workflow
+- [ ] Add vault migration-event records
+- [ ] Add post-HOME PK8/PK9 snapshot importer
+- [ ] Add tracker-presence checks using PKHeX's HOME requirement logic
+- [ ] Add UI labels: Generated / Imported / Bank-confirmed / Tracker-observed
+- [ ] Capture a real test Pokémon through Bank->HOME before shutdown and store only its audit metadata/hash
+
 ## M1 — Real Gen VII legality proof
 
 - [ ] Resolve smoke-set encounter templates against a real encounter database
