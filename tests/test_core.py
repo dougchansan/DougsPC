@@ -222,6 +222,66 @@ class LegacyBoxCoreTests(unittest.TestCase):
         self.assertTrue(all(e.template.verification_status == "cross_checked" for e in manifest.entries))
         self.assertTrue(all(e.competitive.verification_status == "smogon_checked" for e in manifest.entries))
 
+    def test_shadow_origin_requires_purification_and_ribbon(self) -> None:
+        payload = {
+            "name": "shadow",
+            "target_generation": 7,
+            "trainer": {"name": "Doug"},
+            "entries": [{
+                "national_dex": 197,
+                "species": "Umbreon",
+                "target_level": 26,
+                "template": {
+                    "template_id": "colo-shadow-test",
+                    "source_game": "Pokémon Colosseum",
+                    "generation": 3,
+                    "method": "shadow-snag",
+                    "origin_kind": "shadow_purified",
+                    "source_platform": "Nintendo GameCube",
+                    "shadow": {
+                        "game": "Pokémon Colosseum",
+                        "purified": False,
+                        "national_ribbon": False
+                    }
+                }
+            }]
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "manifest.json"
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            with self.assertRaises(ManifestError):
+                load_manifest(path)
+
+    def test_valid_shadow_origin_requires_national_ribbon(self) -> None:
+        payload = {
+            "name": "shadow",
+            "target_generation": 7,
+            "trainer": {"name": "Doug"},
+            "entries": [{
+                "national_dex": 197,
+                "species": "Umbreon",
+                "target_level": 26,
+                "template": {
+                    "template_id": "colo-purified-test",
+                    "source_game": "Pokémon Colosseum",
+                    "generation": 3,
+                    "method": "shadow-snag",
+                    "origin_kind": "shadow_purified",
+                    "source_platform": "Nintendo GameCube",
+                    "shadow": {
+                        "game": "Pokémon Colosseum",
+                        "purified": True,
+                        "national_ribbon": True
+                    }
+                }
+            }]
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "manifest.json"
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            manifest = load_manifest(path)
+            self.assertTrue(manifest.entries[0].template.shadow.national_ribbon)
+
     def test_duplicate_dex_form_is_rejected(self) -> None:
         payload = {
             "name": "duplicate",
