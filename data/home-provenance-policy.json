@@ -34,7 +34,26 @@
       "For pre-Switch Pokémon entering HOME through Bank, reverse-engineering indicates HOME initializes a SWSH child data block in addition to core HOME data.",
       "HOME tracker values can change across uploads; LegacyBox therefore never uses the raw tracker as a permanent archive identifier.",
       "Immutable values associated with HOME history should not be edited after HOME entry when provenance preservation is the goal."
-    ]
+    ],
+    "pkhex_reverse_engineered_bank_child_transform": {
+      "status": "implementation model / not an official Nintendo specification",
+      "bank_to_home_initial_child": "SWSH",
+      "pk7_to_swsh_child_carries": [
+        "moves and PP/PP Ups",
+        "relearn moves",
+        "Ball",
+        "met location",
+        "egg location",
+        "Pokérus state",
+        "ability slot and ability"
+      ],
+      "normalization": [
+        "Gen VII -> Gen VIII glyph/string conversion",
+        "unnicknamed species-name normalization",
+        "target-game met/egg remapping when materializing a Switch child"
+      ],
+      "rule": "LegacyBox should compare pre-HOME core provenance separately from post-HOME target-game child fields; expected HOME remapping is not evidence of tampering."
+    }
   },
   "trust_axes": {
     "origin_evidence": [
