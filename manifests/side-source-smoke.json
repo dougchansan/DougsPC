@@ -1,0 +1,640 @@
+{
+  "name": "LegacyBox side-source provenance smoke set",
+  "target_generation": 7,
+  "trainer": {
+    "name": "Doug",
+    "language": "ENG",
+    "id_strategy": "deterministic-per-origin"
+  },
+  "entries": [
+    {
+      "national_dex": 263,
+      "species": "Zigzagoon",
+      "form": "Normal",
+      "target_level": 5,
+      "ot_policy": "trainer",
+      "target_moves": [
+        "Tackle",
+        "Growl",
+        "Tail Whip",
+        "ExtremeSpeed"
+      ],
+      "traits": {
+        "shiny": "force_shiny",
+        "shiny_phase": "hatch",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "pokemon-box-zigzagoon-extremespeed",
+        "source_registry_id": "gen3.pokemon_box_bonus_eggs",
+        "source_game": "Pokémon Box Ruby & Sapphire -> Gen III hatching save",
+        "generation": 3,
+        "method": "gift-egg",
+        "origin_kind": "gift",
+        "source_platform": "Nintendo GameCube -> Game Boy Advance",
+        "origin_region": "Hoenn/Kanto",
+        "origin_species": "Zigzagoon",
+        "origin_national_dex": 263,
+        "location": "Egg gift / hatch location",
+        "level_min": 5,
+        "level_max": 5,
+        "encounter_moves": [
+          "Tackle",
+          "Growl",
+          "Tail Whip",
+          "ExtremeSpeed"
+        ],
+        "ability": "Pickup",
+        "held_item": "None",
+        "nature_policy": "random",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_game-based_Pok%C3%A9mon_distributions_in_Generation_III",
+            "checked_fields": [
+              "distribution identity",
+              "level",
+              "moves",
+              "ability",
+              "shiny/egg rules"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://forums.serebii.net/threads/pok%C3%A9mon-channel-box-faq-version-2-0.119745/",
+            "checked_fields": [
+              "Box Egg species",
+              "deposit threshold",
+              "exclusive move"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Hatch in Gen III",
+        "Pal Park",
+        "Gen IV",
+        "Poké Transfer",
+        "Gen V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "notes": "OT/TID are the hatcher's. Shiny is legal because the Box Egg may hatch shiny."
+    },
+    {
+      "national_dex": 385,
+      "species": "Jirachi",
+      "form": "Normal",
+      "target_level": 5,
+      "ot_policy": "fixed_event",
+      "event_identity": {
+        "ot": "WISHMKR",
+        "tid": "20043",
+        "language": "ENG",
+        "fateful_encounter": true,
+        "distribution_id": "US Colosseum Bonus Disc",
+        "locked_fields": {
+          "ability": "Serene Grace",
+          "level": 5
+        }
+      },
+      "target_moves": [
+        "Wish",
+        "Confusion",
+        "Rest"
+      ],
+      "traits": {
+        "shiny": "force_shiny",
+        "shiny_phase": "distribution_rng",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "wishmkr-jirachi",
+        "source_registry_id": "gen3.wishmkr_jirachi",
+        "source_game": "Pokémon Colosseum Bonus Disc",
+        "generation": 3,
+        "method": "distribution",
+        "origin_kind": "fixed_event",
+        "source_platform": "Nintendo GameCube Bonus Disc -> Game Boy Advance",
+        "origin_region": "Hoenn",
+        "origin_species": "Jirachi",
+        "origin_national_dex": 385,
+        "location": "Fateful encounter",
+        "level_min": 5,
+        "level_max": 5,
+        "encounter_moves": [
+          "Wish",
+          "Confusion",
+          "Rest"
+        ],
+        "ability": "Serene Grace",
+        "held_item": "Salac Berry or Ganlon Berry",
+        "nature_policy": "random Gen III distribution RNG",
+        "verification_status": "catalogued",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_game-based_Pok%C3%A9mon_distributions_in_Generation_III",
+            "checked_fields": [
+              "distribution identity",
+              "level",
+              "moves",
+              "ability",
+              "shiny/egg rules"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Gen III GBA save",
+        "Pal Park",
+        "Gen IV",
+        "Poké Transfer",
+        "Gen V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex": 251,
+      "species": "Celebi",
+      "form": "Normal",
+      "target_level": 10,
+      "ot_policy": "fixed_event",
+      "event_identity": {
+        "ot": "アゲト",
+        "tid": "31121",
+        "fateful_encounter": true,
+        "distribution_id": "Japanese Colosseum Bonus Disc",
+        "locked_fields": {
+          "ability": "Natural Cure",
+          "level": 10
+        }
+      },
+      "target_moves": [
+        "Confusion",
+        "Recover",
+        "Heal Bell",
+        "Safeguard"
+      ],
+      "traits": {
+        "shiny": "force_non_shiny",
+        "shiny_phase": "distribution",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "ageto-celebi",
+        "source_registry_id": "gen3.ageto_celebi",
+        "source_game": "Japanese Pokémon Colosseum Bonus Disc",
+        "generation": 3,
+        "method": "distribution",
+        "origin_kind": "fixed_event",
+        "source_platform": "Nintendo GameCube Bonus Disc -> Game Boy Advance",
+        "origin_region": "Hoenn/Kanto",
+        "origin_species": "Celebi",
+        "origin_national_dex": 251,
+        "location": "Fateful encounter",
+        "level_min": 10,
+        "level_max": 10,
+        "encounter_moves": [
+          "Confusion",
+          "Recover",
+          "Heal Bell",
+          "Safeguard"
+        ],
+        "ability": "Natural Cure",
+        "held_item": "None",
+        "nature_policy": "random",
+        "verification_status": "catalogued",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_game-based_Pok%C3%A9mon_distributions_in_Generation_III",
+            "checked_fields": [
+              "distribution identity",
+              "level",
+              "moves",
+              "ability",
+              "shiny/egg rules"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Japanese Gen III GBA save",
+        "Pal Park",
+        "Gen IV",
+        "Poké Transfer",
+        "Gen V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex": 151,
+      "species": "Mew",
+      "form": "Normal",
+      "target_level": 50,
+      "ot_policy": "fixed_event",
+      "event_identity": {
+        "ot": "Hayley",
+        "tid": "01000",
+        "language": "ENG",
+        "distribution_id": "My Pokémon Ranch trade",
+        "locked_fields": {
+          "level": 50,
+          "ability": "Synchronize"
+        }
+      },
+      "target_moves": [
+        "Synthesis",
+        "Return",
+        "Hypnosis",
+        "Teleport"
+      ],
+      "traits": {
+        "shiny": "force_non_shiny",
+        "shiny_phase": "distribution",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "hayley-ranch-mew",
+        "source_registry_id": "gen4.my_pokemon_ranch",
+        "source_game": "My Pokémon Ranch",
+        "generation": 4,
+        "method": "in-game trade",
+        "origin_kind": "fixed_event",
+        "source_platform": "Nintendo Wii -> Nintendo DS",
+        "origin_region": "Sinnoh",
+        "origin_species": "Mew",
+        "origin_national_dex": 151,
+        "location": "Lovely place",
+        "level_min": 50,
+        "level_max": 50,
+        "encounter_moves": [
+          "Synthesis",
+          "Return",
+          "Hypnosis",
+          "Teleport"
+        ],
+        "ability": "Synchronize",
+        "held_item": "None",
+        "nature_policy": "random",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/Hayley%27s_trades",
+            "checked_fields": [
+              "OT",
+              "TID",
+              "level",
+              "moves",
+              "unlock"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/ranch/trade.shtml",
+            "checked_fields": [
+              "OT",
+              "TID",
+              "level",
+              "moves",
+              "unlock"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Gen IV core game",
+        "Poké Transfer",
+        "Gen V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex": 466,
+      "species": "Electivire",
+      "form": "Normal",
+      "target_level": 50,
+      "ot_policy": "fixed_event",
+      "event_identity": {
+        "ot": "PKTOPIA",
+        "tid": "06257",
+        "distribution_id": "Battle Revolution Shocking Secret Gift",
+        "locked_fields": {
+          "nature": "Adamant",
+          "level": 50
+        }
+      },
+      "target_moves": [
+        "ThunderPunch",
+        "Ice Punch",
+        "Cross Chop",
+        "Earthquake"
+      ],
+      "traits": {
+        "shiny": "force_non_shiny",
+        "shiny_phase": "distribution",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "pktopia-electivire",
+        "source_registry_id": "gen4.battle_revolution",
+        "source_game": "Pokémon Battle Revolution",
+        "generation": 4,
+        "method": "Mystery Gift",
+        "origin_kind": "fixed_event",
+        "source_platform": "Nintendo Wii -> Nintendo DS",
+        "origin_region": "Sinnoh",
+        "origin_species": "Electivire",
+        "origin_national_dex": 466,
+        "location": "Pokétopia gift",
+        "level_min": 50,
+        "level_max": 50,
+        "encounter_moves": [
+          "ThunderPunch",
+          "Ice Punch",
+          "Cross Chop",
+          "Earthquake"
+        ],
+        "ability": "Motor Drive",
+        "held_item": "Magnet",
+        "nature_policy": "Adamant fixed",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Battle_Revolution",
+            "checked_fields": [
+              "gift provenance",
+              "transfer"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/battle/elecmortar.shtml",
+            "checked_fields": [
+              "OT",
+              "TID",
+              "level",
+              "nature",
+              "moves",
+              "held item"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Gen IV core game",
+        "Poké Transfer",
+        "Gen V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex": 362,
+      "species": "Glalie",
+      "form": "Normal",
+      "target_level": 40,
+      "ot_policy": "fixed_event",
+      "event_identity": {
+        "ot": "Orlando",
+        "distribution_id": "ORAS Special Demo non-Japanese transfer",
+        "locked_fields": {
+          "level": 40
+        }
+      },
+      "target_moves": [
+        "Ice Fang",
+        "Headbutt",
+        "Protect",
+        "Frost Breath"
+      ],
+      "traits": {
+        "shiny": "force_non_shiny",
+        "shiny_phase": "demo",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "oras-demo-glalie",
+        "source_registry_id": "gen6.oras_special_demo",
+        "source_game": "ORAS Special Demo",
+        "generation": 6,
+        "method": "Pokémon Link demo transfer",
+        "origin_kind": "fixed_event",
+        "source_platform": "Nintendo 3DS Demo -> ORAS",
+        "origin_region": "Hoenn",
+        "origin_species": "Glalie",
+        "origin_national_dex": 362,
+        "location": "Pokémon Link",
+        "level_min": 40,
+        "level_max": 40,
+        "encounter_moves": [
+          "Ice Fang",
+          "Headbutt",
+          "Protect",
+          "Frost Breath"
+        ],
+        "ability": "Inner Focus or Ice Body",
+        "held_item": "Glalitite",
+        "nature_policy": "random",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Omega_Ruby_and_Pok%C3%A9mon_Alpha_Sapphire_Special_Demo_Version",
+            "checked_fields": [
+              "region",
+              "level",
+              "OT",
+              "moves",
+              "ability",
+              "item"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/omegarubyalphasapphire/demo.shtml",
+            "checked_fields": [
+              "transfer",
+              "level",
+              "OT",
+              "moves",
+              "ability",
+              "item"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Omega Ruby/Alpha Sapphire",
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex": 658,
+      "species": "Greninja",
+      "form": "Normal",
+      "target_level": 36,
+      "ot_policy": "fixed_event",
+      "event_identity": {
+        "ot": "Ash",
+        "tid": "131017",
+        "fateful_encounter": true,
+        "distribution_id": "Sun/Moon Special Demo",
+        "locked_fields": {
+          "ability": "Battle Bond",
+          "gender": "male",
+          "met_level": 5
+        }
+      },
+      "target_moves": [
+        "Water Shuriken",
+        "Aerial Ace",
+        "Double Team",
+        "Night Slash"
+      ],
+      "traits": {
+        "shiny": "force_non_shiny",
+        "shiny_phase": "distribution",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "sm-demo-ash-greninja",
+        "source_registry_id": "gen7.sm_special_demo_ash_greninja",
+        "source_game": "Sun/Moon Special Demo",
+        "generation": 7,
+        "method": "demo transfer",
+        "origin_kind": "fixed_event",
+        "source_platform": "Nintendo 3DS Demo -> Sun/Moon",
+        "origin_region": "Alola/Kalos provenance",
+        "origin_species": "Greninja",
+        "origin_national_dex": 658,
+        "location": "Kalos region / fateful encounter",
+        "level_min": 36,
+        "level_max": 36,
+        "encounter_moves": [
+          "Water Shuriken",
+          "Aerial Ace",
+          "Double Team",
+          "Night Slash"
+        ],
+        "ability": "Battle Bond",
+        "held_item": "None",
+        "nature_policy": "randomized on transfer to full game",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Sun_and_Pok%C3%A9mon_Moon_Special_Demo_Version",
+            "checked_fields": [
+              "OT",
+              "TID",
+              "level",
+              "met level",
+              "moves",
+              "ability",
+              "ribbon",
+              "nature behavior"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/sunmoon/demo.shtml",
+            "checked_fields": [
+              "OT",
+              "TID",
+              "level",
+              "moves",
+              "ability"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Sun or Moon",
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex": 801,
+      "species": "Magearna",
+      "form": "Normal",
+      "target_level": 50,
+      "ot_policy": "trainer",
+      "target_moves": [
+        "Flash Cannon",
+        "Fleur Cannon",
+        "Lucky Chant",
+        "Helping Hand"
+      ],
+      "traits": {
+        "shiny": "force_non_shiny",
+        "shiny_phase": "distribution",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "sm-qr-magearna",
+        "source_registry_id": "gen7.qr_game_based_gifts",
+        "source_game": "Sun/Moon QR gift",
+        "generation": 7,
+        "method": "QR game-based gift",
+        "origin_kind": "gift",
+        "source_platform": "Nintendo 3DS QR Scanner",
+        "origin_region": "Alola",
+        "origin_species": "Magearna",
+        "origin_national_dex": 801,
+        "location": "A lovely place",
+        "level_min": 50,
+        "level_max": 50,
+        "encounter_moves": [
+          "Flash Cannon",
+          "Fleur Cannon",
+          "Lucky Chant",
+          "Helping Hand"
+        ],
+        "ability": "Soul-Heart",
+        "held_item": "Bottle Cap",
+        "nature_policy": "random",
+        "verification_status": "catalogued",
+        "references": [
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/sunmoon/qrevents.shtml",
+            "checked_fields": [
+              "level",
+              "OT/TID",
+              "moves",
+              "ability",
+              "item",
+              "ribbon"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Sun/Moon",
+        "Pokémon Bank"
+      ],
+      "notes": "Uses player OT/TID, so Doug is preserved where the receiving save is Doug."
+    }
+  ]
+}
