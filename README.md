@@ -74,3 +74,10 @@ The full 807-entry curation inventory lives in `data/heritage-index.json`. Entri
 LegacyBox can grow beyond one-per-species Heritage Dex generation into an exhaustive **Archive Mode**. Archive Mode tracks materially distinct legal variants by origin game/generation, ability availability, regional/form differences, event distribution, shiny state, special move/ribbon provenance, and GameCube Colosseum/XD Shadow->Purified lineage.
 
 The goal is exhaustive *obtainable provenance*, not an invalid Cartesian product of every field.
+
+
+## Bank / HOME provenance
+
+LegacyBox does not equate “PKHeX-legal,” “historically legitimate,” and “HOME accepted.”
+
+The project records origin evidence, local legality, official Bank-transfer evidence, and HOME tracker observation as separate trust axes. HOME tracker values are never fabricated or treated as locally verifiable server credentials. See `docs/HOME_PROVENANCE.md`.
