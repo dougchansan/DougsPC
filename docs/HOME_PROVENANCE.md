@@ -152,3 +152,17 @@ For preservation-oriented records, LegacyBox treats these as immutable after the
 - other format-specific values correlated to the original encounter.
 
 Competitive EVs, moves, items, friendship and similar legitimately mutable gameplay data remain separate from immutable provenance.
+
+
+## Bank/Transporter acceptance is not a legitimacy certificate
+
+Poké Transporter and Pokémon Bank perform their own server-side checks, but passing those checks does not prove that a Pokémon was originally obtained through normal gameplay.
+
+LegacyBox therefore interprets an official Bank/Transporter success only as:
+
+- the official service accepted the data at that time; and
+- the official migration path was used from that point forward.
+
+It does **not** upgrade `origin_evidence: generated_candidate` to an original/caught status.
+
+This keeps the audit record honest even if official checks are incomplete or change over time.
