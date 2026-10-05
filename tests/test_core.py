@@ -36,6 +36,41 @@ class LegacyBoxCoreTests(unittest.TestCase):
             )
         )
 
+    def test_heritage_manifest_spans_generations_one_through_seven(self) -> None:
+        manifest = load_manifest(ROOT / "manifests" / "heritage-smoke.json")
+        self.assertEqual(manifest.trainer.name, "Kento")
+        self.assertEqual(
+            {entry.template.generation for entry in manifest.entries},
+            {1, 2, 3, 4, 5, 6, 7},
+        )
+        self.assertTrue(all(entry.fixed_ot is None for entry in manifest.entries))
+
+    def test_fixed_event_requires_fixed_ot(self) -> None:
+        payload = {
+            "name": "event",
+            "target_generation": 7,
+            "trainer": {"name": "Kento"},
+            "entries": [
+                {
+                    "national_dex": 807,
+                    "species": "Zeraora",
+                    "target_level": 50,
+                    "ot_policy": "fixed_event",
+                    "template": {
+                        "template_id": "event-placeholder",
+                        "source_game": "Ultra Sun/Ultra Moon",
+                        "generation": 7,
+                        "method": "event"
+                    }
+                }
+            ]
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "manifest.json"
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            with self.assertRaises(ManifestError):
+                load_manifest(path)
+
     def test_duplicate_dex_form_is_rejected(self) -> None:
         payload = {
             "name": "duplicate",
