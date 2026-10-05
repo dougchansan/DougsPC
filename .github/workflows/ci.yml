@@ -44,6 +44,7 @@ jobs:
       - name: Confirm PKHeX catalog finds Red VC Venusaur origin
         run: |
           dotnet run --no-build --configuration Release --project helpers/pkhex-catalog/LegacyBox.EncounterCatalog.csproj -- 3 RD > /tmp/venusaur-red.json
+          cat /tmp/venusaur-red.json
           python - <<'PY'
           import json
           data = json.load(open("/tmp/venusaur-red.json"))
