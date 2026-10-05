@@ -125,6 +125,33 @@ def validate_manifest_structure(manifest: LivingDexManifest) -> list[str]:
                 f"{entry.key}: trainer OT policy must not specify event_identity"
             )
 
+        if template.origin_kind is OriginKind.SHADOW_PURIFIED:
+            if template.generation != 3:
+                problems.append(
+                    f"{entry.key}: shadow_purified origin must be Generation III"
+                )
+            if "gamecube" not in template.source_platform.casefold():
+                problems.append(
+                    f"{entry.key}: shadow_purified origin must identify Nintendo GameCube"
+                )
+            if template.shadow is None:
+                problems.append(
+                    f"{entry.key}: shadow_purified origin requires shadow provenance"
+                )
+            else:
+                if template.shadow.game not in {"Pokémon Colosseum", "Pokémon XD: Gale of Darkness"}:
+                    problems.append(
+                        f"{entry.key}: unsupported shadow source game {template.shadow.game}"
+                    )
+                if not template.shadow.purified:
+                    problems.append(
+                        f"{entry.key}: Shadow Pokémon must be purified before core-series transfer"
+                    )
+                if not template.shadow.national_ribbon:
+                    problems.append(
+                        f"{entry.key}: purified Shadow Pokémon must carry the National Ribbon"
+                    )
+
         if (
             template.origin_kind is OriginKind.VIRTUAL_CONSOLE
             and "virtual console" not in template.source_platform.casefold()
