@@ -339,6 +339,25 @@ class LegacyBoxCoreTests(unittest.TestCase):
         self.assertEqual(required - ids, set())
         self.assertEqual(len(ids), 17)
 
+    def test_side_source_smoke_links_to_registry(self) -> None:
+        manifest = load_manifest(ROOT / "manifests" / "side-source-smoke.json")
+        registry = json.loads(
+            (ROOT / "data" / "side-sources.json").read_text(encoding="utf-8")
+        )
+        source_ids = {source["id"] for source in registry["sources"]}
+        self.assertEqual(len(manifest.entries), 8)
+        for entry in manifest.entries:
+            self.assertTrue(entry.template.source_registry_id)
+            self.assertIn(entry.template.source_registry_id, source_ids)
+
+        magearna = next(e for e in manifest.entries if e.national_dex == 801)
+        self.assertEqual(magearna.ot_policy.value, "trainer")
+        self.assertEqual(magearna.template.source_registry_id, "gen7.qr_game_based_gifts")
+
+        wishmkr = next(e for e in manifest.entries if e.national_dex == 385)
+        self.assertEqual(wishmkr.event_identity.ot, "WISHMKR")
+        self.assertEqual(wishmkr.event_identity.tid, "20043")
+
     def test_duplicate_dex_form_is_rejected(self) -> None:
         payload = {
             "name": "duplicate",
