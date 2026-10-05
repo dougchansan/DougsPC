@@ -67,3 +67,10 @@ LegacyBox is an independent fan-made preservation tool and is not affiliated wit
 Heritage Dex mode targets National Dex #001–#807 with visible cross-generation provenance. The default player OT is **Doug**. Fixed distributions are never rewritten to Doug; their event identity is preserved as immutable manifest data.
 
 The full 807-entry curation inventory lives in `data/heritage-index.json`. Entries remain pending until a real encounter template and legality result are attached.
+
+
+## Archive Mode
+
+LegacyBox can grow beyond one-per-species Heritage Dex generation into an exhaustive **Archive Mode**. Archive Mode tracks materially distinct legal variants by origin game/generation, ability availability, regional/form differences, event distribution, shiny state, special move/ribbon provenance, and GameCube Colosseum/XD Shadow->Purified lineage.
+
+The goal is exhaustive *obtainable provenance*, not an invalid Cartesian product of every field.
