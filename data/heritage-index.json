@@ -23,10 +23,11 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "pending_encounter_template",
+      "curation_status": "cross_checked_template",
       "ot_policy": "pending_template",
-      "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy.",
-      "competitive_status": "pending_competitive_profile"
+      "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
+      "competitive_status": "smogon_checked",
+      "selected_template_id": "vc-red-starter-bulbasaur"
     },
     {
       "national_dex": 2,
@@ -43,10 +44,11 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "pending_encounter_template",
+      "curation_status": "cross_checked_template",
       "ot_policy": "pending_template",
-      "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy.",
-      "competitive_status": "pending_competitive_profile"
+      "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
+      "competitive_status": "smogon_checked",
+      "selected_template_id": "vc-red-bulbasaur-evolved-ivysaur"
     },
     {
       "national_dex": 3,
@@ -63,10 +65,11 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "pending_encounter_template",
+      "curation_status": "cross_checked_template",
       "ot_policy": "pending_template",
-      "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy.",
-      "competitive_status": "pending_competitive_profile"
+      "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
+      "competitive_status": "smogon_checked",
+      "selected_template_id": "vc-red-bulbasaur-evolved-venusaur"
     },
     {
       "national_dex": 4,
@@ -83,10 +86,11 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "pending_encounter_template",
+      "curation_status": "cross_checked_template",
       "ot_policy": "pending_template",
-      "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy.",
-      "competitive_status": "pending_competitive_profile"
+      "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
+      "competitive_status": "smogon_checked",
+      "selected_template_id": "vc-blue-starter-charmander"
     },
     {
       "national_dex": 5,
@@ -103,10 +107,11 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "pending_encounter_template",
+      "curation_status": "cross_checked_template",
       "ot_policy": "pending_template",
-      "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy.",
-      "competitive_status": "pending_competitive_profile"
+      "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
+      "competitive_status": "smogon_checked",
+      "selected_template_id": "vc-blue-charmander-evolved-charmeleon"
     },
     {
       "national_dex": 6,
@@ -123,10 +128,11 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "pending_encounter_template",
+      "curation_status": "cross_checked_template",
       "ot_policy": "pending_template",
-      "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy.",
-      "competitive_status": "pending_competitive_profile"
+      "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
+      "competitive_status": "smogon_checked",
+      "selected_template_id": "vc-blue-charmander-evolved-charizard"
     },
     {
       "national_dex": 7,
@@ -143,10 +149,11 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "pending_encounter_template",
+      "curation_status": "cross_checked_template",
       "ot_policy": "pending_template",
-      "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy.",
-      "competitive_status": "pending_competitive_profile"
+      "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
+      "competitive_status": "smogon_checked",
+      "selected_template_id": "vc-yellow-gift-squirtle"
     },
     {
       "national_dex": 8,
@@ -163,10 +170,11 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "pending_encounter_template",
+      "curation_status": "cross_checked_template",
       "ot_policy": "pending_template",
-      "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy.",
-      "competitive_status": "pending_competitive_profile"
+      "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
+      "competitive_status": "smogon_checked",
+      "selected_template_id": "vc-yellow-squirtle-evolved-wartortle"
     },
     {
       "national_dex": 9,
@@ -183,10 +191,11 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "pending_encounter_template",
+      "curation_status": "cross_checked_template",
       "ot_policy": "pending_template",
-      "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy.",
-      "competitive_status": "pending_competitive_profile"
+      "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
+      "competitive_status": "smogon_checked",
+      "selected_template_id": "vc-yellow-squirtle-evolved-blastoise"
     },
     {
       "national_dex": 10,
@@ -17580,10 +17589,10 @@
   ],
   "progress": {
     "total": 807,
-    "cross_checked_templates": 7,
-    "pending_encounter_templates": 800,
+    "cross_checked_templates": 16,
+    "pending_encounter_templates": 791,
     "pkhex_legalized": 0,
-    "competitive_profiles": 7,
-    "pending_competitive_profiles": 800
+    "competitive_profiles": 16,
+    "pending_competitive_profiles": 791
   }
 }
