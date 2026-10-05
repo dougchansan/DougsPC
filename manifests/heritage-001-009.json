@@ -1,0 +1,1222 @@
+{
+  "name": "LegacyBox Heritage Dex #001-#009",
+  "target_generation": 7,
+  "trainer": {
+    "name": "Doug",
+    "language": "ENG",
+    "id_strategy": "deterministic-per-origin"
+  },
+  "entries": [
+    {
+      "national_dex": 1,
+      "species": "Bulbasaur",
+      "form": "Normal",
+      "target_level": 5,
+      "ot_policy": "trainer",
+      "target_moves": [
+        "Sleep Powder",
+        "Leaf Storm",
+        "Sludge Bomb",
+        "Hidden Power Fire"
+      ],
+      "traits": {
+        "shiny": "random_legal",
+        "shiny_phase": "after_transporter",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "vc-red-starter-bulbasaur",
+        "source_game": "Red (Virtual Console)",
+        "generation": 1,
+        "method": "gift",
+        "origin_kind": "virtual_console",
+        "source_platform": "Nintendo 3DS Virtual Console",
+        "origin_region": "Kanto",
+        "origin_species": "Bulbasaur",
+        "origin_national_dex": 1,
+        "evolution_path": [
+          "Bulbasaur"
+        ],
+        "location": "Pallet Town",
+        "level_min": 5,
+        "level_max": 5,
+        "encounter_moves": [
+          "Tackle",
+          "Growl"
+        ],
+        "ability": "Chlorophyll",
+        "held_item": "None",
+        "nature_policy": "Transporter-derived from pre-transfer Experience modulo 25",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_in-game_event_Pok%C3%A9mon_(Generation_I)",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT",
+              "encounter moves",
+              "VC transfer ability",
+              "Poké Ball"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/rb/gift.shtml",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT",
+              "encounter moves"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/pokearth/kanto/1st/pallettown.shtml",
+            "checked_fields": [
+              "location",
+              "level"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "competitive": {
+        "format": "BW Little Cup, provenance-adapted",
+        "role": "Choice Scarf special attacker",
+        "source_generation": 5,
+        "level": 5,
+        "nature": "Modest",
+        "ability": "Chlorophyll",
+        "item": "Choice Scarf",
+        "moves": [
+          "Sleep Powder",
+          "Leaf Storm",
+          "Sludge Bomb",
+          "Hidden Power Fire"
+        ],
+        "evs": {
+          "SpA": 240,
+          "Spe": 240
+        },
+        "ivs": {
+          "HP": 31,
+          "Atk": 0,
+          "Def": 31,
+          "SpA": 30,
+          "SpD": 31,
+          "Spe": 30
+        },
+        "application_policy": "preserve_origin_over_competitive",
+        "verification_status": "smogon_checked",
+        "references": [
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/dex/bw/pokemon/bulbasaur/",
+            "checked_fields": [
+              "nature",
+              "EVs",
+              "moves",
+              "item",
+              "baseline ability"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "notes": "Smogon's BW set lists Overgrow; VC provenance requires Chlorophyll after Transporter. The moves/spread remain legal and the ability is provenance-controlled."
+      }
+    },
+    {
+      "national_dex": 2,
+      "species": "Ivysaur",
+      "form": "Normal",
+      "target_level": 30,
+      "ot_policy": "trainer",
+      "target_moves": [
+        "Growth",
+        "Sludge Bomb",
+        "Solar Beam",
+        "Hidden Power Fire"
+      ],
+      "traits": {
+        "shiny": "random_legal",
+        "shiny_phase": "after_transporter",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "vc-red-bulbasaur-evolved-ivysaur",
+        "source_game": "Red (Virtual Console)",
+        "generation": 1,
+        "method": "gift",
+        "origin_kind": "virtual_console",
+        "source_platform": "Nintendo 3DS Virtual Console",
+        "origin_region": "Kanto",
+        "origin_species": "Bulbasaur",
+        "origin_national_dex": 1,
+        "evolution_path": [
+          "Bulbasaur Lv.5",
+          "Evolve to Ivysaur at Lv.16"
+        ],
+        "location": "Pallet Town",
+        "level_min": 5,
+        "level_max": 5,
+        "encounter_moves": [
+          "Tackle",
+          "Growl"
+        ],
+        "ability": "Chlorophyll",
+        "held_item": "None",
+        "nature_policy": "Transporter-derived from pre-transfer Experience modulo 25",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_in-game_event_Pok%C3%A9mon_(Generation_I)",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT",
+              "encounter moves",
+              "VC transfer ability",
+              "Poké Ball"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/rb/gift.shtml",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT",
+              "encounter moves"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/pokearth/kanto/1st/pallettown.shtml",
+            "checked_fields": [
+              "location",
+              "level"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_evolutionary_line",
+            "checked_fields": [
+              "evolution level"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "competitive": {
+        "format": "SM ZU",
+        "role": "Sun sweeper",
+        "source_generation": 7,
+        "level": 50,
+        "nature": "Modest",
+        "ability": "Chlorophyll",
+        "item": "Eviolite",
+        "moves": [
+          "Growth",
+          "Sludge Bomb",
+          "Solar Beam",
+          "Hidden Power Fire"
+        ],
+        "evs": {
+          "Def": 4,
+          "SpA": 252,
+          "Spe": 252
+        },
+        "ivs": {
+          "HP": 31,
+          "Atk": 0,
+          "Def": 31,
+          "SpA": 30,
+          "SpD": 31,
+          "Spe": 30
+        },
+        "application_policy": "prefer_if_legal",
+        "verification_status": "smogon_checked",
+        "references": [
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/dex/sm/pokemon/ivysaur/",
+            "checked_fields": [
+              "moves",
+              "ability",
+              "nature",
+              "item"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/forums/threads/ivysaur.3709439/",
+            "checked_fields": [
+              "EV correction/cross-check",
+              "ability",
+              "nature"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "notes": "Smogon SM scrape displays 252 Atk despite an all-special set; later Smogon ZU material confirms the intended 252 SpA / 4 SpD-or-Def / 252 Spe sun-sweeper pattern. LegacyBox uses 4 Def / 252 SpA / 252 Spe."
+      }
+    },
+    {
+      "national_dex": 3,
+      "species": "Venusaur",
+      "form": "Normal",
+      "target_level": 50,
+      "ot_policy": "trainer",
+      "target_moves": [
+        "Growth",
+        "Sludge Bomb",
+        "Giga Drain",
+        "Hidden Power Fire"
+      ],
+      "traits": {
+        "shiny": "force_shiny",
+        "shiny_phase": "after_transporter",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "vc-red-bulbasaur-evolved-venusaur",
+        "source_game": "Red (Virtual Console)",
+        "generation": 1,
+        "method": "gift",
+        "origin_kind": "virtual_console",
+        "source_platform": "Nintendo 3DS Virtual Console",
+        "origin_region": "Kanto",
+        "origin_species": "Bulbasaur",
+        "origin_national_dex": 1,
+        "evolution_path": [
+          "Bulbasaur Lv.5",
+          "Ivysaur at Lv.16",
+          "Venusaur at Lv.32"
+        ],
+        "location": "Pallet Town",
+        "level_min": 5,
+        "level_max": 5,
+        "encounter_moves": [
+          "Tackle",
+          "Growl"
+        ],
+        "ability": "Chlorophyll",
+        "held_item": "None",
+        "nature_policy": "Transporter-derived from pre-transfer Experience modulo 25",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_in-game_event_Pok%C3%A9mon_(Generation_I)",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT",
+              "encounter moves",
+              "VC transfer ability",
+              "Poké Ball"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/rb/gift.shtml",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT",
+              "encounter moves"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/pokearth/kanto/1st/pallettown.shtml",
+            "checked_fields": [
+              "location",
+              "level"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_evolutionary_line",
+            "checked_fields": [
+              "evolution levels"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "competitive": {
+        "format": "SM RU",
+        "role": "Sun sweeper",
+        "source_generation": 7,
+        "level": 50,
+        "nature": "Modest",
+        "ability": "Chlorophyll",
+        "item": "Life Orb",
+        "moves": [
+          "Growth",
+          "Sludge Bomb",
+          "Giga Drain",
+          "Hidden Power Fire"
+        ],
+        "evs": {
+          "Def": 4,
+          "SpA": 252,
+          "Spe": 252
+        },
+        "ivs": {
+          "HP": 31,
+          "Atk": 0,
+          "Def": 31,
+          "SpA": 30,
+          "SpD": 31,
+          "Spe": 30
+        },
+        "application_policy": "prefer_if_legal",
+        "verification_status": "smogon_checked",
+        "references": [
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/dex/sm/pokemon/venusaur/",
+            "checked_fields": [
+              "nature",
+              "EVs",
+              "moves",
+              "ability",
+              "item"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "notes": "Requested shiny must be realized through legal Gen I DV -> Transporter shiny conversion."
+      }
+    },
+    {
+      "national_dex": 4,
+      "species": "Charmander",
+      "form": "Normal",
+      "target_level": 5,
+      "ot_policy": "trainer",
+      "target_moves": [
+        "Fire Blast",
+        "Hidden Power Grass",
+        "Ancient Power",
+        "Dragon Pulse"
+      ],
+      "traits": {
+        "shiny": "random_legal",
+        "shiny_phase": "after_transporter",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "vc-blue-starter-charmander",
+        "source_game": "Blue (Virtual Console)",
+        "generation": 1,
+        "method": "gift",
+        "origin_kind": "virtual_console",
+        "source_platform": "Nintendo 3DS Virtual Console",
+        "origin_region": "Kanto",
+        "origin_species": "Charmander",
+        "origin_national_dex": 4,
+        "evolution_path": [
+          "Charmander"
+        ],
+        "location": "Pallet Town",
+        "level_min": 5,
+        "level_max": 5,
+        "encounter_moves": [
+          "Scratch",
+          "Growl"
+        ],
+        "ability": "Solar Power",
+        "held_item": "None",
+        "nature_policy": "Transporter-derived from pre-transfer Experience modulo 25",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_in-game_event_Pok%C3%A9mon_(Generation_I)",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT",
+              "encounter moves",
+              "VC transfer ability",
+              "Poké Ball"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/rb/gift.shtml",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/pokearth/kanto/1st/pallettown.shtml",
+            "checked_fields": [
+              "location",
+              "level"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "competitive": {
+        "format": "XY Little Cup",
+        "role": "Solar Power sun attacker",
+        "source_generation": 6,
+        "level": 5,
+        "nature": "Modest",
+        "ability": "Solar Power",
+        "item": "Choice Scarf",
+        "moves": [
+          "Fire Blast",
+          "Hidden Power Grass",
+          "Ancient Power",
+          "Dragon Pulse"
+        ],
+        "evs": {
+          "HP": 44,
+          "Def": 12,
+          "SpA": 200,
+          "Spe": 236
+        },
+        "ivs": {
+          "HP": 31,
+          "Atk": 0,
+          "Def": 31,
+          "SpA": 30,
+          "SpD": 31,
+          "Spe": 31
+        },
+        "application_policy": "prefer_if_legal",
+        "verification_status": "smogon_checked",
+        "references": [
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/forums/threads/charmander.3506447/post-5446201",
+            "checked_fields": [
+              "nature",
+              "EVs",
+              "moves",
+              "ability",
+              "item"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "notes": "The Red/Blue Serebii gift page says Leer, but Bulbapedia and Serebii's in-game/rival learnset evidence support Growl at Lv.5; Growl is used as origin move."
+      }
+    },
+    {
+      "national_dex": 5,
+      "species": "Charmeleon",
+      "form": "Normal",
+      "target_level": 35,
+      "ot_policy": "trainer",
+      "target_moves": [
+        "Overheat",
+        "Flamethrower",
+        "Dragon Pulse",
+        "Hidden Power Grass"
+      ],
+      "traits": {
+        "shiny": "random_legal",
+        "shiny_phase": "after_transporter",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "vc-blue-charmander-evolved-charmeleon",
+        "source_game": "Blue (Virtual Console)",
+        "generation": 1,
+        "method": "gift",
+        "origin_kind": "virtual_console",
+        "source_platform": "Nintendo 3DS Virtual Console",
+        "origin_region": "Kanto",
+        "origin_species": "Charmander",
+        "origin_national_dex": 4,
+        "evolution_path": [
+          "Charmander Lv.5",
+          "Evolve to Charmeleon at Lv.16"
+        ],
+        "location": "Pallet Town",
+        "level_min": 5,
+        "level_max": 5,
+        "encounter_moves": [
+          "Scratch",
+          "Growl"
+        ],
+        "ability": "Solar Power",
+        "held_item": "None",
+        "nature_policy": "Transporter-derived from pre-transfer Experience modulo 25",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_in-game_event_Pok%C3%A9mon_(Generation_I)",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT",
+              "encounter moves",
+              "VC transfer ability",
+              "Poké Ball"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/rb/gift.shtml",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/pokearth/kanto/1st/pallettown.shtml",
+            "checked_fields": [
+              "location",
+              "level"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_evolutionary_line",
+            "checked_fields": [
+              "evolution level"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "competitive": {
+        "format": "NFE special attacker, provenance-adapted",
+        "role": "Solar Power special attacker",
+        "source_generation": 7,
+        "level": 50,
+        "nature": "Timid",
+        "ability": "Solar Power",
+        "item": "Choice Specs",
+        "moves": [
+          "Overheat",
+          "Flamethrower",
+          "Dragon Pulse",
+          "Hidden Power Grass"
+        ],
+        "evs": {
+          "SpA": 252,
+          "SpD": 4,
+          "Spe": 252
+        },
+        "ivs": {
+          "HP": 31,
+          "Atk": 0,
+          "Def": 31,
+          "SpA": 30,
+          "SpD": 31,
+          "Spe": 31
+        },
+        "application_policy": "preserve_origin_over_competitive",
+        "verification_status": "smogon_checked",
+        "references": [
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/dex/ss/pokemon/charmeleon/",
+            "checked_fields": [
+              "nature",
+              "EVs",
+              "ability",
+              "item",
+              "three compatible moves"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/forums/threads/charmeleon-nu-analysis.3501695/",
+            "checked_fields": [
+              "Hidden Power Grass coverage precedent"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "notes": "SM has no published Charmeleon set. This profile adapts Smogon special-attacker guidance to Gen VII by replacing Gen VIII-only Weather Ball with legal Hidden Power Grass."
+      }
+    },
+    {
+      "national_dex": 6,
+      "species": "Charizard",
+      "form": "Normal",
+      "target_level": 50,
+      "ot_policy": "trainer",
+      "target_moves": [
+        "Sunny Day",
+        "Fire Blast",
+        "Solar Beam",
+        "Roost"
+      ],
+      "traits": {
+        "shiny": "random_legal",
+        "shiny_phase": "after_transporter",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "vc-blue-charmander-evolved-charizard",
+        "source_game": "Blue (Virtual Console)",
+        "generation": 1,
+        "method": "gift",
+        "origin_kind": "virtual_console",
+        "source_platform": "Nintendo 3DS Virtual Console",
+        "origin_region": "Kanto",
+        "origin_species": "Charmander",
+        "origin_national_dex": 4,
+        "evolution_path": [
+          "Charmander Lv.5",
+          "Charmeleon at Lv.16",
+          "Charizard at Lv.36"
+        ],
+        "location": "Pallet Town",
+        "level_min": 5,
+        "level_max": 5,
+        "encounter_moves": [
+          "Scratch",
+          "Growl"
+        ],
+        "ability": "Solar Power",
+        "held_item": "None",
+        "nature_policy": "Transporter-derived from pre-transfer Experience modulo 25",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_in-game_event_Pok%C3%A9mon_(Generation_I)",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT",
+              "encounter moves",
+              "VC transfer ability",
+              "Poké Ball"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/rb/gift.shtml",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/pokearth/kanto/1st/pallettown.shtml",
+            "checked_fields": [
+              "location",
+              "level"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_evolutionary_line",
+            "checked_fields": [
+              "evolution levels"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "competitive": {
+        "format": "SM NU",
+        "role": "Z-Sunny Day Solar Power sweeper",
+        "source_generation": 7,
+        "level": 50,
+        "nature": "Timid",
+        "ability": "Solar Power",
+        "item": "Firium Z",
+        "moves": [
+          "Sunny Day",
+          "Fire Blast",
+          "Solar Beam",
+          "Roost"
+        ],
+        "evs": {
+          "SpA": 252,
+          "SpD": 4,
+          "Spe": 252
+        },
+        "ivs": {
+          "HP": 31,
+          "Atk": 0,
+          "Def": 31,
+          "SpA": 31,
+          "SpD": 31,
+          "Spe": 31
+        },
+        "application_policy": "prefer_if_legal",
+        "verification_status": "smogon_checked",
+        "references": [
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/forums/goto/post?id=7423979",
+            "checked_fields": [
+              "nature",
+              "EVs",
+              "moves",
+              "ability",
+              "item"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "notes": "Uses a Gen VII Solar Power set, directly matching the VC Transporter Hidden Ability instead of overwriting it to Blaze."
+      }
+    },
+    {
+      "national_dex": 7,
+      "species": "Squirtle",
+      "form": "Normal",
+      "target_level": 10,
+      "ot_policy": "trainer",
+      "target_moves": [
+        "Rapid Spin",
+        "Fake Out",
+        "Waterfall",
+        "Aqua Jet"
+      ],
+      "traits": {
+        "shiny": "random_legal",
+        "shiny_phase": "after_transporter",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "vc-yellow-gift-squirtle",
+        "source_game": "Yellow (Virtual Console)",
+        "generation": 1,
+        "method": "gift",
+        "origin_kind": "virtual_console",
+        "source_platform": "Nintendo 3DS Virtual Console",
+        "origin_region": "Kanto",
+        "origin_species": "Squirtle",
+        "origin_national_dex": 7,
+        "evolution_path": [
+          "Squirtle Lv.10"
+        ],
+        "location": "Vermilion City",
+        "level_min": 10,
+        "level_max": 10,
+        "encounter_moves": [
+          "Tackle",
+          "Tail Whip",
+          "Bubble"
+        ],
+        "ability": "Rain Dish",
+        "held_item": "None",
+        "nature_policy": "Transporter-derived from pre-transfer Experience modulo 25",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_in-game_event_Pok%C3%A9mon_(Generation_I)",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT",
+              "encounter moves",
+              "VC transfer ability",
+              "Poké Ball"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/yellow/gift.shtml",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT",
+              "encounter moves"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "competitive": {
+        "format": "SM Little Cup, provenance-adapted",
+        "role": "Rapid Spin support",
+        "source_generation": 7,
+        "level": 5,
+        "nature": "Impish",
+        "ability": "Rain Dish",
+        "item": "Eviolite",
+        "moves": [
+          "Rapid Spin",
+          "Fake Out",
+          "Waterfall",
+          "Aqua Jet"
+        ],
+        "evs": {
+          "HP": 84,
+          "Atk": 52,
+          "Def": 156,
+          "SpD": 84,
+          "Spe": 92
+        },
+        "ivs": {
+          "HP": 31,
+          "Atk": 31,
+          "Def": 31,
+          "SpA": 31,
+          "SpD": 31,
+          "Spe": 31
+        },
+        "application_policy": "preserve_origin_over_competitive",
+        "verification_status": "smogon_checked",
+        "references": [
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/dex/sm/pokemon/squirtle/",
+            "checked_fields": [
+              "nature",
+              "EVs",
+              "moves",
+              "item",
+              "baseline ability"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "notes": "Smogon uses Torrent; Yellow VC Transporter mandates Rain Dish. The support set does not rely on Torrent, so only the ability is provenance-adapted."
+      }
+    },
+    {
+      "national_dex": 8,
+      "species": "Wartortle",
+      "form": "Normal",
+      "target_level": 35,
+      "ot_policy": "trainer",
+      "target_moves": [
+        "Rapid Spin",
+        "Scald",
+        "Toxic",
+        "Refresh"
+      ],
+      "traits": {
+        "shiny": "random_legal",
+        "shiny_phase": "after_transporter",
+        "pokerus": "cured",
+        "pokerus_acquired_generation": 7
+      },
+      "template": {
+        "template_id": "vc-yellow-squirtle-evolved-wartortle",
+        "source_game": "Yellow (Virtual Console)",
+        "generation": 1,
+        "method": "gift",
+        "origin_kind": "virtual_console",
+        "source_platform": "Nintendo 3DS Virtual Console",
+        "origin_region": "Kanto",
+        "origin_species": "Squirtle",
+        "origin_national_dex": 7,
+        "evolution_path": [
+          "Squirtle Lv.10",
+          "Evolve to Wartortle at Lv.16"
+        ],
+        "location": "Vermilion City",
+        "level_min": 10,
+        "level_max": 10,
+        "encounter_moves": [
+          "Tackle",
+          "Tail Whip",
+          "Bubble"
+        ],
+        "ability": "Rain Dish",
+        "held_item": "None",
+        "nature_policy": "Transporter-derived from pre-transfer Experience modulo 25",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_in-game_event_Pok%C3%A9mon_(Generation_I)",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT",
+              "encounter moves",
+              "VC transfer ability",
+              "Poké Ball"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/yellow/gift.shtml",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT",
+              "encounter moves"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_evolutionary_line",
+            "checked_fields": [
+              "evolution level"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "competitive": {
+        "format": "XY ZU, provenance-adapted to Gen VII",
+        "role": "Physically defensive spinner",
+        "source_generation": 6,
+        "level": 50,
+        "nature": "Bold",
+        "ability": "Rain Dish",
+        "item": "Eviolite",
+        "moves": [
+          "Rapid Spin",
+          "Scald",
+          "Toxic",
+          "Refresh"
+        ],
+        "evs": {
+          "HP": 252,
+          "Def": 252,
+          "SpD": 4
+        },
+        "ivs": {
+          "HP": 31,
+          "Atk": 0,
+          "Def": 31,
+          "SpA": 31,
+          "SpD": 31,
+          "Spe": 31
+        },
+        "application_policy": "preserve_origin_over_competitive",
+        "verification_status": "smogon_checked",
+        "references": [
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/dex/xy/pokemon/wartortle/zu/",
+            "checked_fields": [
+              "nature",
+              "EVs",
+              "moves",
+              "item",
+              "baseline ability"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "notes": "Smogon lists Torrent; VC provenance mandates Rain Dish. Pokérus is acquired after Transporter in Gen VII."
+      }
+    },
+    {
+      "national_dex": 9,
+      "species": "Blastoise",
+      "form": "Normal",
+      "target_level": 50,
+      "ot_policy": "trainer",
+      "target_moves": [
+        "Water Pulse",
+        "Dark Pulse",
+        "Aura Sphere",
+        "Rapid Spin"
+      ],
+      "traits": {
+        "shiny": "random_legal",
+        "shiny_phase": "after_transporter",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "vc-yellow-squirtle-evolved-blastoise",
+        "source_game": "Yellow (Virtual Console)",
+        "generation": 1,
+        "method": "gift",
+        "origin_kind": "virtual_console",
+        "source_platform": "Nintendo 3DS Virtual Console",
+        "origin_region": "Kanto",
+        "origin_species": "Squirtle",
+        "origin_national_dex": 7,
+        "evolution_path": [
+          "Squirtle Lv.10",
+          "Wartortle at Lv.16",
+          "Blastoise at Lv.36"
+        ],
+        "location": "Vermilion City",
+        "level_min": 10,
+        "level_max": 10,
+        "encounter_moves": [
+          "Tackle",
+          "Tail Whip",
+          "Bubble"
+        ],
+        "ability": "Rain Dish",
+        "held_item": "None",
+        "nature_policy": "Transporter-derived from pre-transfer Experience modulo 25",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_in-game_event_Pok%C3%A9mon_(Generation_I)",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT",
+              "encounter moves",
+              "VC transfer ability",
+              "Poké Ball"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/yellow/gift.shtml",
+            "checked_fields": [
+              "source game",
+              "location",
+              "level",
+              "OT",
+              "encounter moves"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_evolutionary_line",
+            "checked_fields": [
+              "evolution levels"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "competitive": {
+        "format": "SM UU",
+        "role": "Mega offensive wallbreaker",
+        "source_generation": 7,
+        "level": 50,
+        "nature": "Modest",
+        "ability": "Rain Dish",
+        "item": "Blastoisinite",
+        "moves": [
+          "Water Pulse",
+          "Dark Pulse",
+          "Aura Sphere",
+          "Rapid Spin"
+        ],
+        "evs": {
+          "HP": 104,
+          "SpA": 252,
+          "Spe": 152
+        },
+        "ivs": {
+          "HP": 31,
+          "Atk": 0,
+          "Def": 31,
+          "SpA": 31,
+          "SpD": 31,
+          "Spe": 31
+        },
+        "application_policy": "prefer_if_legal",
+        "verification_status": "smogon_checked",
+        "references": [
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/dex/sm/pokemon/blastoise/uu/",
+            "checked_fields": [
+              "nature",
+              "EVs",
+              "moves",
+              "ability",
+              "item"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "notes": "Rain Dish exactly matches Smogon's preferred pre-Mega ability; Mega Evolution supplies Mega Launcher in battle."
+      }
+    }
+  ]
+}
