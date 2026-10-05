@@ -200,6 +200,28 @@ class LegacyBoxCoreTests(unittest.TestCase):
             {"HP": 31, "Atk": 0, "Def": 31, "SpA": 30, "SpD": 31, "Spe": 31},
         )
 
+    def test_kanto_001_009_batch(self) -> None:
+        manifest = load_manifest(ROOT / "manifests" / "heritage-001-009.json")
+        self.assertEqual([e.national_dex for e in manifest.entries], list(range(1, 10)))
+        self.assertEqual(manifest.trainer.name, "Doug")
+
+        venusaur = next(e for e in manifest.entries if e.national_dex == 3)
+        charizard = next(e for e in manifest.entries if e.national_dex == 6)
+        blastoise = next(e for e in manifest.entries if e.national_dex == 9)
+
+        self.assertEqual(venusaur.template.origin_species, "Bulbasaur")
+        self.assertIn("Venusaur at Lv.32", venusaur.template.evolution_path)
+        self.assertEqual(charizard.template.origin_species, "Charmander")
+        self.assertIn("Charizard at Lv.36", charizard.template.evolution_path)
+        self.assertEqual(blastoise.template.origin_species, "Squirtle")
+        self.assertIn("Blastoise at Lv.36", blastoise.template.evolution_path)
+
+        self.assertEqual(venusaur.competitive.ability, "Chlorophyll")
+        self.assertEqual(charizard.competitive.ability, "Solar Power")
+        self.assertEqual(blastoise.competitive.ability, "Rain Dish")
+        self.assertTrue(all(e.template.verification_status == "cross_checked" for e in manifest.entries))
+        self.assertTrue(all(e.competitive.verification_status == "smogon_checked" for e in manifest.entries))
+
     def test_duplicate_dex_form_is_rejected(self) -> None:
         payload = {
             "name": "duplicate",
