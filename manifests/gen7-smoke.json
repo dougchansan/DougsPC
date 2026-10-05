@@ -11,10 +11,16 @@
         "template_id": "usum-starter-rowlet",
         "source_game": "Ultra Sun/Ultra Moon",
         "generation": 7,
-        "method": "starter"
+        "method": "starter",
+        "origin_kind": "gift",
+        "source_platform": "Nintendo 3DS",
+        "origin_region": "Alola"
       },
       "notes": "Template reference is a planning identifier until validated by the legality backend.",
-      "ot_policy": "trainer"
+      "ot_policy": "trainer",
+      "migration_route": [
+        "Pokémon Bank"
+      ]
     },
     {
       "national_dex": 731,
@@ -25,9 +31,15 @@
         "template_id": "usum-route1-pikipek",
         "source_game": "Ultra Sun/Ultra Moon",
         "generation": 7,
-        "method": "wild"
+        "method": "wild",
+        "origin_kind": "native",
+        "source_platform": "Nintendo 3DS",
+        "origin_region": "Alola"
       },
-      "ot_policy": "trainer"
+      "ot_policy": "trainer",
+      "migration_route": [
+        "Pokémon Bank"
+      ]
     },
     {
       "national_dex": 734,
@@ -38,9 +50,15 @@
         "template_id": "usum-route1-yungoos",
         "source_game": "Ultra Sun/Ultra Moon",
         "generation": 7,
-        "method": "wild"
+        "method": "wild",
+        "origin_kind": "native",
+        "source_platform": "Nintendo 3DS",
+        "origin_region": "Alola"
       },
-      "ot_policy": "trainer"
+      "ot_policy": "trainer",
+      "migration_route": [
+        "Pokémon Bank"
+      ]
     },
     {
       "national_dex": 736,
@@ -51,9 +69,15 @@
         "template_id": "usum-route1-grubbin",
         "source_game": "Ultra Sun/Ultra Moon",
         "generation": 7,
-        "method": "wild"
+        "method": "wild",
+        "origin_kind": "native",
+        "source_platform": "Nintendo 3DS",
+        "origin_region": "Alola"
       },
-      "ot_policy": "trainer"
+      "ot_policy": "trainer",
+      "migration_route": [
+        "Pokémon Bank"
+      ]
     },
     {
       "national_dex": 744,
@@ -64,9 +88,15 @@
         "template_id": "usum-ten-carat-hill-rockruff",
         "source_game": "Ultra Sun/Ultra Moon",
         "generation": 7,
-        "method": "wild"
+        "method": "wild",
+        "origin_kind": "native",
+        "source_platform": "Nintendo 3DS",
+        "origin_region": "Alola"
       },
-      "ot_policy": "trainer"
+      "ot_policy": "trainer",
+      "migration_route": [
+        "Pokémon Bank"
+      ]
     },
     {
       "national_dex": 757,
@@ -77,13 +107,19 @@
         "template_id": "usum-wela-volcano-park-salandit",
         "source_game": "Ultra Sun/Ultra Moon",
         "generation": 7,
-        "method": "wild"
+        "method": "wild",
+        "origin_kind": "native",
+        "source_platform": "Nintendo 3DS",
+        "origin_region": "Alola"
       },
-      "ot_policy": "trainer"
+      "ot_policy": "trainer",
+      "migration_route": [
+        "Pokémon Bank"
+      ]
     }
   ],
   "trainer": {
-    "name": "Kento",
+    "name": "Doug",
     "language": "ENG",
     "id_strategy": "deterministic-per-origin"
   }
