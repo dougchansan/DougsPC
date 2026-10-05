@@ -51,11 +51,22 @@ def main() -> int:
     ]
 
     progress = payload.get("progress", {})
+    competitive = [
+        entry for entry in entries
+        if entry.get("competitive_status") == "smogon_checked"
+    ]
+    pending_competitive = [
+        entry for entry in entries
+        if entry.get("competitive_status") == "pending_competitive_profile"
+    ]
+
     expected = {
         "total": 807,
         "cross_checked_templates": len(verified),
         "pending_encounter_templates": len(pending),
         "pkhex_legalized": len(legalized),
+        "competitive_profiles": len(competitive),
+        "pending_competitive_profiles": len(pending_competitive),
     }
     if progress != expected:
         raise SystemExit(f"progress block mismatch: expected {expected}, got {progress}")
@@ -64,7 +75,9 @@ def main() -> int:
         "Heritage Dex index OK: "
         f"{len(verified)} cross-checked, "
         f"{len(legalized)} PKHeX-passed, "
-        f"{len(pending)} pending."
+        f"{len(pending)} encounter templates pending; "
+        f"{len(competitive)} competitive profiles checked, "
+        f"{len(pending_competitive)} competitive profiles pending."
     )
     return 0
 
