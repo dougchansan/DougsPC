@@ -1,0 +1,102 @@
+{
+  "name": "LegacyBox Heritage Dex provenance smoke set",
+  "target_generation": 7,
+  "trainer": {
+    "name": "Kento",
+    "language": "ENG",
+    "id_strategy": "deterministic-per-origin"
+  },
+  "entries": [
+    {
+      "national_dex": 25,
+      "species": "Pikachu",
+      "form": "Normal",
+      "target_level": 12,
+      "ot_policy": "trainer",
+      "template": {
+        "template_id": "vc-yellow-viridian-forest-pikachu",
+        "source_game": "Yellow (Virtual Console)",
+        "generation": 1,
+        "method": "wild"
+      }
+    },
+    {
+      "national_dex": 155,
+      "species": "Cyndaquil",
+      "form": "Normal",
+      "target_level": 5,
+      "ot_policy": "trainer",
+      "template": {
+        "template_id": "vc-crystal-starter-cyndaquil",
+        "source_game": "Crystal (Virtual Console)",
+        "generation": 2,
+        "method": "starter"
+      }
+    },
+    {
+      "national_dex": 258,
+      "species": "Mudkip",
+      "form": "Normal",
+      "target_level": 5,
+      "ot_policy": "trainer",
+      "template": {
+        "template_id": "emerald-starter-mudkip",
+        "source_game": "Emerald",
+        "generation": 3,
+        "method": "starter"
+      }
+    },
+    {
+      "national_dex": 447,
+      "species": "Riolu",
+      "form": "Normal",
+      "target_level": 1,
+      "ot_policy": "trainer",
+      "template": {
+        "template_id": "platinum-riley-egg-riolu",
+        "source_game": "Platinum",
+        "generation": 4,
+        "method": "gift-egg"
+      }
+    },
+    {
+      "national_dex": 551,
+      "species": "Sandile",
+      "form": "Normal",
+      "target_level": 15,
+      "ot_policy": "trainer",
+      "template": {
+        "template_id": "black-white-desert-resort-sandile",
+        "source_game": "Black/White",
+        "generation": 5,
+        "method": "wild"
+      }
+    },
+    {
+      "national_dex": 653,
+      "species": "Fennekin",
+      "form": "Normal",
+      "target_level": 5,
+      "ot_policy": "trainer",
+      "template": {
+        "template_id": "xy-starter-fennekin",
+        "source_game": "X/Y",
+        "generation": 6,
+        "method": "starter"
+      }
+    },
+    {
+      "national_dex": 722,
+      "species": "Rowlet",
+      "form": "Normal",
+      "target_level": 5,
+      "ot_policy": "trainer",
+      "template": {
+        "template_id": "usum-starter-rowlet",
+        "source_game": "Ultra Sun/Ultra Moon",
+        "generation": 7,
+        "method": "starter"
+      }
+    }
+  ]
+}
