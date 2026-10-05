@@ -24,6 +24,11 @@
       "Hash and preserve the post-HOME snapshot used as evidence.",
       "Treat server-side history as unverifiable locally.",
       "A successful HOME upload does not upgrade generated origin evidence to historically legitimate."
+    ],
+    "reverse_engineered_notes": [
+      "For pre-Switch Pokémon entering HOME through Bank, reverse-engineering indicates HOME initializes a SWSH child data block in addition to core HOME data.",
+      "HOME tracker values can change across uploads; LegacyBox therefore never uses the raw tracker as a permanent archive identifier.",
+      "Immutable values associated with HOME history should not be edited after HOME entry when provenance preservation is the goal."
     ]
   },
   "trust_axes": {
