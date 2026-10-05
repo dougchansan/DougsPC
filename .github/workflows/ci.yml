@@ -176,3 +176,24 @@ jobs:
           code=$?
           set -e
           test "$code" -eq 2
+
+
+  legacybox-3ds:
+    runs-on: ubuntu-latest
+    container:
+      image: devkitpro/devkitarm
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build LegacyBox3DS
+        run: make -C 3ds/LegacyBox3DS -j$(nproc --all)
+      - name: Verify build products
+        run: |
+          test -f 3ds/LegacyBox3DS/LegacyBox3DS.3dsx
+          test -f 3ds/LegacyBox3DS/LegacyBox3DS.smdh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LegacyBox3DS
+          path: |
+            3ds/LegacyBox3DS/LegacyBox3DS.3dsx
+            3ds/LegacyBox3DS/LegacyBox3DS.smdh
