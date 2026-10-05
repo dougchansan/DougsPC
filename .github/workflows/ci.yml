@@ -160,6 +160,7 @@ jobs:
         with:
           name: legacybox-batch-001-009
           path: /tmp/legacybox-batch-001-009/*
+      - name: Confirm malformed PKM fails closed
         run: |
           python - <<'PY'
           from pathlib import Path
