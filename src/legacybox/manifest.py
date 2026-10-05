@@ -69,6 +69,12 @@ def validate_manifest_structure(manifest: LivingDexManifest) -> list[str]:
             )
         if not template.method:
             problems.append(f"{entry.key}: encounter method must not be empty")
+        if template.origin_national_dex is not None and not 1 <= template.origin_national_dex <= 1025:
+            problems.append(f"{entry.key}: origin_national_dex out of supported range")
+        if template.evolution_path and not template.origin_species:
+            problems.append(
+                f"{entry.key}: evolution_path requires origin_species"
+            )
         if len(template.encounter_moves) > 4:
             problems.append(f"{entry.key}: encounter_moves cannot exceed four moves")
 
