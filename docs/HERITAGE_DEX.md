@@ -82,3 +82,28 @@ Where a species has a genuine player-OT encounter route, that route may be prefe
 ## Curation rule
 
 The 807-entry index is only an inventory. An entry remains `pending_encounter_template` until a real encounter template is selected and passed through the legality backend. Source-generation ranges alone are never treated as proof of legality.
+
+
+## Encounter-data verification
+
+A curated encounter is not accepted from a single fan database. LegacyBox uses three layers:
+
+1. **Bulbapedia** for encounter/gift tables, transfer behavior, and distribution notes.
+2. **Serebii** for an independent location/level/moves/ability cross-check.
+3. **PKHeX.Core** against the generated PKM as the machine legality gate.
+
+A template may be marked `cross_checked` only when it contains both Bulbapedia and Serebii references. If the sources disagree, the manifest records the conflict and generation is blocked until the game data/PKHeX result resolves it.
+
+The checked fields include, where applicable: source title, encounter location, encounter level/range, initial moves, level-up moves needed for the target level, ability, held item, OT policy, event locks, and transfer-specific transformations.
+
+## Shiny policy
+
+Shinies are curated rather than randomized across the whole dex. `force_shiny` is only a request; it must still pass the encounter's shiny restrictions and PKHeX legality check. Fixed distributions retain their exact shiny/non-shiny state.
+
+For VC Gen I, a Pokémon may become Shiny when transported based on its Gen I DVs. That is recorded as a separate shiny phase rather than pretending the shiny state was visible in the original game.
+
+## Pokérus policy
+
+A small curated subset may be active or cured Pokérus. The acquisition generation is recorded separately from encounter provenance.
+
+Poké Transporter strips Pokérus from Virtual Console Gen I/II Pokémon, so a VC-origin Pokémon that has Pokérus in its final Gen VII representation must have acquired it **after** transfer into Gen VII. LegacyBox rejects a VC trait plan that claims otherwise.
