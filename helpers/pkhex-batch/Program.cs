@@ -198,6 +198,18 @@ foreach (var entry in root.GetProperty("entries").EnumerateArray())
     best.RefreshChecksum();
 
     var legality = new LegalityAnalysis(best);
+    var invalidChecks = legality.Results
+        .Where(check => !check.Valid)
+        .Select(check => new
+        {
+            judgement = check.Judgement.ToString(),
+            identifier = check.Identifier.ToString(),
+            result = check.Result.ToString(),
+            value = check.Value,
+            argument = check.Argument,
+            argument2 = check.Argument2,
+        })
+        .ToArray();
     var actualIVs = GetIVs(best);
     var actualEVs = GetEVs(best);
     var actualMoves = GetMoveNames(best);
@@ -219,6 +231,7 @@ foreach (var entry in root.GetProperty("entries").EnumerateArray())
         name = speciesName,
         generated = true,
         legal = legality.Valid,
+        invalidChecks,
         encounterType = encounter.GetType().Name,
         originSpecies = encounter.Species,
         originLevelMin = encounter.LevelMin,
