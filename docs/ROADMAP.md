@@ -96,12 +96,20 @@
 
 ## M4 — 3DS bridge
 
+- [x] Buildable LegacyBox3DS 3DSX scaffold
+- [x] SD-card LBX1 batch manifest
+- [x] SHA-256 verification of every staged PK7
+- [x] Deterministic PC box/slot map
+- [x] PKSM adapter with full-slot preflight and no-overwrite policy
+- [x] Official Bank handoff boundary documented
+- [ ] Standalone Gen VII save writer (remove PKSM dependency)
+- [ ] Automatic pre-write save backup + restore
+- [ ] Atomic direct-save write + checksum verification
 - [ ] Homebrew network service
 - [ ] Bonjour/mDNS discovery
 - [ ] Pairing/authentication
 - [ ] Cartridge/save inventory
-- [ ] Backup/restore
-- [ ] Atomic write + verification
+- [ ] CIA build / optional local app chainload handoff
 
 ## M5 — iOS LegacyBox
 
