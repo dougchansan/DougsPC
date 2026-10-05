@@ -25,18 +25,20 @@
 
 - [x] Main-series Gen I–VII source families
 - [x] Colosseum/XD native + Shadow/Purified model
-- [ ] Pokémon Box Ruby & Sapphire bonus Eggs
-- [ ] Colosseum Bonus Disc: WISHMKR Jirachi / Ageto Celebi
-- [ ] Pokémon Channel Jirachi
-- [ ] Japanese Colosseum e-Reader Shadow Togepi/Mareep/Scizor
-- [ ] Pokémon Ranger Manaphy Egg lineages
-- [ ] My Pokémon Ranch Mew / Phione
-- [ ] Pokémon Battle Revolution gifts
-- [ ] Pokéwalker course/special-move provenance
-- [ ] Pokémon Dream World / PGL Hidden Ability origins
-- [ ] Pokémon Dream Radar origins and badge-dependent levels
-- [ ] Gen VI/VII special demos / Bank distributions / QR or other game-based gifts
+- [x] Catalog Pokémon Box Ruby & Sapphire bonus Eggs
+- [x] Catalog Colosseum Bonus Disc: WISHMKR Jirachi / Ageto Celebi
+- [x] Catalog Pokémon Channel Jirachi
+- [x] Catalog Japanese Colosseum e-Reader Shadow Togepi/Mareep/Scizor
+- [x] Catalog Pokémon Ranger Manaphy Egg lineages
+- [x] Catalog My Pokémon Ranch Mew / Phione
+- [x] Catalog Pokémon Battle Revolution gifts
+- [x] Catalog Pokéwalker course/special-move provenance
+- [x] Catalog Pokémon Dream World / PGL Hidden Ability origins
+- [x] Catalog Pokémon Dream Radar origins and badge-dependent levels
+- [x] Catalog Gen VI/VII special demos / Bank distributions / QR and Island Scan sources
 - [ ] Determine which side-game source distinctions survive in PKM data vs lineage-only metadata
+- [ ] Expand every side-source family into all individual legal variants
+- [ ] Generate and PKHeX-pass one representative from each side-source family
 
 ## M1 — Real Gen VII legality proof
 
