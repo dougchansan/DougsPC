@@ -954,7 +954,8 @@
           }
         ],
         "notes": "Smogon uses Torrent; Yellow VC Transporter mandates Rain Dish. The support set does not rely on Torrent, so only the ability is provenance-adapted."
-      }
+      },
+      "notes": "Historical Yellow provenance remains the Lv.10 Vermilion City Squirtle gift. PKHeX canonicalizes equivalent Gen I starter/gift legality to a shared Lv.5 RBY static template because catch rate and initial moves are equivalent."
     },
     {
       "national_dex": 8,
@@ -1085,7 +1086,8 @@
           }
         ],
         "notes": "Smogon lists Torrent; VC provenance mandates Rain Dish. Pokérus is acquired after Transporter in Gen VII."
-      }
+      },
+      "notes": "Historical Yellow provenance remains the Lv.10 Vermilion City Squirtle gift. PKHeX canonicalizes equivalent Gen I starter/gift legality to a shared Lv.5 RBY static template because catch rate and initial moves are equivalent."
     },
     {
       "national_dex": 9,
@@ -1216,7 +1218,8 @@
           }
         ],
         "notes": "Rain Dish exactly matches Smogon's preferred pre-Mega ability; Mega Evolution supplies Mega Launcher in battle."
-      }
+      },
+      "notes": "Historical Yellow provenance remains the Lv.10 Vermilion City Squirtle gift. PKHeX canonicalizes equivalent Gen I starter/gift legality to a shared Lv.5 RBY static template because catch rate and initial moves are equivalent."
     }
   ]
 }
