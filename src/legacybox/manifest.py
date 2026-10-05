@@ -127,6 +127,35 @@ def validate_manifest_structure(manifest: LivingDexManifest) -> list[str]:
                 f"{entry.key}: virtual_console origin must identify a Virtual Console platform"
             )
 
+        comp = entry.competitive
+        if comp.level is not None and not 1 <= comp.level <= 100:
+            problems.append(f"{entry.key}: competitive level must be between 1 and 100")
+        if len(comp.moves) > 4:
+            problems.append(f"{entry.key}: competitive moves cannot exceed four moves")
+        if comp.source_generation is not None and not 1 <= comp.source_generation <= manifest.target_generation:
+            problems.append(
+                f"{entry.key}: competitive source_generation must be between 1 and target_generation"
+            )
+
+        valid_stats = {"HP", "Atk", "Def", "SpA", "SpD", "Spe"}
+        if set(comp.evs) - valid_stats:
+            problems.append(f"{entry.key}: competitive EVs contain unknown stat names")
+        if set(comp.ivs) - valid_stats:
+            problems.append(f"{entry.key}: competitive IVs contain unknown stat names")
+        if any(v < 0 or v > 252 for v in comp.evs.values()):
+            problems.append(f"{entry.key}: competitive EVs must be 0..252 per stat")
+        if sum(comp.evs.values()) > 510:
+            problems.append(f"{entry.key}: competitive EV total cannot exceed 510")
+        if any(v < 0 or v > 31 for v in comp.ivs.values()):
+            problems.append(f"{entry.key}: competitive IVs must be 0..31 per stat")
+
+        if comp.verification_status == "smogon_checked":
+            sources = {ref.source.casefold() for ref in comp.references}
+            if not any("smogon" in source for source in sources):
+                problems.append(
+                    f"{entry.key}: smogon_checked competitive profile requires Smogon reference"
+                )
+
         traits = entry.traits
         if traits.pokerus is PokerusStatus.NONE:
             if traits.pokerus_acquired_generation is not None:
