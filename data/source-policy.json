@@ -180,5 +180,18 @@
     "shiny": "Curated only. Every forced shiny must pass encounter-specific shiny rules and PKHeX; fixed events keep their distribution state.",
     "pokerus": "Curated active/cured cases are allowed only with a recorded acquisition generation.",
     "virtual_console_pokerus": "Poké Transporter strips VC Pokérus; final Gen VII Pokérus must be acquired after Transporter."
+  },
+  "competitive_policy": {
+    "source": "Smogon/Showdown analyses",
+    "rules": [
+      "Competitive values are desired derived values, not provenance.",
+      "Fixed event fields are immutable.",
+      "Selected ability must be reachable from the chosen provenance; otherwise adapt the set.",
+      "EV total must be <=510 and each stat <=252.",
+      "IVs must be 0..31; Hidden Power sets use explicit legal patterns.",
+      "Pure special attackers prefer 0 Attack IV when compatible.",
+      "VC nature/IV requests must be realized through Poké Transporter mechanics rather than stamped onto the PK7.",
+      "Every concrete generated candidate must still pass PKHeX."
+    ]
   }
 }
