@@ -358,6 +358,76 @@ class LegacyBoxCoreTests(unittest.TestCase):
         self.assertEqual(wishmkr.event_identity.ot, "WISHMKR")
         self.assertEqual(wishmkr.event_identity.tid, "20043")
 
+    def test_generated_candidate_does_not_claim_home_server_validity(self) -> None:
+        manifest = load_manifest(ROOT / "manifests" / "heritage-smoke.json")
+        for entry in manifest.entries:
+            trust = entry.provenance_trust
+            self.assertEqual(trust.origin_evidence.value, "generated_candidate")
+            self.assertEqual(trust.bank_transfer.value, "not_attempted")
+            self.assertEqual(trust.home_provenance.value, "pre_home")
+            self.assertEqual(
+                trust.home_server_verification.value,
+                "unverifiable_locally",
+            )
+
+    def test_tracker_observation_requires_tracker_presence(self) -> None:
+        payload = {
+            "name": "bad home evidence",
+            "target_generation": 7,
+            "trainer": {"name": "Doug"},
+            "entries": [{
+                "national_dex": 1,
+                "species": "Bulbasaur",
+                "target_level": 5,
+                "provenance_trust": {
+                    "origin_evidence": "generated_candidate",
+                    "home_provenance": "tracker_observed",
+                    "tracker_present": False
+                },
+                "template": {
+                    "template_id": "test",
+                    "source_game": "Red (Virtual Console)",
+                    "generation": 1,
+                    "method": "gift",
+                    "origin_kind": "virtual_console",
+                    "source_platform": "Nintendo 3DS Virtual Console"
+                }
+            }]
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "manifest.json"
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            with self.assertRaises(ManifestError):
+                load_manifest(path)
+
+    def test_post_home_snapshot_hash_must_be_sha256(self) -> None:
+        payload = {
+            "name": "bad hash",
+            "target_generation": 7,
+            "trainer": {"name": "Doug"},
+            "entries": [{
+                "national_dex": 1,
+                "species": "Bulbasaur",
+                "target_level": 5,
+                "provenance_trust": {
+                    "post_home_snapshot_sha256": "not-a-hash"
+                },
+                "template": {
+                    "template_id": "test",
+                    "source_game": "Red (Virtual Console)",
+                    "generation": 1,
+                    "method": "gift",
+                    "origin_kind": "virtual_console",
+                    "source_platform": "Nintendo 3DS Virtual Console"
+                }
+            }]
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "manifest.json"
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            with self.assertRaises(ManifestError):
+                load_manifest(path)
+
     def test_duplicate_dex_form_is_rejected(self) -> None:
         payload = {
             "name": "duplicate",
