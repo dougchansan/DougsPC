@@ -31,6 +31,12 @@ def main() -> int:
         "gen4.pokewalker",
         "gen5.dream_world",
         "gen5.dream_radar",
+        "gen6.oras_special_demo",
+        "gen6.pokemon_bank_distributions",
+        "gen7.sm_special_demo_ash_greninja",
+        "gen7.pokemon_bank_distributions",
+        "gen7.qr_game_based_gifts",
+        "gen7.island_scan",
     }
     missing = expected - set(ids)
     if missing:
