@@ -46,6 +46,19 @@ def generation_plan(manifest: LivingDexManifest) -> list[dict[str, object]]:
                         entry.traits.pokerus_acquired_generation
                     ),
                 },
+                "provenance_trust": {
+                    "origin_evidence": entry.provenance_trust.origin_evidence.value,
+                    "bank_transfer": entry.provenance_trust.bank_transfer.value,
+                    "home_provenance": entry.provenance_trust.home_provenance.value,
+                    "home_server_verification": (
+                        entry.provenance_trust.home_server_verification.value
+                    ),
+                    "tracker_present": entry.provenance_trust.tracker_present,
+                    "post_home_snapshot_sha256": (
+                        entry.provenance_trust.post_home_snapshot_sha256
+                    ),
+                    "notes": entry.provenance_trust.notes,
+                },
                 "competitive": {
                     "format": entry.competitive.format,
                     "role": entry.competitive.role,
