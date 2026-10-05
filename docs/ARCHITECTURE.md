@@ -65,3 +65,17 @@ The iOS client is the vault browser and transfer controller. It should discover 
 ## 7. HOME/Bank boundary
 
 LegacyBox will not invent HOME tracker values or Bank server history. Where an official transfer path exists, the project hands a validated game/save state to the official client and treats the server transaction as outside LegacyBox.
+
+
+## 8. Provenance trust boundary
+
+LegacyBox separates four independent concepts:
+
+1. source/origin evidence;
+2. local PKM legality;
+3. observed or user-confirmed official Bank migration;
+4. observed HOME tracker/server provenance.
+
+A generated candidate may pass local legality and later traverse the official Bank->HOME path without becoming historically legitimate at its original encounter. Likewise, a nonzero HOME tracker is evidence that must be recorded but cannot be authenticated locally.
+
+See `docs/HOME_PROVENANCE.md`.
