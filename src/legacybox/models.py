@@ -137,6 +137,58 @@ class TraitPlan:
         )
 
 
+
+
+@dataclass(frozen=True)
+class CompetitiveProfile:
+    format: str = ""
+    role: str = ""
+    source_generation: int | None = None
+    level: int | None = None
+    nature: str = ""
+    ability: str = ""
+    item: str = ""
+    moves: tuple[str, ...] = ()
+    evs: dict[str, int] = field(default_factory=dict)
+    ivs: dict[str, int] = field(default_factory=dict)
+    application_policy: str = "prefer_if_legal"
+    verification_status: str = "unverified"
+    references: tuple[SourceReference, ...] = ()
+    notes: str = ""
+
+    @classmethod
+    def from_dict(cls, value: dict[str, Any] | None) -> "CompetitiveProfile":
+        value = value or {}
+        src_gen = value.get("source_generation")
+        level = value.get("level")
+        return cls(
+            format=str(value.get("format", "")).strip(),
+            role=str(value.get("role", "")).strip(),
+            source_generation=None if src_gen is None else int(src_gen),
+            level=None if level is None else int(level),
+            nature=str(value.get("nature", "")).strip(),
+            ability=str(value.get("ability", "")).strip(),
+            item=str(value.get("item", "")).strip(),
+            moves=tuple(
+                str(move).strip()
+                for move in value.get("moves", [])
+                if str(move).strip()
+            ),
+            evs={str(k): int(v) for k, v in dict(value.get("evs", {})).items()},
+            ivs={str(k): int(v) for k, v in dict(value.get("ivs", {})).items()},
+            application_policy=str(
+                value.get("application_policy", "prefer_if_legal")
+            ).strip(),
+            verification_status=str(
+                value.get("verification_status", "unverified")
+            ).strip(),
+            references=tuple(
+                SourceReference.from_dict(ref) for ref in value.get("references", [])
+            ),
+            notes=str(value.get("notes", "")).strip(),
+        )
+
+
 @dataclass(frozen=True)
 class EncounterTemplateRef:
     template_id: str
@@ -202,6 +254,7 @@ class DexEntry:
     migration_route: tuple[str, ...] = ()
     target_moves: tuple[str, ...] = ()
     traits: TraitPlan = TraitPlan()
+    competitive: CompetitiveProfile = CompetitiveProfile()
     notes: str = ""
 
     @property
@@ -231,6 +284,7 @@ class DexEntry:
                 if str(move).strip()
             ),
             traits=TraitPlan.from_dict(value.get("traits")),
+            competitive=CompetitiveProfile.from_dict(value.get("competitive")),
             notes=str(value.get("notes", "")).strip(),
         )
 
