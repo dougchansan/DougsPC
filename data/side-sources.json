@@ -16,7 +16,8 @@
       "transfer_route",
       "pkhex_support",
       "references"
-    ]
+    ],
+    "coverage": "Generation III through VII side-game, demo, Bank, QR, and scan acquisition families"
   },
   "sources": [
     {
@@ -682,6 +683,405 @@
           "url": "https://www.serebii.net/itemdex/dreamball.shtml",
           "checked_fields": [
             "Dream Ball Gen V availability/Entree Forest behavior"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gen6.oras_special_demo",
+      "name": "Omega Ruby / Alpha Sapphire Special Demo — Pokémon Link",
+      "generation": 6,
+      "category": "demo_transfer",
+      "platform": "Nintendo 3DS Special Demo -> Omega Ruby/Alpha Sapphire",
+      "status": "cross_checked",
+      "transfer_route": [
+        "ORAS Special Demo",
+        "Pokémon Link",
+        "Omega Ruby/Alpha Sapphire",
+        "Pokémon Bank"
+      ],
+      "variants": [
+        {
+          "species": "Glalie",
+          "national_dex": 362,
+          "level": 40,
+          "region": "American/PAL/Korean/Taiwanese demo",
+          "ot": "Orlando/localized",
+          "tid": "player/demo-derived",
+          "abilities": [
+            "Inner Focus",
+            "Ice Body"
+          ],
+          "held_item": "Glalitite",
+          "moves": [
+            "Ice Fang",
+            "Headbutt",
+            "Protect",
+            "Frost Breath"
+          ],
+          "nature": "random"
+        },
+        {
+          "species": "Steelix",
+          "national_dex": 208,
+          "level": 40,
+          "region": "Japanese demo",
+          "ot": "オメガ",
+          "tid": "player/demo-derived",
+          "abilities": [
+            "Rock Head",
+            "Sturdy"
+          ],
+          "held_item": "Steelixite",
+          "moves": [
+            "Iron Tail",
+            "Crunch",
+            "Rock Slide",
+            "Screech"
+          ],
+          "nature": "random"
+        }
+      ],
+      "rules": [
+        "Received through Pokémon Link",
+        "Language follows receiving game",
+        "Only one demo Mega Pokémon can be sent to a full ORAS save"
+      ],
+      "pkhex_support": {
+        "kind": "Gen VI Pokémon Link / event legality",
+        "confidence": "native"
+      },
+      "references": [
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Omega_Ruby_and_Pok%C3%A9mon_Alpha_Sapphire_Special_Demo_Version",
+          "checked_fields": [
+            "region split",
+            "level",
+            "OT",
+            "moves",
+            "abilities",
+            "held item",
+            "Pokémon Link"
+          ],
+          "checked_date": "2026-10-04"
+        },
+        {
+          "source": "Serebii",
+          "url": "https://www.serebii.net/omegarubyalphasapphire/demo.shtml",
+          "checked_fields": [
+            "level",
+            "OT",
+            "moves",
+            "ability",
+            "held item",
+            "transfer"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gen6.pokemon_bank_distributions",
+      "name": "Pokémon Bank — Generation VI distributions",
+      "generation": 6,
+      "category": "bank_distribution",
+      "platform": "Pokémon Bank -> X/Y/ORAS via Pokémon Link",
+      "status": "catalogued",
+      "transfer_route": [
+        "Pokémon Bank distribution",
+        "Pokémon Link",
+        "X/Y or ORAS",
+        "Pokémon Bank"
+      ],
+      "representative_variants": [
+        {
+          "species": "Celebi",
+          "national_dex": 251,
+          "level": 10,
+          "ot": "player",
+          "tid": "player",
+          "ability": "Natural Cure",
+          "met": "Pokémon Link",
+          "fateful_encounter": true
+        },
+        {
+          "family": "Johto first partners",
+          "note": "2015 Hidden Ability distributions to XY/ORAS"
+        }
+      ],
+      "rules": [
+        "Distribution windows and fixed/relearn moves are variant-specific",
+        "Receiving-game language may control language",
+        "Player OT/TID is used on some Bank gifts"
+      ],
+      "pkhex_support": {
+        "kind": "Gen VI event/Wonder Card/Pokémon Link legality",
+        "confidence": "native"
+      },
+      "references": [
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_game-based_Pok%C3%A9mon_distributions_in_Generation_VI",
+          "checked_fields": [
+            "Celebi",
+            "Pokémon Link",
+            "OT/TID",
+            "Bank method"
+          ],
+          "checked_date": "2026-10-04"
+        },
+        {
+          "source": "Serebii",
+          "url": "https://www.serebii.net/bank/events.shtml",
+          "checked_fields": [
+            "Bank distribution catalog",
+            "Celebi",
+            "Hidden Ability Johto starters"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gen7.sm_special_demo_ash_greninja",
+      "name": "Sun/Moon Special Demo — Ash's Greninja",
+      "generation": 7,
+      "category": "demo_transfer",
+      "platform": "Nintendo 3DS Special Demo -> Sun/Moon",
+      "status": "cross_checked",
+      "transfer_route": [
+        "Sun/Moon Special Demo",
+        "Transfer reward",
+        "Sun or Moon",
+        "Pokémon Bank"
+      ],
+      "fixed_identity": {
+        "species": "Greninja",
+        "national_dex": 658,
+        "gender": "male",
+        "level": 36,
+        "ot": "Ash/localized",
+        "tid": "131017",
+        "ability": "Battle Bond",
+        "held_item": "None",
+        "moves": [
+          "Water Shuriken",
+          "Aerial Ace",
+          "Double Team",
+          "Night Slash"
+        ],
+        "ribbon": "Souvenir Ribbon",
+        "met_level": 5,
+        "fateful_encounter": true
+      },
+      "rules": [
+        "Can transfer to Sun/Moon, not Ultra Sun/Ultra Moon",
+        "Nature is re-selected on transfer to full game",
+        "IVs/EVs are source-constrained",
+        "Battle Bond provenance is unique"
+      ],
+      "pkhex_support": {
+        "kind": "Gen VII game-based distribution legality",
+        "confidence": "native"
+      },
+      "references": [
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Sun_and_Pok%C3%A9mon_Moon_Special_Demo_Version",
+          "checked_fields": [
+            "transfer",
+            "OT",
+            "TID",
+            "level",
+            "met level",
+            "moves",
+            "ability",
+            "ribbon",
+            "nature transfer behavior"
+          ],
+          "checked_date": "2026-10-04"
+        },
+        {
+          "source": "Serebii",
+          "url": "https://www.serebii.net/sunmoon/demo.shtml",
+          "checked_fields": [
+            "level",
+            "OT",
+            "TID",
+            "ability",
+            "moves",
+            "demo transfer"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gen7.pokemon_bank_distributions",
+      "name": "Pokémon Bank — Generation VII distributions",
+      "generation": 7,
+      "category": "bank_distribution",
+      "platform": "Pokémon Bank -> Sun/Moon/Ultra Sun/Ultra Moon",
+      "status": "catalogued",
+      "transfer_route": [
+        "Pokémon Bank distribution",
+        "Mystery Gift/Bank receive",
+        "SM/USUM",
+        "Pokémon Bank"
+      ],
+      "representative_variants": [
+        {
+          "family": "Alola first partners",
+          "note": "2018 Hidden Ability Decidueye/Incineroar/Primarina distributions"
+        },
+        {
+          "note": "Additional Bank game-based distributions are enumerated individually in the Gen VII distribution catalog."
+        }
+      ],
+      "rules": [
+        "Every Bank distribution retains its own fixed moves/ribbon/ability constraints",
+        "Receiving language/game compatibility must be preserved"
+      ],
+      "pkhex_support": {
+        "kind": "Gen VII event/Wonder Card legality",
+        "confidence": "native"
+      },
+      "references": [
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_game-based_Pok%C3%A9mon_distributions_in_Generation_VII",
+          "checked_fields": [
+            "Bank distributions",
+            "Hidden Ability Alola starters",
+            "moves",
+            "ribbons"
+          ],
+          "checked_date": "2026-10-04"
+        },
+        {
+          "source": "Serebii",
+          "url": "https://www.serebii.net/bank/events.shtml",
+          "checked_fields": [
+            "Bank event catalog"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gen7.qr_game_based_gifts",
+      "name": "Generation VII QR/game-based gifts",
+      "generation": 7,
+      "category": "qr_distribution",
+      "platform": "QR Scanner -> SM/USUM",
+      "status": "cross_checked",
+      "transfer_route": [
+        "Scan distribution QR",
+        "Receive in SM/USUM",
+        "Pokémon Bank"
+      ],
+      "variants": [
+        {
+          "species": "Magearna",
+          "national_dex": 801,
+          "level": 50,
+          "ot": "player",
+          "tid": "player",
+          "ability": "Soul-Heart",
+          "held_item": "Bottle Cap",
+          "moves": [
+            "Flash Cannon",
+            "Fleur Cannon",
+            "Lucky Chant",
+            "Helping Hand"
+          ],
+          "ribbon": "Wishing Ribbon",
+          "fateful_encounter": true,
+          "game": "Sun/Moon"
+        },
+        {
+          "species": "Pikachu",
+          "national_dex": 25,
+          "form": "Partner Cap",
+          "note": "USUM QR distribution; exact regional fixed fields curated per distribution record"
+        }
+      ],
+      "rules": [
+        "Distribution QR codes are not the same as generic Pokédex QR scans",
+        "Gift-specific fixed fields and region variants are preserved"
+      ],
+      "pkhex_support": {
+        "kind": "Gen VII event/game-based distribution legality",
+        "confidence": "native"
+      },
+      "references": [
+        {
+          "source": "Serebii",
+          "url": "https://www.serebii.net/sunmoon/qrevents.shtml",
+          "checked_fields": [
+            "Magearna level",
+            "OT/TID",
+            "ability",
+            "item",
+            "moves",
+            "ribbon"
+          ],
+          "checked_date": "2026-10-04"
+        },
+        {
+          "source": "Serebii",
+          "url": "https://www.serebii.net/ultrasunultramoon/qrevents.shtml",
+          "checked_fields": [
+            "Partner Cap Pikachu QR provenance"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gen7.island_scan",
+      "name": "Generation VII Island Scan encounters",
+      "generation": 7,
+      "category": "scan_encounter",
+      "platform": "QR Scanner / Island Scan -> SM/USUM",
+      "status": "catalogued",
+      "transfer_route": [
+        "Accumulate QR Scanner points",
+        "Island Scan encounter",
+        "SM/USUM",
+        "Pokémon Bank"
+      ],
+      "rules": [
+        "Species depends on island/day/version",
+        "One-hour encounter window",
+        "Nature/Ability are generated per encounter",
+        "Island Scan species carry specified special/Egg moves"
+      ],
+      "pkhex_support": {
+        "kind": "Gen VII wild/static encounter legality + special moves",
+        "confidence": "native"
+      },
+      "references": [
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Island_Scan",
+          "checked_fields": [
+            "mechanic",
+            "species/day/location",
+            "levels",
+            "special moves",
+            "random encounter data"
+          ],
+          "checked_date": "2026-10-04"
+        },
+        {
+          "source": "Serebii",
+          "url": "https://www.serebii.net/sunmoon/qrscanner.shtml",
+          "checked_fields": [
+            "QR points",
+            "Island Scan mechanic"
           ],
           "checked_date": "2026-10-04"
         }
