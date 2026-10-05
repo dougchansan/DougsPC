@@ -45,6 +45,7 @@ jobs:
           dotnet-version: "10.0.x"
       - run: dotnet build helpers/pkhex-validator/LegacyBox.PKHeXValidator.csproj --configuration Release
       - run: dotnet build helpers/pkhex-catalog/LegacyBox.EncounterCatalog.csproj --configuration Release
+      - run: dotnet build helpers/pkhex-batch/LegacyBox.BatchGenerator.csproj --configuration Release
       - name: Confirm PKHeX catalog finds Red VC Venusaur origin
         run: |
           dotnet run --no-build --configuration Release --project helpers/pkhex-catalog/LegacyBox.EncounterCatalog.csproj -- 3 RD > /tmp/venusaur-red.json
@@ -137,7 +138,28 @@ jobs:
         with:
           name: kanto-010-018-encounter-candidates
           path: /tmp/legacybox-candidates/*.json
-      - name: Confirm malformed PKM fails closed
+      - name: Generate and validate LegacyBox #001-#009 batch
+        run: |
+          rm -rf /tmp/legacybox-batch-001-009
+          mkdir -p /tmp/legacybox-batch-001-009
+          dotnet run --no-build --configuration Release --project helpers/pkhex-batch/LegacyBox.BatchGenerator.csproj -- manifests/heritage-001-009.json /tmp/legacybox-batch-001-009
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path("/tmp/legacybox-batch-001-009")
+          report = json.loads((root / "batch-report.json").read_text())
+          assert report["total"] == 9, report
+          assert report["passed"] == 9, report
+          assert report["failed"] == 0, report
+          assert report["allLegal"] is True, report
+          assert len(list(root.glob("*.pk7"))) == 9
+          assert all(r["ot"] == "Doug" for r in report["results"]), report
+          assert all(r["legal"] for r in report["results"]), report
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: legacybox-batch-001-009
+          path: /tmp/legacybox-batch-001-009/*
         run: |
           python - <<'PY'
           from pathlib import Path
