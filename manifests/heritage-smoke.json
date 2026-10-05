@@ -105,7 +105,7 @@
           "Leer"
         ],
         "ability": "No Ability at origin; Flash Fire after VC Transporter",
-        "held_item": "Berry in Gen II; Poké Transporter does not transfer held items",
+        "held_item": "None",
         "nature_policy": "Transporter-derived",
         "verification_status": "cross_checked",
         "references": [
@@ -137,7 +137,8 @@
       "migration_route": [
         "Poké Transporter",
         "Pokémon Bank"
-      ]
+      ],
+      "notes": "Crystal starter cross-check uses no held item; Gold/Silver held-item behavior is not applied to the Crystal VC source."
     },
     {
       "national_dex": 258,
