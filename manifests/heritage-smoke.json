@@ -72,7 +72,52 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "notes": "Gen I VC shininess is determined during Transporter from Gen I DVs. Pokérus is intentionally acquired in Gen VII because Transporter strips VC Pokérus."
+      "notes": "Gen I VC shininess is determined during Transporter from Gen I DVs. Pokérus is intentionally acquired in Gen VII because Transporter strips VC Pokérus.",
+      "competitive": {
+        "format": "BW NU baseline, adapted to Gen VII",
+        "role": "Substitute special attacker",
+        "source_generation": 5,
+        "level": 50,
+        "nature": "Timid",
+        "ability": "Lightning Rod",
+        "item": "Light Ball",
+        "moves": [
+          "Substitute",
+          "Thunderbolt",
+          "Hidden Power Ice",
+          "Encore"
+        ],
+        "evs": {
+          "Def": 4,
+          "SpA": 252,
+          "Spe": 252
+        },
+        "ivs": {
+          "HP": 31,
+          "Atk": 0,
+          "Def": 30,
+          "SpA": 31,
+          "SpD": 31,
+          "Spe": 31
+        },
+        "application_policy": "prefer_if_legal",
+        "verification_status": "smogon_checked",
+        "references": [
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/dex/bw/pokemon/pikachu/",
+            "checked_fields": [
+              "nature",
+              "EVs",
+              "moves",
+              "ability",
+              "item"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "notes": "No SM Smogon moveset is published. Uses the established BW Lightning Rod special set because all requested fields remain compatible with the VC->Gen VII provenance. HP Ice uses a legal 31/0/30/31/31/31 IV pattern."
+      }
     },
     {
       "national_dex": 155,
@@ -138,7 +183,53 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "notes": "Crystal starter cross-check uses no held item; Gold/Silver held-item behavior is not applied to the Crystal VC source."
+      "notes": "Crystal starter cross-check uses no held item; Gold/Silver held-item behavior is not applied to the Crystal VC source.",
+      "competitive": {
+        "format": "SM Little Cup",
+        "role": "Choice Scarf special attacker",
+        "source_generation": 7,
+        "level": 5,
+        "nature": "Timid",
+        "ability": "Flash Fire",
+        "item": "Choice Scarf",
+        "moves": [
+          "Eruption",
+          "Hidden Power Grass",
+          "Fire Blast",
+          "Extrasensory"
+        ],
+        "evs": {
+          "HP": 44,
+          "Def": 12,
+          "SpA": 200,
+          "Spe": 236
+        },
+        "ivs": {
+          "HP": 31,
+          "Atk": 0,
+          "Def": 31,
+          "SpA": 30,
+          "SpD": 31,
+          "Spe": 31
+        },
+        "application_policy": "prefer_if_legal",
+        "verification_status": "smogon_checked",
+        "references": [
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/dex/sm/pokemon/cyndaquil/",
+            "checked_fields": [
+              "nature",
+              "EVs",
+              "moves",
+              "ability",
+              "item"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "notes": "VC Transporter guarantees Flash Fire for Cyndaquil. Desired Timid nature must be realized through VC experience modulo 25. HP Grass uses 31/0/31/30/31/31."
+      }
     },
     {
       "national_dex": 258,
@@ -208,7 +299,52 @@
         "Generation V",
         "Poké Transporter",
         "Pokémon Bank"
-      ]
+      ],
+      "competitive": {
+        "format": "SM Little Cup",
+        "role": "Bulky attacker",
+        "source_generation": 7,
+        "level": 5,
+        "nature": "Impish",
+        "ability": "Torrent",
+        "item": "Eviolite",
+        "moves": [
+          "Waterfall",
+          "Ice Beam",
+          "Superpower",
+          "Double-Edge"
+        ],
+        "evs": {
+          "Atk": 196,
+          "Def": 116,
+          "SpD": 196
+        },
+        "ivs": {
+          "HP": 31,
+          "Atk": 31,
+          "Def": 31,
+          "SpA": 31,
+          "SpD": 31,
+          "Spe": 31
+        },
+        "application_policy": "prefer_if_legal",
+        "verification_status": "smogon_checked",
+        "references": [
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/dex/sm/pokemon/mudkip/",
+            "checked_fields": [
+              "nature",
+              "EVs",
+              "moves",
+              "ability",
+              "item"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "notes": "Mixed physical/special coverage keeps 31 SpA rather than minimizing it."
+      }
     },
     {
       "national_dex": 447,
@@ -279,7 +415,54 @@
         "Generation V",
         "Poké Transporter",
         "Pokémon Bank"
-      ]
+      ],
+      "competitive": {
+        "format": "DP Little Cup",
+        "role": "Agility physical sweeper",
+        "source_generation": 4,
+        "level": 5,
+        "nature": "Adamant",
+        "ability": "Inner Focus",
+        "item": "Life Orb",
+        "moves": [
+          "Agility",
+          "High Jump Kick",
+          "Crunch",
+          "Ice Punch"
+        ],
+        "evs": {
+          "Atk": 196,
+          "Def": 36,
+          "SpD": 36,
+          "Spe": 196
+        },
+        "ivs": {
+          "HP": 0,
+          "Atk": 31,
+          "Def": 31,
+          "SpA": 31,
+          "SpD": 31,
+          "Spe": 31
+        },
+        "application_policy": "preserve_origin_over_competitive",
+        "verification_status": "smogon_checked",
+        "references": [
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/dex/dp/pokemon/riolu/",
+            "checked_fields": [
+              "nature",
+              "EVs",
+              "IVs",
+              "moves",
+              "ability",
+              "item"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "notes": "Uses Smogon's Gen IV Inner Focus set because the Platinum Riley Egg cannot legitimately become hidden-ability Prankster."
+      }
     },
     {
       "national_dex": 551,
@@ -364,7 +547,52 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "notes": "Corrected from provisional Lv.15; Black/White Desert Resort encounters are Lv.19-22."
+      "notes": "Corrected from provisional Lv.15; Black/White Desert Resort encounters are Lv.19-22.",
+      "competitive": {
+        "format": "SM Little Cup",
+        "role": "Choice Scarf cleaner",
+        "source_generation": 7,
+        "level": 5,
+        "nature": "Adamant",
+        "ability": "Moxie",
+        "item": "Choice Scarf",
+        "moves": [
+          "Earthquake",
+          "Crunch",
+          "Fire Fang",
+          "Pursuit"
+        ],
+        "evs": {
+          "Atk": 180,
+          "Def": 76,
+          "Spe": 236
+        },
+        "ivs": {
+          "HP": 31,
+          "Atk": 31,
+          "Def": 31,
+          "SpA": 31,
+          "SpD": 31,
+          "Spe": 31
+        },
+        "application_policy": "prefer_if_legal",
+        "verification_status": "smogon_checked",
+        "references": [
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/dex/sm/pokemon/sandile/",
+            "checked_fields": [
+              "nature",
+              "EVs",
+              "moves",
+              "ability",
+              "item"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "notes": "Adamant is Smogon's preferred nature; Jolly remains an alternate."
+      }
     },
     {
       "national_dex": 653,
@@ -430,7 +658,54 @@
       },
       "migration_route": [
         "Pokémon Bank"
-      ]
+      ],
+      "competitive": {
+        "format": "SM Little Cup, provenance-adapted",
+        "role": "Special attacker",
+        "source_generation": 7,
+        "level": 5,
+        "nature": "Timid",
+        "ability": "Blaze",
+        "item": "Power Herb",
+        "moves": [
+          "Fire Blast",
+          "Solar Beam",
+          "Psychic",
+          "Will-O-Wisp"
+        ],
+        "evs": {
+          "HP": 36,
+          "Def": 36,
+          "SpA": 180,
+          "SpD": 36,
+          "Spe": 196
+        },
+        "ivs": {
+          "HP": 31,
+          "Atk": 0,
+          "Def": 31,
+          "SpA": 31,
+          "SpD": 31,
+          "Spe": 31
+        },
+        "application_policy": "preserve_origin_over_competitive",
+        "verification_status": "smogon_checked",
+        "references": [
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/dex/sm/pokemon/fennekin/",
+            "checked_fields": [
+              "nature",
+              "EVs",
+              "moves",
+              "item",
+              "preferred ability"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "notes": "Smogon's set uses Magician, but the X/Y starter provenance fixes the obtainable ability to Blaze. Nature/EVs/moves/item are retained while provenance wins over the hidden-ability recommendation."
+      }
     },
     {
       "national_dex": 722,
@@ -495,7 +770,52 @@
       "migration_route": [
         "Pokémon Bank"
       ],
-      "notes": "Uses Growl. Serebii's USUM gift page currently lists Leer, but Serebii's Pokédex learnset and Bulbapedia agree on Growl; PKHeX remains the final legality gate."
+      "notes": "Uses Growl. Serebii's USUM gift page currently lists Leer, but Serebii's Pokédex learnset and Bulbapedia agree on Growl; PKHeX remains the final legality gate.",
+      "competitive": {
+        "format": "SM Little Cup",
+        "role": "Swords Dance physical sweeper",
+        "source_generation": 7,
+        "level": 5,
+        "nature": "Jolly",
+        "ability": "Overgrow",
+        "item": "Life Orb",
+        "moves": [
+          "Swords Dance",
+          "Brave Bird",
+          "Leaf Blade",
+          "Sucker Punch"
+        ],
+        "evs": {
+          "Atk": 236,
+          "SpD": 36,
+          "Spe": 180
+        },
+        "ivs": {
+          "HP": 31,
+          "Atk": 31,
+          "Def": 31,
+          "SpA": 31,
+          "SpD": 31,
+          "Spe": 31
+        },
+        "application_policy": "prefer_if_legal",
+        "verification_status": "smogon_checked",
+        "references": [
+          {
+            "source": "Smogon",
+            "url": "https://www.smogon.com/dex/sm/pokemon/rowlet/",
+            "checked_fields": [
+              "nature",
+              "EVs",
+              "moves",
+              "ability",
+              "item"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "notes": "All selected competitive fields are compatible with the USUM starter's Overgrow provenance."
+      }
     }
   ]
 }
