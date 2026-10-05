@@ -282,6 +282,27 @@ class LegacyBoxCoreTests(unittest.TestCase):
             manifest = load_manifest(path)
             self.assertTrue(manifest.entries[0].template.shadow.national_ribbon)
 
+    def test_gamecube_smoke_preserves_shadow_provenance(self) -> None:
+        manifest = load_manifest(ROOT / "manifests" / "gamecube-smoke.json")
+        self.assertEqual(len(manifest.entries), 3)
+
+        espeon = next(e for e in manifest.entries if e.national_dex == 196)
+        makuhita = next(e for e in manifest.entries if e.national_dex == 296)
+        teddiursa = next(e for e in manifest.entries if e.national_dex == 216)
+
+        self.assertIsNone(espeon.template.shadow)
+        self.assertEqual(makuhita.template.origin_kind.value, "shadow_purified")
+        self.assertTrue(makuhita.template.shadow.purified)
+        self.assertTrue(makuhita.template.shadow.national_ribbon)
+        self.assertEqual(teddiursa.template.shadow.purification_move, "Refresh")
+
+    def test_shadow_moves_are_not_target_export_moves(self) -> None:
+        manifest = load_manifest(ROOT / "manifests" / "gamecube-smoke.json")
+        for entry in manifest.entries:
+            if entry.template.shadow is None:
+                continue
+            self.assertTrue(all(not move.startswith("Shadow ") for move in entry.target_moves))
+
     def test_duplicate_dex_form_is_rejected(self) -> None:
         payload = {
             "name": "duplicate",
