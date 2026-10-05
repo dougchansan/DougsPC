@@ -107,3 +107,28 @@ For VC Gen I, a Pokémon may become Shiny when transported based on its Gen I DV
 A small curated subset may be active or cured Pokérus. The acquisition generation is recorded separately from encounter provenance.
 
 Poké Transporter strips Pokérus from Virtual Console Gen I/II Pokémon, so a VC-origin Pokémon that has Pokérus in its final Gen VII representation must have acquired it **after** transfer into Gen VII. LegacyBox rejects a VC trait plan that claims otherwise.
+
+
+## Competitive profile policy
+
+Competitive optimization is a **derived layer** and never overrides encounter provenance.
+
+Source hierarchy:
+
+1. Smogon/Showdown analysis for a documented competitive role, nature, EV spread, item, ability and moveset.
+2. Bulbapedia/Serebii and the PKHeX encounter/move database for whether those fields are obtainable from the selected provenance.
+3. PKHeX legality analysis on the concrete generated PKM.
+
+Rules:
+
+- EVs may be trained to the selected competitive spread when the format permits it.
+- Random nature/IV encounters may be generated toward competitive values only when the encounter mechanics allow those values.
+- Fixed event nature, IVs, ability, shiny state, OT and other locked fields remain fixed.
+- A competitive recommendation that requires an impossible hidden ability is adapted or rejected. Provenance wins.
+- Pure special attackers prefer 0 Attack IV where legal to reduce Foul Play/confusion damage.
+- Physical/mixed attackers normally prefer 31 relevant IVs.
+- Hidden Power sets use the exact required IV pattern rather than six arbitrary 31s.
+- Gen I/II VC nature is realized through pre-transfer Experience modulo 25; VC IVs must respect Transporter's randomized-IV rules and guaranteed perfect IV count.
+- Hyper Training is not treated as rewriting the underlying IV value.
+
+Every competitive profile records whether it is a direct Smogon set or a provenance-adapted version.
