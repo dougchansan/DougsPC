@@ -81,3 +81,10 @@ The goal is exhaustive *obtainable provenance*, not an invalid Cartesian product
 LegacyBox does not equate “PKHeX-legal,” “historically legitimate,” and “HOME accepted.”
 
 The project records origin evidence, local legality, official Bank-transfer evidence, and HOME tracker observation as separate trust axes. HOME tracker values are never fabricated or treated as locally verifiable server credentials. See `docs/HOME_PROVENANCE.md`.
+
+
+## LegacyBox3DS
+
+`3ds/LegacyBox3DS` is the 3DS-side batch stager. It verifies an LBX1 bundle and hands the verified batch to the Gen VII save adapter. The initial adapter is a PKSM script that preflights all target PC slots before injecting any PK7s.
+
+Pokémon Bank itself remains the official network client; LegacyBox does not implement Nintendo's private Bank protocol.
