@@ -222,10 +222,10 @@ class CompetitiveProfile:
 @dataclass(frozen=True)
 class EncounterTemplateRef:
     template_id: str
-    source_registry_id: str = ""
-    source_game: str = ""
+    source_game: str
     generation: int
     method: str
+    source_registry_id: str = ""
     origin_kind: OriginKind = OriginKind.NATIVE
     source_platform: str = ""
     origin_region: str = ""
