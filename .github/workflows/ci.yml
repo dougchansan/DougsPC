@@ -17,6 +17,7 @@ jobs:
       - run: python scripts/check_heritage_index.py
       - run: legacybox plan manifests/heritage-smoke.json > /tmp/heritage-plan.json
       - run: legacybox plan manifests/heritage-001-009.json > /tmp/heritage-001-009-plan.json
+      - run: legacybox plan manifests/gamecube-smoke.json > /tmp/gamecube-plan.json
       - run: legacybox plan manifests/gen7-smoke.json > /tmp/plan.json
       - run: legacybox audit manifests/gen7-smoke.json
       - name: Confirm strict legality gate currently fails closed
