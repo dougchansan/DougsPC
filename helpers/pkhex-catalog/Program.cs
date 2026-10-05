@@ -53,7 +53,7 @@ var encounters = EncounterMovesetGenerator
         location = enc.Location,
         isEgg = enc.IsEgg,
         ability = enc.Ability.ToString(),
-        ball = enc.Ball.ToString(),
+        fixedBall = enc.FixedBall.ToString(),
         shiny = enc.Shiny.ToString(),
     })
     .Distinct()
