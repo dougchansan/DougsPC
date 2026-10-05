@@ -2,7 +2,7 @@
   "name": "LegacyBox Heritage Dex provenance smoke set",
   "target_generation": 7,
   "trainer": {
-    "name": "Kento",
+    "name": "Doug",
     "language": "ENG",
     "id_strategy": "deterministic-per-origin"
   },
@@ -17,8 +17,15 @@
         "template_id": "vc-yellow-viridian-forest-pikachu",
         "source_game": "Yellow (Virtual Console)",
         "generation": 1,
-        "method": "wild"
-      }
+        "method": "wild",
+        "origin_kind": "virtual_console",
+        "source_platform": "Nintendo 3DS Virtual Console",
+        "origin_region": "Kanto"
+      },
+      "migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
     },
     {
       "national_dex": 155,
@@ -30,8 +37,15 @@
         "template_id": "vc-crystal-starter-cyndaquil",
         "source_game": "Crystal (Virtual Console)",
         "generation": 2,
-        "method": "starter"
-      }
+        "method": "starter",
+        "origin_kind": "virtual_console",
+        "source_platform": "Nintendo 3DS Virtual Console",
+        "origin_region": "Johto"
+      },
+      "migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
     },
     {
       "national_dex": 258,
@@ -43,8 +57,19 @@
         "template_id": "emerald-starter-mudkip",
         "source_game": "Emerald",
         "generation": 3,
-        "method": "starter"
-      }
+        "method": "starter",
+        "origin_kind": "gift",
+        "source_platform": "Game Boy Advance",
+        "origin_region": "Hoenn"
+      },
+      "migration_route": [
+        "Pal Park",
+        "Generation IV",
+        "Poké Transfer",
+        "Generation V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
     },
     {
       "national_dex": 447,
@@ -56,8 +81,17 @@
         "template_id": "platinum-riley-egg-riolu",
         "source_game": "Platinum",
         "generation": 4,
-        "method": "gift-egg"
-      }
+        "method": "gift-egg",
+        "origin_kind": "gift",
+        "source_platform": "Nintendo DS",
+        "origin_region": "Sinnoh"
+      },
+      "migration_route": [
+        "Poké Transfer",
+        "Generation V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
     },
     {
       "national_dex": 551,
@@ -69,8 +103,15 @@
         "template_id": "black-white-desert-resort-sandile",
         "source_game": "Black/White",
         "generation": 5,
-        "method": "wild"
-      }
+        "method": "wild",
+        "origin_kind": "native",
+        "source_platform": "Nintendo DS",
+        "origin_region": "Unova"
+      },
+      "migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
     },
     {
       "national_dex": 653,
@@ -82,8 +123,14 @@
         "template_id": "xy-starter-fennekin",
         "source_game": "X/Y",
         "generation": 6,
-        "method": "starter"
-      }
+        "method": "starter",
+        "origin_kind": "gift",
+        "source_platform": "Nintendo 3DS",
+        "origin_region": "Kalos"
+      },
+      "migration_route": [
+        "Pokémon Bank"
+      ]
     },
     {
       "national_dex": 722,
@@ -95,8 +142,14 @@
         "template_id": "usum-starter-rowlet",
         "source_game": "Ultra Sun/Ultra Moon",
         "generation": 7,
-        "method": "starter"
-      }
+        "method": "starter",
+        "origin_kind": "gift",
+        "source_platform": "Nintendo 3DS",
+        "origin_region": "Alola"
+      },
+      "migration_route": [
+        "Pokémon Bank"
+      ]
     }
   ]
 }
