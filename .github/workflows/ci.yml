@@ -160,9 +160,11 @@ jobs:
           assert all(r["legal"] for r in report["results"]), report
           PY
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: legacybox-batch-001-009
           path: /tmp/legacybox-batch-001-009/*
+          if-no-files-found: warn
       - name: Confirm malformed PKM fails closed
         run: |
           python - <<'PY'
