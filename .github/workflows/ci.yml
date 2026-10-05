@@ -16,6 +16,7 @@ jobs:
       - run: python -m unittest discover -s tests -v
       - run: python scripts/check_heritage_index.py
       - run: legacybox plan manifests/heritage-smoke.json > /tmp/heritage-plan.json
+      - run: legacybox plan manifests/heritage-001-009.json > /tmp/heritage-001-009-plan.json
       - run: legacybox plan manifests/gen7-smoke.json > /tmp/plan.json
       - run: legacybox audit manifests/gen7-smoke.json
       - name: Confirm strict legality gate currently fails closed
@@ -51,7 +52,39 @@ jobs:
           assert data["requestedSpecies"] == 3
           assert data["requestedVersion"] == "RD"
           assert data["count"] > 0
-          assert any(e["species"] == 1 for e in data["encounters"]), data
+          assert any(e["species"] == 1 and e["levelMin"] == 5 for e in data["encounters"]), data
+          PY
+      - name: Confirm PKHeX catalog resolves Blue VC Charizard to Charmander
+        run: |
+          dotnet run --no-build --configuration Release --project helpers/pkhex-catalog/LegacyBox.EncounterCatalog.csproj -- 6 GN > /tmp/charizard-blue.json
+          python - <<'PY'
+          import json
+          data = json.load(open("/tmp/charizard-blue.json"))
+          assert data["requestedSpecies"] == 6
+          assert data["count"] > 0
+          assert any(
+              e["species"] == 4
+              and e["levelMin"] == 5
+              and e["ability"] == "OnlyHidden"
+              and e["fixedBall"] == "Poke"
+              for e in data["encounters"]
+          ), data
+          PY
+      - name: Confirm PKHeX catalog resolves Yellow VC Blastoise to Squirtle
+        run: |
+          dotnet run --no-build --configuration Release --project helpers/pkhex-catalog/LegacyBox.EncounterCatalog.csproj -- 9 YW > /tmp/blastoise-yellow.json
+          python - <<'PY'
+          import json
+          data = json.load(open("/tmp/blastoise-yellow.json"))
+          assert data["requestedSpecies"] == 9
+          assert data["count"] > 0
+          assert any(
+              e["species"] == 7
+              and e["levelMin"] == 10
+              and e["ability"] == "OnlyHidden"
+              and e["fixedBall"] == "Poke"
+              for e in data["encounters"]
+          ), data
           PY
       - name: Confirm malformed PKM fails closed
         run: |
