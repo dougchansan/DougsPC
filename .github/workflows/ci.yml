@@ -74,12 +74,15 @@ jobs:
               for e in data["encounters"]
           ), data
           PY
-      - name: Confirm PKHeX catalog resolves Yellow VC Blastoise to Squirtle
+      - name: Confirm PKHeX canonical Blastoise origin resolves to Squirtle
         run: |
-          dotnet run --no-build --configuration Release --project helpers/pkhex-catalog/LegacyBox.EncounterCatalog.csproj -- 9 YW > /tmp/blastoise-yellow.json
+          # PKHeX canonicalizes the equivalent Yellow Lv.10 Squirtle gift to the
+          # shared RBY Lv.5 static template. Historical Yellow provenance remains
+          # in the LegacyBox manifest and is applied during VC->Gen VII conversion.
+          dotnet run --no-build --configuration Release --project helpers/pkhex-catalog/LegacyBox.EncounterCatalog.csproj -- 9 RD > /tmp/blastoise-canonical.json
           python - <<'PY'
           import json
-          data = json.load(open("/tmp/blastoise-yellow.json"))
+          data = json.load(open("/tmp/blastoise-canonical.json"))
           assert data["requestedSpecies"] == 9
           assert data["count"] > 0
           assert any(
