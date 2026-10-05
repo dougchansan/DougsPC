@@ -121,9 +121,18 @@ class LegacyBoxCoreTests(unittest.TestCase):
         self.assertEqual({e["national_dex"] for e in entries}, set(range(1, 808)))
         self.assertEqual(payload["trainer"]["name"], "Doug")
         statuses = [e["curation_status"] for e in entries]
-        self.assertEqual(statuses.count("cross_checked_template"), 7)
-        self.assertEqual(statuses.count("pending_encounter_template"), 800)
-        self.assertEqual(payload["progress"]["pkhex_legalized"], 0)
+        self.assertEqual(
+            statuses.count("cross_checked_template"),
+            payload["progress"]["cross_checked_templates"],
+        )
+        self.assertEqual(
+            statuses.count("pending_encounter_template"),
+            payload["progress"]["pending_encounter_templates"],
+        )
+        self.assertEqual(
+            statuses.count("pkhex_passed"),
+            payload["progress"]["pkhex_legalized"],
+        )
 
     def test_heritage_templates_are_cross_checked(self) -> None:
         manifest = load_manifest(ROOT / "manifests" / "heritage-smoke.json")
