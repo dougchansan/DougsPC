@@ -168,6 +168,38 @@ class LegacyBoxCoreTests(unittest.TestCase):
             with self.assertRaises(ManifestError):
                 load_manifest(path)
 
+    def test_competitive_profiles_have_valid_evs_and_ivs(self) -> None:
+        manifest = load_manifest(ROOT / "manifests" / "heritage-smoke.json")
+        for entry in manifest.entries:
+            comp = entry.competitive
+            self.assertEqual(comp.verification_status, "smogon_checked")
+            self.assertLessEqual(sum(comp.evs.values()), 510)
+            self.assertTrue(all(0 <= v <= 252 for v in comp.evs.values()))
+            self.assertTrue(all(0 <= v <= 31 for v in comp.ivs.values()))
+            self.assertLessEqual(len(comp.moves), 4)
+
+    def test_provenance_can_override_competitive_ability(self) -> None:
+        manifest = load_manifest(ROOT / "manifests" / "heritage-smoke.json")
+        riolu = next(e for e in manifest.entries if e.national_dex == 447)
+        fennekin = next(e for e in manifest.entries if e.national_dex == 653)
+        self.assertEqual(riolu.competitive.ability, "Inner Focus")
+        self.assertEqual(riolu.competitive.application_policy, "preserve_origin_over_competitive")
+        self.assertEqual(fennekin.competitive.ability, "Blaze")
+        self.assertEqual(fennekin.competitive.application_policy, "preserve_origin_over_competitive")
+
+    def test_hidden_power_iv_patterns_are_explicit(self) -> None:
+        manifest = load_manifest(ROOT / "manifests" / "heritage-smoke.json")
+        pikachu = next(e for e in manifest.entries if e.national_dex == 25)
+        cyndaquil = next(e for e in manifest.entries if e.national_dex == 155)
+        self.assertEqual(
+            pikachu.competitive.ivs,
+            {"HP": 31, "Atk": 0, "Def": 30, "SpA": 31, "SpD": 31, "Spe": 31},
+        )
+        self.assertEqual(
+            cyndaquil.competitive.ivs,
+            {"HP": 31, "Atk": 0, "Def": 31, "SpA": 30, "SpD": 31, "Spe": 31},
+        )
+
     def test_duplicate_dex_form_is_rejected(self) -> None:
         payload = {
             "name": "duplicate",
