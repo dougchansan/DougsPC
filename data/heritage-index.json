@@ -23,11 +23,14 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "cross_checked_template",
+      "curation_status": "pkhex_passed",
       "ot_policy": "pending_template",
       "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
       "competitive_status": "smogon_checked",
-      "selected_template_id": "vc-red-starter-bulbasaur"
+      "selected_template_id": "vc-red-starter-bulbasaur",
+      "validation_batch": "heritage-001-009-v1",
+      "generated_pk7_sha256": "bea7de1791b05fb82463f7b78b3909710bafc52a1cd5282deb1547d0325e7f25",
+      "competitive_application_status": "provenance_adapted"
     },
     {
       "national_dex": 2,
@@ -44,11 +47,14 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "cross_checked_template",
+      "curation_status": "pkhex_passed",
       "ot_policy": "pending_template",
       "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
       "competitive_status": "smogon_checked",
-      "selected_template_id": "vc-red-bulbasaur-evolved-ivysaur"
+      "selected_template_id": "vc-red-bulbasaur-evolved-ivysaur",
+      "validation_batch": "heritage-001-009-v1",
+      "generated_pk7_sha256": "79d652596d841c4bf6de540a09d0a0f1e117ff853513419b51c55107cf99d9ef",
+      "competitive_application_status": "full_preferred_moveset"
     },
     {
       "national_dex": 3,
@@ -65,11 +71,14 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "cross_checked_template",
+      "curation_status": "pkhex_passed",
       "ot_policy": "pending_template",
       "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
       "competitive_status": "smogon_checked",
-      "selected_template_id": "vc-red-bulbasaur-evolved-venusaur"
+      "selected_template_id": "vc-red-bulbasaur-evolved-venusaur",
+      "validation_batch": "heritage-001-009-v1",
+      "generated_pk7_sha256": "5cf9e3c21470647f97a262fe731acc621369ae62d51295c4fdef92bcc6a8b2e8",
+      "competitive_application_status": "full_preferred_moveset"
     },
     {
       "national_dex": 4,
@@ -86,11 +95,14 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "cross_checked_template",
+      "curation_status": "pkhex_passed",
       "ot_policy": "pending_template",
       "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
       "competitive_status": "smogon_checked",
-      "selected_template_id": "vc-blue-starter-charmander"
+      "selected_template_id": "vc-blue-starter-charmander",
+      "validation_batch": "heritage-001-009-v1",
+      "generated_pk7_sha256": "60722aa7e956c84b7ae66266e0547a80203dc63b17ae7f30b9facb6af18534d5",
+      "competitive_application_status": "provenance_adapted"
     },
     {
       "national_dex": 5,
@@ -107,11 +119,14 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "cross_checked_template",
+      "curation_status": "pkhex_passed",
       "ot_policy": "pending_template",
       "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
       "competitive_status": "smogon_checked",
-      "selected_template_id": "vc-blue-charmander-evolved-charmeleon"
+      "selected_template_id": "vc-blue-charmander-evolved-charmeleon",
+      "validation_batch": "heritage-001-009-v1",
+      "generated_pk7_sha256": "742defa923486d33251f9ecc38a1e02ad8c3fe7ea36f67c21bfea94938b5da8f",
+      "competitive_application_status": "full_preferred_moveset"
     },
     {
       "national_dex": 6,
@@ -128,11 +143,14 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "cross_checked_template",
+      "curation_status": "pkhex_passed",
       "ot_policy": "pending_template",
       "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
       "competitive_status": "smogon_checked",
-      "selected_template_id": "vc-blue-charmander-evolved-charizard"
+      "selected_template_id": "vc-blue-charmander-evolved-charizard",
+      "validation_batch": "heritage-001-009-v1",
+      "generated_pk7_sha256": "379f4d4e5e0f4c0cb924a8eebf96b806709d31cbe0e8d41e2ad56d9a2471ef3f",
+      "competitive_application_status": "full_preferred_moveset"
     },
     {
       "national_dex": 7,
@@ -149,11 +167,14 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "cross_checked_template",
+      "curation_status": "pkhex_passed",
       "ot_policy": "pending_template",
       "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
       "competitive_status": "smogon_checked",
-      "selected_template_id": "vc-yellow-gift-squirtle"
+      "selected_template_id": "vc-yellow-gift-squirtle",
+      "validation_batch": "heritage-001-009-v1",
+      "generated_pk7_sha256": "8730f4ffe44e511c0182b1d58d34a5fcd6aa6a57d2c14bf885e29e846653c1ec",
+      "competitive_application_status": "provenance_adapted"
     },
     {
       "national_dex": 8,
@@ -170,11 +191,14 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "cross_checked_template",
+      "curation_status": "pkhex_passed",
       "ot_policy": "pending_template",
       "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
       "competitive_status": "smogon_checked",
-      "selected_template_id": "vc-yellow-squirtle-evolved-wartortle"
+      "selected_template_id": "vc-yellow-squirtle-evolved-wartortle",
+      "validation_batch": "heritage-001-009-v1",
+      "generated_pk7_sha256": "3972cf4dc23d18e8078613cdd7519cc60fd2b3400088b15294621b490a65cbe5",
+      "competitive_application_status": "provenance_adapted"
     },
     {
       "national_dex": 9,
@@ -191,11 +215,14 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "cross_checked_template",
+      "curation_status": "pkhex_passed",
       "ot_policy": "pending_template",
       "notes": "Encounter provenance is cross-checked and a provenance-compatible competitive profile is selected; concrete PKM still requires PKHeX legality pass.",
       "competitive_status": "smogon_checked",
-      "selected_template_id": "vc-yellow-squirtle-evolved-blastoise"
+      "selected_template_id": "vc-yellow-squirtle-evolved-blastoise",
+      "validation_batch": "heritage-001-009-v1",
+      "generated_pk7_sha256": "1f54b126112b6ee229084cc092c473501bb4b34255972c3e068794c8cfc26795",
+      "competitive_application_status": "provenance_adapted"
     },
     {
       "national_dex": 10,
@@ -17589,9 +17616,9 @@
   ],
   "progress": {
     "total": 807,
-    "cross_checked_templates": 16,
+    "cross_checked_templates": 7,
     "pending_encounter_templates": 791,
-    "pkhex_legalized": 0,
+    "pkhex_legalized": 9,
     "competitive_profiles": 16,
     "pending_competitive_profiles": 791
   }
