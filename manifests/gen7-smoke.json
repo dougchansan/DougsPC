@@ -13,7 +13,8 @@
         "generation": 7,
         "method": "starter"
       },
-      "notes": "Template reference is a planning identifier until validated by the legality backend."
+      "notes": "Template reference is a planning identifier until validated by the legality backend.",
+      "ot_policy": "trainer"
     },
     {
       "national_dex": 731,
@@ -25,7 +26,8 @@
         "source_game": "Ultra Sun/Ultra Moon",
         "generation": 7,
         "method": "wild"
-      }
+      },
+      "ot_policy": "trainer"
     },
     {
       "national_dex": 734,
@@ -37,7 +39,8 @@
         "source_game": "Ultra Sun/Ultra Moon",
         "generation": 7,
         "method": "wild"
-      }
+      },
+      "ot_policy": "trainer"
     },
     {
       "national_dex": 736,
@@ -49,7 +52,8 @@
         "source_game": "Ultra Sun/Ultra Moon",
         "generation": 7,
         "method": "wild"
-      }
+      },
+      "ot_policy": "trainer"
     },
     {
       "national_dex": 744,
@@ -61,7 +65,8 @@
         "source_game": "Ultra Sun/Ultra Moon",
         "generation": 7,
         "method": "wild"
-      }
+      },
+      "ot_policy": "trainer"
     },
     {
       "national_dex": 757,
@@ -73,7 +78,13 @@
         "source_game": "Ultra Sun/Ultra Moon",
         "generation": 7,
         "method": "wild"
-      }
+      },
+      "ot_policy": "trainer"
     }
-  ]
+  ],
+  "trainer": {
+    "name": "Kento",
+    "language": "ENG",
+    "id_strategy": "deterministic-per-origin"
+  }
 }
