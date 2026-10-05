@@ -1,0 +1,415 @@
+{
+  "schema_version": 1,
+  "batch_id": "heritage-001-009-v1",
+  "workflow_run_id": 37289858698,
+  "workflow_run_url": "https://github.com/dougchansan/LegacyBox/actions/runs/37289858698",
+  "artifact": {
+    "name": "legacybox-batch-001-009",
+    "artifact_id": 11335498902,
+    "archive_sha256": "1b0edfc312624612b1ed98772748ac63ae937d7c535d36fb8a531955e8aeca68"
+  },
+  "manifest": "heritage-001-009.json",
+  "trainer": "Doug",
+  "total": 9,
+  "passed": 9,
+  "failed": 0,
+  "all_legal": true,
+  "provenance_note": "Generated candidates. PKHeX legality PASSED does not upgrade origin evidence to historically legitimate.",
+  "results": [
+    {
+      "national_dex": 1,
+      "species": "Bulbasaur",
+      "pkhex_legal": true,
+      "source_version": "RD",
+      "catalog_version": "RD",
+      "used_canonical_gen1_gift_fallback": false,
+      "shiny": false,
+      "nature": "Modest",
+      "exact_preferred_ivs": false,
+      "hidden_power": "Fire",
+      "competitive_moves_requested": [
+        "Sleep Powder",
+        "Leaf Storm",
+        "Sludge Bomb",
+        "Hidden Power Fire"
+      ],
+      "competitive_moves_rejected": [
+        "Leaf Storm"
+      ],
+      "used_legal_move_fallback": true,
+      "final_moves": [
+        "Sleep Powder",
+        "Growl",
+        "Sludge Bomb",
+        "Hidden Power"
+      ],
+      "final_ivs": {
+        "HP": 31,
+        "Atk": 0,
+        "Def": 22,
+        "Spe": 31,
+        "SpA": 30,
+        "SpD": 31
+      },
+      "final_evs": {
+        "HP": 0,
+        "Atk": 0,
+        "Def": 0,
+        "Spe": 240,
+        "SpA": 240,
+        "SpD": 0
+      },
+      "pk7_sha256": "bea7de1791b05fb82463f7b78b3909710bafc52a1cd5282deb1547d0325e7f25"
+    },
+    {
+      "national_dex": 2,
+      "species": "Ivysaur",
+      "pkhex_legal": true,
+      "source_version": "RD",
+      "catalog_version": "RD",
+      "used_canonical_gen1_gift_fallback": false,
+      "shiny": false,
+      "nature": "Modest",
+      "exact_preferred_ivs": false,
+      "hidden_power": "Fire",
+      "competitive_moves_requested": [
+        "Growth",
+        "Sludge Bomb",
+        "Solar Beam",
+        "Hidden Power Fire"
+      ],
+      "competitive_moves_rejected": [],
+      "used_legal_move_fallback": false,
+      "final_moves": [
+        "Growth",
+        "Sludge Bomb",
+        "Solar Beam",
+        "Hidden Power"
+      ],
+      "final_ivs": {
+        "HP": 31,
+        "Atk": 17,
+        "Def": 31,
+        "Spe": 30,
+        "SpA": 30,
+        "SpD": 31
+      },
+      "final_evs": {
+        "HP": 0,
+        "Atk": 0,
+        "Def": 4,
+        "Spe": 252,
+        "SpA": 252,
+        "SpD": 0
+      },
+      "pk7_sha256": "79d652596d841c4bf6de540a09d0a0f1e117ff853513419b51c55107cf99d9ef"
+    },
+    {
+      "national_dex": 3,
+      "species": "Venusaur",
+      "pkhex_legal": true,
+      "source_version": "RD",
+      "catalog_version": "RD",
+      "used_canonical_gen1_gift_fallback": false,
+      "shiny": true,
+      "nature": "Modest",
+      "exact_preferred_ivs": false,
+      "hidden_power": "Fire",
+      "competitive_moves_requested": [
+        "Growth",
+        "Sludge Bomb",
+        "Giga Drain",
+        "Hidden Power Fire"
+      ],
+      "competitive_moves_rejected": [],
+      "used_legal_move_fallback": false,
+      "final_moves": [
+        "Growth",
+        "Sludge Bomb",
+        "Giga Drain",
+        "Hidden Power"
+      ],
+      "final_ivs": {
+        "HP": 31,
+        "Atk": 1,
+        "Def": 31,
+        "Spe": 30,
+        "SpA": 24,
+        "SpD": 31
+      },
+      "final_evs": {
+        "HP": 0,
+        "Atk": 0,
+        "Def": 4,
+        "Spe": 252,
+        "SpA": 252,
+        "SpD": 0
+      },
+      "pk7_sha256": "5cf9e3c21470647f97a262fe731acc621369ae62d51295c4fdef92bcc6a8b2e8"
+    },
+    {
+      "national_dex": 4,
+      "species": "Charmander",
+      "pkhex_legal": true,
+      "source_version": "GN",
+      "catalog_version": "GN",
+      "used_canonical_gen1_gift_fallback": false,
+      "shiny": false,
+      "nature": "Modest",
+      "exact_preferred_ivs": false,
+      "hidden_power": "Grass",
+      "competitive_moves_requested": [
+        "Fire Blast",
+        "Hidden Power Grass",
+        "Ancient Power",
+        "Dragon Pulse"
+      ],
+      "competitive_moves_rejected": [
+        "Ancient Power",
+        "Dragon Pulse"
+      ],
+      "used_legal_move_fallback": true,
+      "final_moves": [
+        "Fire Blast",
+        "Hidden Power"
+      ],
+      "final_ivs": {
+        "HP": 31,
+        "Atk": 3,
+        "Def": 31,
+        "Spe": 31,
+        "SpA": 30,
+        "SpD": 31
+      },
+      "final_evs": {
+        "HP": 44,
+        "Atk": 0,
+        "Def": 12,
+        "Spe": 236,
+        "SpA": 200,
+        "SpD": 0
+      },
+      "pk7_sha256": "60722aa7e956c84b7ae66266e0547a80203dc63b17ae7f30b9facb6af18534d5"
+    },
+    {
+      "national_dex": 5,
+      "species": "Charmeleon",
+      "pkhex_legal": true,
+      "source_version": "GN",
+      "catalog_version": "GN",
+      "used_canonical_gen1_gift_fallback": false,
+      "shiny": false,
+      "nature": "Timid",
+      "exact_preferred_ivs": false,
+      "hidden_power": "Grass",
+      "competitive_moves_requested": [
+        "Overheat",
+        "Flamethrower",
+        "Dragon Pulse",
+        "Hidden Power Grass"
+      ],
+      "competitive_moves_rejected": [],
+      "used_legal_move_fallback": false,
+      "final_moves": [
+        "Overheat",
+        "Flamethrower",
+        "Dragon Pulse",
+        "Hidden Power"
+      ],
+      "final_ivs": {
+        "HP": 31,
+        "Atk": 3,
+        "Def": 31,
+        "Spe": 31,
+        "SpA": 30,
+        "SpD": 31
+      },
+      "final_evs": {
+        "HP": 0,
+        "Atk": 0,
+        "Def": 0,
+        "Spe": 252,
+        "SpA": 252,
+        "SpD": 4
+      },
+      "pk7_sha256": "742defa923486d33251f9ecc38a1e02ad8c3fe7ea36f67c21bfea94938b5da8f"
+    },
+    {
+      "national_dex": 6,
+      "species": "Charizard",
+      "pkhex_legal": true,
+      "source_version": "GN",
+      "catalog_version": "GN",
+      "used_canonical_gen1_gift_fallback": false,
+      "shiny": false,
+      "nature": "Timid",
+      "exact_preferred_ivs": true,
+      "hidden_power": "Ice",
+      "competitive_moves_requested": [
+        "Sunny Day",
+        "Fire Blast",
+        "Solar Beam",
+        "Roost"
+      ],
+      "competitive_moves_rejected": [],
+      "used_legal_move_fallback": false,
+      "final_moves": [
+        "Sunny Day",
+        "Fire Blast",
+        "Solar Beam",
+        "Roost"
+      ],
+      "final_ivs": {
+        "HP": 31,
+        "Atk": 0,
+        "Def": 31,
+        "Spe": 31,
+        "SpA": 31,
+        "SpD": 31
+      },
+      "final_evs": {
+        "HP": 0,
+        "Atk": 0,
+        "Def": 0,
+        "Spe": 252,
+        "SpA": 252,
+        "SpD": 4
+      },
+      "pk7_sha256": "379f4d4e5e0f4c0cb924a8eebf96b806709d31cbe0e8d41e2ad56d9a2471ef3f"
+    },
+    {
+      "national_dex": 7,
+      "species": "Squirtle",
+      "pkhex_legal": true,
+      "source_version": "YW",
+      "catalog_version": "RD",
+      "used_canonical_gen1_gift_fallback": true,
+      "shiny": false,
+      "nature": "Impish",
+      "exact_preferred_ivs": true,
+      "hidden_power": "Dragon",
+      "competitive_moves_requested": [
+        "Rapid Spin",
+        "Fake Out",
+        "Waterfall",
+        "Aqua Jet"
+      ],
+      "competitive_moves_rejected": [
+        "Fake Out",
+        "Aqua Jet"
+      ],
+      "used_legal_move_fallback": true,
+      "final_moves": [
+        "Rapid Spin",
+        "Tail Whip",
+        "Waterfall",
+        "Withdraw"
+      ],
+      "final_ivs": {
+        "HP": 31,
+        "Atk": 31,
+        "Def": 31,
+        "Spe": 31,
+        "SpA": 31,
+        "SpD": 31
+      },
+      "final_evs": {
+        "HP": 84,
+        "Atk": 52,
+        "Def": 156,
+        "Spe": 92,
+        "SpA": 0,
+        "SpD": 84
+      },
+      "pk7_sha256": "8730f4ffe44e511c0182b1d58d34a5fcd6aa6a57d2c14bf885e29e846653c1ec"
+    },
+    {
+      "national_dex": 8,
+      "species": "Wartortle",
+      "pkhex_legal": true,
+      "source_version": "YW",
+      "catalog_version": "RD",
+      "used_canonical_gen1_gift_fallback": true,
+      "shiny": false,
+      "nature": "Bold",
+      "exact_preferred_ivs": true,
+      "hidden_power": "Ice",
+      "competitive_moves_requested": [
+        "Rapid Spin",
+        "Scald",
+        "Toxic",
+        "Refresh"
+      ],
+      "competitive_moves_rejected": [
+        "Refresh"
+      ],
+      "used_legal_move_fallback": true,
+      "final_moves": [
+        "Rapid Spin",
+        "Scald",
+        "Toxic"
+      ],
+      "final_ivs": {
+        "HP": 31,
+        "Atk": 0,
+        "Def": 31,
+        "Spe": 31,
+        "SpA": 31,
+        "SpD": 31
+      },
+      "final_evs": {
+        "HP": 252,
+        "Atk": 0,
+        "Def": 252,
+        "Spe": 0,
+        "SpA": 0,
+        "SpD": 4
+      },
+      "pk7_sha256": "3972cf4dc23d18e8078613cdd7519cc60fd2b3400088b15294621b490a65cbe5"
+    },
+    {
+      "national_dex": 9,
+      "species": "Blastoise",
+      "pkhex_legal": true,
+      "source_version": "YW",
+      "catalog_version": "RD",
+      "used_canonical_gen1_gift_fallback": true,
+      "shiny": false,
+      "nature": "Modest",
+      "exact_preferred_ivs": false,
+      "hidden_power": "Electric",
+      "competitive_moves_requested": [
+        "Water Pulse",
+        "Dark Pulse",
+        "Aura Sphere",
+        "Rapid Spin"
+      ],
+      "competitive_moves_rejected": [
+        "Aura Sphere",
+        "Rapid Spin"
+      ],
+      "used_legal_move_fallback": true,
+      "final_moves": [
+        "Water Pulse",
+        "Dark Pulse"
+      ],
+      "final_ivs": {
+        "HP": 31,
+        "Atk": 0,
+        "Def": 31,
+        "Spe": 30,
+        "SpA": 31,
+        "SpD": 31
+      },
+      "final_evs": {
+        "HP": 104,
+        "Atk": 0,
+        "Def": 0,
+        "Spe": 152,
+        "SpA": 252,
+        "SpD": 0
+      },
+      "pk7_sha256": "1f54b126112b6ee229084cc092c473501bb4b34255972c3e068794c8cfc26795"
+    }
+  ]
+}
