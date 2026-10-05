@@ -37,6 +37,15 @@ def generation_plan(manifest: LivingDexManifest) -> list[dict[str, object]]:
                 "species": entry.species,
                 "form": entry.form,
                 "target_level": entry.target_level,
+                "target_moves": list(entry.target_moves),
+                "traits": {
+                    "shiny": entry.traits.shiny.value,
+                    "shiny_phase": entry.traits.shiny_phase,
+                    "pokerus": entry.traits.pokerus.value,
+                    "pokerus_acquired_generation": (
+                        entry.traits.pokerus_acquired_generation
+                    ),
+                },
                 "effective_ot": resolve_effective_ot(manifest, entry),
                 "ot_policy": entry.ot_policy.value,
                 "event_identity": (
@@ -49,6 +58,17 @@ def generation_plan(manifest: LivingDexManifest) -> list[dict[str, object]]:
                 "origin_kind": entry.template.origin_kind.value,
                 "generation": entry.template.generation,
                 "method": entry.template.method,
+                "location": entry.template.location,
+                "encounter_level": [
+                    entry.template.level_min,
+                    entry.template.level_max,
+                ],
+                "encounter_moves": list(entry.template.encounter_moves),
+                "ability": entry.template.ability,
+                "held_item": entry.template.held_item,
+                "nature_policy": entry.template.nature_policy,
+                "verification_status": entry.template.verification_status,
+                "references": [asdict(ref) for ref in entry.template.references],
                 "migration_route": list(entry.migration_route),
             }
         )
