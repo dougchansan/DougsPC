@@ -300,7 +300,7 @@ static void SetVCNature(PK1 pk, ushort species, byte level, Nature desired)
 {
     var growth = PersonalTable.SM[species].EXPGrowth;
     uint min = Experience.GetEXP(level, growth);
-    uint maxExclusive = level >= 100 ? min + 1 : Experience.GetEXP(level + 1, growth);
+    uint maxExclusive = level >= 100 ? min + 1 : Experience.GetEXP(checked((byte)(level + 1)), growth);
 
     for (uint exp = min; exp < maxExclusive; exp++)
     {
