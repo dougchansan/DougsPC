@@ -26,6 +26,10 @@ try
     }
 
     var legality = new LegalityAnalysis(pk);
+    var hasTrackerField = pk is IHomeTrack;
+    var trackerPresent = pk is IHomeTrack { HasTracker: true };
+    var trackerRequired = HomeTrackerUtil.IsRequired(legality.EncounterMatch, pk);
+
     Console.WriteLine(JsonSerializer.Serialize(new
     {
         parsed = legality.Parsed,
@@ -34,7 +38,12 @@ try
         format = pk.Format,
         generation = pk.Generation,
         version = pk.Version.ToString(),
-        encounterType = legality.EncounterMatch.GetType().Name
+        encounterType = legality.EncounterMatch.GetType().Name,
+        homeTrackerFieldPresent = hasTrackerField,
+        homeTrackerRequired = trackerRequired,
+        homeTrackerPresent = hasTrackerField ? trackerPresent : (bool?)null,
+        homeServerValidity = (string?)null,
+        homeServerValidityNote = "Only Pokémon HOME can validate tracker/server history."
     }));
 
     return legality.Valid ? 0 : 3;
