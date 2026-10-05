@@ -222,7 +222,8 @@ class CompetitiveProfile:
 @dataclass(frozen=True)
 class EncounterTemplateRef:
     template_id: str
-    source_game: str
+    source_registry_id: str = ""
+    source_game: str = ""
     generation: int
     method: str
     origin_kind: OriginKind = OriginKind.NATIVE
@@ -248,6 +249,7 @@ class EncounterTemplateRef:
         level_max = value.get("level_max")
         return cls(
             template_id=str(value["template_id"]).strip(),
+            source_registry_id=str(value.get("source_registry_id", "")).strip(),
             source_game=str(value["source_game"]).strip(),
             generation=int(value["generation"]),
             method=str(value["method"]).strip(),
