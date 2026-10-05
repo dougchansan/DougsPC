@@ -140,8 +140,7 @@
           "Confusion",
           "Rest"
         ],
-        "shiny": "allowed",
-        "fateful_encounter": true
+        "shiny": "allowed"
       },
       "pkhex_support": {
         "kind": "EncounterGift3 / Gen III RNG correlation",
@@ -163,6 +162,10 @@
           ],
           "checked_date": "2026-10-04"
         }
+      ],
+      "rules": [
+        "Gen III 'Fateful Encounter' trainer memo is a met-location concept; do not equate it with the Gen III obedience flag/later fateful-encounter bit.",
+        "WISHMKR Jirachi does not carry the Gen III obedience flag."
       ]
     },
     {
@@ -194,8 +197,7 @@
           "Heal Bell",
           "Safeguard"
         ],
-        "shiny": "not_marked_as_available",
-        "fateful_encounter": true
+        "shiny": "not_marked_as_available"
       },
       "pkhex_support": {
         "kind": "EncounterGift3Colo",
@@ -217,6 +219,9 @@
           ],
           "checked_date": "2026-10-04"
         }
+      ],
+      "rules": [
+        "Preserve Gen III fateful met-location semantics separately from later fateful-encounter flag semantics."
       ]
     },
     {
