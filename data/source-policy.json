@@ -193,5 +193,73 @@
       "VC nature/IV requests must be realized through Poké Transporter mechanics rather than stamped onto the PK7.",
       "Every concrete generated candidate must still pass PKHeX."
     ]
+  },
+  "archive_mode": {
+    "strategy": "Enumerate real encounter templates per species across all supported Gen I-VII source games; deduplicate only materially identical provenance.",
+    "variant_dimensions": [
+      "origin game",
+      "origin generation",
+      "persistent/regional form",
+      "legally available ability slot or Hidden Ability",
+      "event distribution identity",
+      "shiny eligibility/state",
+      "language/console-region provenance when stored",
+      "special move/ribbon provenance",
+      "Shadow/Purified GameCube lineage"
+    ],
+    "avoid_cartesian_product": true,
+    "supported_source_families": {
+      "gen1": [
+        "Red VC",
+        "Blue VC",
+        "Yellow VC"
+      ],
+      "gen2": [
+        "Gold VC",
+        "Silver VC",
+        "Crystal VC"
+      ],
+      "gen3": [
+        "Ruby",
+        "Sapphire",
+        "Emerald",
+        "FireRed",
+        "LeafGreen",
+        "Pokémon Colosseum",
+        "Pokémon XD: Gale of Darkness"
+      ],
+      "gen4": [
+        "Diamond",
+        "Pearl",
+        "Platinum",
+        "HeartGold",
+        "SoulSilver"
+      ],
+      "gen5": [
+        "Black",
+        "White",
+        "Black 2",
+        "White 2"
+      ],
+      "gen6": [
+        "X",
+        "Y",
+        "Omega Ruby",
+        "Alpha Sapphire"
+      ],
+      "gen7": [
+        "Sun",
+        "Moon",
+        "Ultra Sun",
+        "Ultra Moon"
+      ]
+    },
+    "shadow_policy": {
+      "transferable_state": "purified only",
+      "required_ribbon": "National Ribbon",
+      "ev_training": "after purification",
+      "nature_iv_rule": "Generate valid Gen III RNG-consistent values at first encounter and preserve them.",
+      "xd_special_moves": "Preserve purification-exclusive move provenance where applicable."
+    }
   }
 }
