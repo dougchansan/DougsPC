@@ -198,6 +198,9 @@ class EncounterTemplateRef:
     origin_kind: OriginKind = OriginKind.NATIVE
     source_platform: str = ""
     origin_region: str = ""
+    origin_species: str = ""
+    origin_national_dex: int | None = None
+    evolution_path: tuple[str, ...] = ()
     location: str = ""
     level_min: int | None = None
     level_max: int | None = None
@@ -222,6 +225,17 @@ class EncounterTemplateRef:
             ),
             source_platform=str(value.get("source_platform", "")).strip(),
             origin_region=str(value.get("origin_region", "")).strip(),
+            origin_species=str(value.get("origin_species", "")).strip(),
+            origin_national_dex=(
+                None
+                if value.get("origin_national_dex") is None
+                else int(value["origin_national_dex"])
+            ),
+            evolution_path=tuple(
+                str(stage).strip()
+                for stage in value.get("evolution_path", [])
+                if str(stage).strip()
+            ),
             location=str(value.get("location", "")).strip(),
             level_min=None if level_min is None else int(level_min),
             level_max=None if level_max is None else int(level_max),
