@@ -479,9 +479,14 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "pending_encounter_template",
+      "curation_status": "cross_checked_template",
       "ot_policy": "pending_template",
-      "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy."
+      "notes": "Encounter data cross-checked against Bulbapedia and Serebii; concrete PKM still requires PKHeX legality pass.",
+      "selected_template_id": "vc-yellow-starter-pikachu",
+      "traits": {
+        "shiny": "force_shiny",
+        "pokerus": "cured"
+      }
     },
     {
       "national_dex": 26,
@@ -2949,9 +2954,14 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "pending_encounter_template",
+      "curation_status": "cross_checked_template",
       "ot_policy": "pending_template",
-      "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy."
+      "notes": "Encounter data cross-checked against Bulbapedia and Serebii; concrete PKM still requires PKHeX legality pass.",
+      "selected_template_id": "vc-crystal-starter-cyndaquil",
+      "traits": {
+        "shiny": "random_legal",
+        "pokerus": "none"
+      }
     },
     {
       "national_dex": 156,
@@ -4948,9 +4958,14 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "pending_encounter_template",
+      "curation_status": "cross_checked_template",
       "ot_policy": "pending_template",
-      "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy."
+      "notes": "Encounter data cross-checked against Bulbapedia and Serebii; concrete PKM still requires PKHeX legality pass.",
+      "selected_template_id": "emerald-starter-mudkip",
+      "traits": {
+        "shiny": "random_legal",
+        "pokerus": "cured"
+      }
     },
     {
       "national_dex": 259,
@@ -9551,9 +9566,14 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "pending_encounter_template",
+      "curation_status": "cross_checked_template",
       "ot_policy": "pending_template",
-      "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy."
+      "notes": "Encounter data cross-checked against Bulbapedia and Serebii; concrete PKM still requires PKHeX legality pass.",
+      "selected_template_id": "platinum-riley-egg-riolu",
+      "traits": {
+        "shiny": "random_legal",
+        "pokerus": "active"
+      }
     },
     {
       "national_dex": 448,
@@ -11769,9 +11789,14 @@
         "Poké Transporter",
         "Pokémon Bank"
       ],
-      "curation_status": "pending_encounter_template",
+      "curation_status": "cross_checked_template",
       "ot_policy": "pending_template",
-      "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy."
+      "notes": "Encounter data cross-checked against Bulbapedia and Serebii; concrete PKM still requires PKHeX legality pass.",
+      "selected_template_id": "black-white-desert-resort-sandile",
+      "traits": {
+        "shiny": "force_shiny",
+        "pokerus": "none"
+      }
     },
     {
       "national_dex": 552,
@@ -13805,9 +13830,14 @@
       "baseline_migration_route": [
         "Pokémon Bank"
       ],
-      "curation_status": "pending_encounter_template",
+      "curation_status": "cross_checked_template",
       "ot_policy": "pending_template",
-      "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy."
+      "notes": "Encounter data cross-checked against Bulbapedia and Serebii; concrete PKM still requires PKHeX legality pass.",
+      "selected_template_id": "xy-starter-fennekin",
+      "traits": {
+        "shiny": "force_non_shiny",
+        "pokerus": "none"
+      }
     },
     {
       "national_dex": 654,
@@ -15116,9 +15146,14 @@
       "baseline_migration_route": [
         "Pokémon Bank"
       ],
-      "curation_status": "pending_encounter_template",
+      "curation_status": "cross_checked_template",
       "ot_policy": "pending_template",
-      "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy."
+      "notes": "Encounter data cross-checked against Bulbapedia and Serebii; concrete PKM still requires PKHeX legality pass.",
+      "selected_template_id": "usum-starter-rowlet",
+      "traits": {
+        "shiny": "random_legal",
+        "pokerus": "none"
+      }
     },
     {
       "national_dex": 723,
@@ -16735,5 +16770,11 @@
       "ot_policy": "pending_template",
       "notes": "Do not generate until a reviewed encounter template selects an actual source title and OT policy."
     }
-  ]
+  ],
+  "progress": {
+    "total": 807,
+    "cross_checked_templates": 7,
+    "pending_encounter_templates": 800,
+    "pkhex_legalized": 0
+  }
 }
