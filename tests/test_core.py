@@ -312,6 +312,33 @@ class LegacyBoxCoreTests(unittest.TestCase):
                 continue
             self.assertTrue(all(not move.startswith("Shadow ") for move in entry.target_moves))
 
+    def test_side_source_registry_has_full_pre_switch_coverage(self) -> None:
+        payload = json.loads(
+            (ROOT / "data" / "side-sources.json").read_text(encoding="utf-8")
+        )
+        ids = {source["id"] for source in payload["sources"]}
+        required = {
+            "gen3.pokemon_box_bonus_eggs",
+            "gen3.wishmkr_jirachi",
+            "gen3.ageto_celebi",
+            "gen3.channel_jirachi",
+            "gen3.colosseum_jp_ereader",
+            "gen4.ranger_manaphy_egg",
+            "gen4.my_pokemon_ranch",
+            "gen4.battle_revolution",
+            "gen4.pokewalker",
+            "gen5.dream_world",
+            "gen5.dream_radar",
+            "gen6.oras_special_demo",
+            "gen6.pokemon_bank_distributions",
+            "gen7.sm_special_demo_ash_greninja",
+            "gen7.pokemon_bank_distributions",
+            "gen7.qr_game_based_gifts",
+            "gen7.island_scan",
+        }
+        self.assertEqual(required - ids, set())
+        self.assertEqual(len(ids), 17)
+
     def test_duplicate_dex_form_is_rejected(self) -> None:
         payload = {
             "name": "duplicate",
