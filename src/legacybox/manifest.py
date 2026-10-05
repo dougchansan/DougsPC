@@ -189,6 +189,30 @@ def validate_manifest_structure(manifest: LivingDexManifest) -> list[str]:
                     f"{entry.key}: smogon_checked competitive profile requires Smogon reference"
                 )
 
+        trust = entry.provenance_trust
+        if trust.home_provenance.value == "tracker_observed" and trust.tracker_present is not True:
+            problems.append(
+                f"{entry.key}: tracker_observed HOME provenance requires tracker_present=true"
+            )
+        if (
+            trust.home_provenance.value
+            == "user_confirmed_official_move_and_tracker_observed"
+            and trust.tracker_present is not True
+        ):
+            problems.append(
+                f"{entry.key}: confirmed HOME move evidence requires tracker_present=true"
+            )
+        if trust.post_home_snapshot_sha256:
+            digest = trust.post_home_snapshot_sha256
+            if len(digest) != 64 or any(ch not in "0123456789abcdef" for ch in digest):
+                problems.append(
+                    f"{entry.key}: post_home_snapshot_sha256 must be a lowercase SHA-256 hex digest"
+                )
+        if trust.home_server_verification.value != "unverifiable_locally":
+            problems.append(
+                f"{entry.key}: HOME server validity cannot be asserted locally"
+            )
+
         traits = entry.traits
         if traits.pokerus is PokerusStatus.NONE:
             if traits.pokerus_acquired_generation is not None:
