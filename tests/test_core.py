@@ -124,6 +124,49 @@ class LegacyBoxCoreTests(unittest.TestCase):
             all(e["curation_status"] == "pending_encounter_template" for e in entries)
         )
 
+    def test_heritage_templates_are_cross_checked(self) -> None:
+        manifest = load_manifest(ROOT / "manifests" / "heritage-smoke.json")
+        for entry in manifest.entries:
+            self.assertEqual(entry.template.verification_status, "cross_checked")
+            sources = {ref.source for ref in entry.template.references}
+            self.assertIn("Bulbapedia", sources)
+            self.assertIn("Serebii", sources)
+
+    def test_corrected_sandile_desert_resort_level(self) -> None:
+        manifest = load_manifest(ROOT / "manifests" / "heritage-smoke.json")
+        sandile = next(e for e in manifest.entries if e.national_dex == 551)
+        self.assertEqual((sandile.template.level_min, sandile.template.level_max), (19, 22))
+        self.assertEqual(sandile.target_level, 19)
+
+    def test_vc_pokerus_must_be_post_transporter(self) -> None:
+        payload = {
+            "name": "bad vc pokerus",
+            "target_generation": 7,
+            "trainer": {"name": "Doug"},
+            "entries": [{
+                "national_dex": 25,
+                "species": "Pikachu",
+                "target_level": 5,
+                "traits": {
+                    "pokerus": "active",
+                    "pokerus_acquired_generation": 2
+                },
+                "template": {
+                    "template_id": "vc-yellow-starter-pikachu",
+                    "source_game": "Yellow (Virtual Console)",
+                    "generation": 1,
+                    "method": "starter",
+                    "origin_kind": "virtual_console",
+                    "source_platform": "Nintendo 3DS Virtual Console"
+                }
+            }]
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "manifest.json"
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            with self.assertRaises(ManifestError):
+                load_manifest(path)
+
     def test_duplicate_dex_form_is_rejected(self) -> None:
         payload = {
             "name": "duplicate",
