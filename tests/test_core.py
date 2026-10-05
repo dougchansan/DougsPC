@@ -38,18 +38,20 @@ class LegacyBoxCoreTests(unittest.TestCase):
 
     def test_heritage_manifest_spans_generations_one_through_seven(self) -> None:
         manifest = load_manifest(ROOT / "manifests" / "heritage-smoke.json")
-        self.assertEqual(manifest.trainer.name, "Kento")
+        self.assertEqual(manifest.trainer.name, "Doug")
         self.assertEqual(
             {entry.template.generation for entry in manifest.entries},
             {1, 2, 3, 4, 5, 6, 7},
         )
-        self.assertTrue(all(entry.fixed_ot is None for entry in manifest.entries))
+        self.assertTrue(all(entry.event_identity is None for entry in manifest.entries))
+        plan = generation_plan(manifest)
+        self.assertTrue(all(item["effective_ot"] == "Doug" for item in plan))
 
     def test_fixed_event_requires_fixed_ot(self) -> None:
         payload = {
             "name": "event",
             "target_generation": 7,
-            "trainer": {"name": "Kento"},
+            "trainer": {"name": "Doug"},
             "entries": [
                 {
                     "national_dex": 807,
@@ -60,7 +62,8 @@ class LegacyBoxCoreTests(unittest.TestCase):
                         "template_id": "event-placeholder",
                         "source_game": "Ultra Sun/Ultra Moon",
                         "generation": 7,
-                        "method": "event"
+                        "method": "event",
+                        "origin_kind": "fixed_event"
                     }
                 }
             ]
@@ -70,6 +73,56 @@ class LegacyBoxCoreTests(unittest.TestCase):
             path.write_text(json.dumps(payload), encoding="utf-8")
             with self.assertRaises(ManifestError):
                 load_manifest(path)
+
+    def test_fixed_event_ot_is_never_replaced_by_trainer(self) -> None:
+        payload = {
+            "name": "fixed event",
+            "target_generation": 7,
+            "trainer": {"name": "Doug"},
+            "entries": [
+                {
+                    "national_dex": 807,
+                    "species": "Zeraora",
+                    "target_level": 50,
+                    "ot_policy": "fixed_event",
+                    "event_identity": {
+                        "ot": "EVENT-OT",
+                        "tid": "000000",
+                        "language": "ENG",
+                        "distribution_id": "synthetic-test-only",
+                        "fateful_encounter": True
+                    },
+                    "template": {
+                        "template_id": "synthetic-event-test",
+                        "source_game": "Ultra Sun/Ultra Moon",
+                        "generation": 7,
+                        "method": "event",
+                        "origin_kind": "fixed_event",
+                        "source_platform": "Nintendo 3DS",
+                        "origin_region": "Alola"
+                    }
+                }
+            ]
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "manifest.json"
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            manifest = load_manifest(path)
+            item = generation_plan(manifest)[0]
+            self.assertEqual(item["effective_ot"], "EVENT-OT")
+            self.assertNotEqual(item["effective_ot"], "Doug")
+
+    def test_heritage_index_has_807_unique_species(self) -> None:
+        payload = json.loads(
+            (ROOT / "data" / "heritage-index.json").read_text(encoding="utf-8")
+        )
+        entries = payload["entries"]
+        self.assertEqual(len(entries), 807)
+        self.assertEqual({e["national_dex"] for e in entries}, set(range(1, 808)))
+        self.assertEqual(payload["trainer"]["name"], "Doug")
+        self.assertTrue(
+            all(e["curation_status"] == "pending_encounter_template" for e in entries)
+        )
 
     def test_duplicate_dex_form_is_rejected(self) -> None:
         payload = {
