@@ -10,6 +10,15 @@
 - [x] Tests/CI
 - [ ] Select legality backend licensing strategy
 
+## M0.5 — Heritage Dex provenance
+
+- [x] Default trainer profile: Kento
+- [x] Per-entry player OT vs fixed-event OT policy
+- [x] Cross-generation Gen I–VII provenance smoke manifest
+- [ ] Build reviewed origin-game assignment for #001–#807
+- [ ] Add generation-specific Trainer ID/SID policy
+- [ ] Add fixed-event exception table
+
 ## M1 — Real Gen VII legality proof
 
 - [ ] Resolve smoke-set encounter templates against a real encounter database
