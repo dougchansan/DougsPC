@@ -70,6 +70,7 @@ def generation_plan(manifest: LivingDexManifest) -> list[dict[str, object]]:
                     None if entry.event_identity is None else asdict(entry.event_identity)
                 ),
                 "template_id": entry.template.template_id,
+                "source_registry_id": entry.template.source_registry_id,
                 "source_game": entry.template.source_game,
                 "source_platform": entry.template.source_platform,
                 "origin_region": entry.template.origin_region,
