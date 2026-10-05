@@ -60,3 +60,10 @@ PKHeX.Core is GPL-3.0-or-later. LegacyBox currently keeps its legality interface
 ## Disclaimer
 
 LegacyBox is an independent fan-made preservation tool and is not affiliated with Nintendo, The Pokémon Company, or Game Freak. Users are responsible for backing up their own save data and complying with applicable game and service terms.
+
+
+## Heritage Dex
+
+Heritage Dex mode targets National Dex #001–#807 with visible cross-generation provenance. The default player OT is **Doug**. Fixed distributions are never rewritten to Doug; their event identity is preserved as immutable manifest data.
+
+The full 807-entry curation inventory lives in `data/heritage-index.json`. Entries remain pending until a real encounter template and legality result are attached.
