@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-10-04",
+  "bank": {
+    "status": "operational",
+    "shutdown": "2027-02-25T19:00:00-08:00",
+    "home_premium_required": true,
+    "direction": "Bank -> HOME only",
+    "reversible": false,
+    "rules": [
+      "Bank-to-HOME transfer uses an official HOME Moving Key when the 3DS path is used.",
+      "After Bank service ends, Bank-to-HOME transfer will no longer be available.",
+      "LegacyBox must not claim a Bank transfer occurred merely because local PKM metadata resembles a transferred Pokémon."
+    ]
+  },
+  "home_tracker": {
+    "local_meaning": "Presence of a tracker can indicate the Pokémon has passed through HOME, but a local tool cannot validate whether the tracker value is genuine or matches HOME server history.",
+    "authority": "Pokémon HOME server only",
+    "pkhex_capability": "PKHeX can determine when a tracker is required and can detect zero/missing tracker fields, but cannot validate the actual tracker value against HOME server data.",
+    "legacybox_rules": [
+      "Never fabricate or copy a HOME tracker.",
+      "Never label tracker_present as tracker_valid.",
+      "Only record tracker_present after observing a concrete post-HOME PK8+ snapshot.",
+      "Hash and preserve the post-HOME snapshot used as evidence.",
+      "Treat server-side history as unverifiable locally.",
+      "A successful HOME upload does not upgrade generated origin evidence to historically legitimate."
+    ]
+  },
+  "trust_axes": {
+    "origin_evidence": [
+      "generated_candidate",
+      "imported_source_bytes",
+      "user_attested_original",
+      "unknown"
+    ],
+    "pkm_legality": [
+      "UNVERIFIED",
+      "PASSED",
+      "FAILED"
+    ],
+    "bank_transfer": [
+      "not_attempted",
+      "user_confirmed_official_move",
+      "not_applicable"
+    ],
+    "home_provenance": [
+      "pre_home",
+      "tracker_observed",
+      "user_confirmed_official_move_and_tracker_observed",
+      "not_applicable"
+    ],
+    "home_server_verification": [
+      "unverifiable_locally"
+    ]
+  },
+  "terminology": {
+    "legal": "The local PKM satisfies known structural/encounter/transfer constraints.",
+    "legitimate": "The Pokémon was actually obtained and moved through the claimed official historical process.",
+    "home_accepted": "HOME accepted an upload or official move at that time; this is not equivalent to proving original legitimacy.",
+    "tracker_observed": "A nonzero HOME tracker was observed in a post-HOME PK8+ snapshot; the tracker cannot be authenticated locally."
+  }
+}
