@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from .models import LivingDexManifest, OTPolicy
+from .models import LivingDexManifest, OTPolicy, OriginKind
 
 
 class ManifestError(ValueError):
@@ -61,13 +61,30 @@ def validate_manifest_structure(manifest: LivingDexManifest) -> list[str]:
         if not entry.template.method:
             problems.append(f"{entry.key}: encounter method must not be empty")
 
-        if entry.ot_policy is OTPolicy.FIXED_EVENT and not entry.fixed_ot:
+        if entry.ot_policy is OTPolicy.FIXED_EVENT:
+            if entry.event_identity is None:
+                problems.append(
+                    f"{entry.key}: fixed_event OT policy requires event_identity"
+                )
+            elif not entry.event_identity.ot:
+                problems.append(
+                    f"{entry.key}: fixed_event event_identity requires OT"
+                )
+            if entry.template.origin_kind is not OriginKind.FIXED_EVENT:
+                problems.append(
+                    f"{entry.key}: fixed_event OT policy requires fixed_event origin_kind"
+                )
+        elif entry.event_identity is not None:
             problems.append(
-                f"{entry.key}: fixed_event OT policy requires fixed_ot"
+                f"{entry.key}: trainer OT policy must not specify event_identity"
             )
-        if entry.ot_policy is OTPolicy.TRAINER and entry.fixed_ot:
+
+        if (
+            entry.template.origin_kind is OriginKind.VIRTUAL_CONSOLE
+            and "virtual console" not in entry.template.source_platform.casefold()
+        ):
             problems.append(
-                f"{entry.key}: trainer OT policy must not specify fixed_ot"
+                f"{entry.key}: virtual_console origin must identify a Virtual Console platform"
             )
 
         dex_form = (entry.national_dex, entry.form.casefold())
