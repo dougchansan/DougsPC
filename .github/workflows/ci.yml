@@ -112,6 +112,30 @@ jobs:
           data = json.load(open("/tmp/tornadus-b2.json"))
           assert any(e["type"] == "EncounterStatic5Radar" for e in data["encounters"]), data
           PY
+      - name: Generate Kanto #010-#018 encounter candidates
+        run: |
+          mkdir -p /tmp/legacybox-candidates
+          dotnet run --no-build --configuration Release --project helpers/pkhex-catalog/LegacyBox.EncounterCatalog.csproj -- 10-18 RD > /tmp/legacybox-candidates/kanto-010-018-red-vc.json
+          dotnet run --no-build --configuration Release --project helpers/pkhex-catalog/LegacyBox.EncounterCatalog.csproj -- 10-18 GN > /tmp/legacybox-candidates/kanto-010-018-blue-vc.json
+          dotnet run --no-build --configuration Release --project helpers/pkhex-catalog/LegacyBox.EncounterCatalog.csproj -- 10-18 YW > /tmp/legacybox-candidates/kanto-010-018-yellow-vc.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          files = list(Path("/tmp/legacybox-candidates").glob("*.json"))
+          assert len(files) == 3
+          covered = set()
+          for path in files:
+              data = json.loads(path.read_text())
+              assert len(data["results"]) == 9
+              for result in data["results"]:
+                  if result["count"] > 0:
+                      covered.add(result["requestedSpecies"])
+          assert covered == set(range(10, 19)), covered
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kanto-010-018-encounter-candidates
+          path: /tmp/legacybox-candidates/*.json
       - name: Confirm malformed PKM fails closed
         run: |
           python - <<'PY'
