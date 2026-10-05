@@ -116,3 +116,39 @@ After official Bank -> HOME:
 6. Never edit immutable historical fields after HOME if preserving provenance is the goal.
 
 This gives LegacyBox a defensible audit chain without pretending to have access to Nintendo's private server database.
+
+
+## HOME child data
+
+Reverse-engineered HOME documentation indicates that HOME does not store only one flattened Switch-era Pokémon record. It maintains common/core data plus game-specific child data. A Bank -> HOME or GO -> HOME entry initializes the SWSH child representation first; additional child representations are created as the Pokémon visits compatible games.
+
+This is why a copied tracker by itself is not equivalent to a genuine historical HOME path. The server-side record associated with that tracker can contain data not represented by simply editing one local PK8/PK9 file.
+
+LegacyBox therefore preserves:
+
+- the original pre-HOME snapshot;
+- the post-HOME snapshot;
+- hashes for both;
+- observed tracker presence;
+- which games were intentionally visited after HOME entry, when known.
+
+It does **not** attempt to synthesize missing HOME child history.
+
+## Immutable-after-HOME rule
+
+For preservation-oriented records, LegacyBox treats these as immutable after the first HOME entry unless the official games/HOME themselves change them:
+
+- PID / Encryption Constant;
+- IVs;
+- origin game;
+- OT name/gender, TID and SID;
+- language;
+- met level/location/date;
+- Egg met data;
+- original Ball;
+- gender;
+- nature where not legitimately changeable in underlying data;
+- ribbons that should not disappear;
+- other format-specific values correlated to the original encounter.
+
+Competitive EVs, moves, items, friendship and similar legitimately mutable gameplay data remain separate from immutable provenance.
