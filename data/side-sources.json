@@ -1,0 +1,691 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "rule": "A side-game/source family is first catalogued here, then individual archive variants are promoted only after source-specific cross-checking and PKHeX legality validation.",
+    "status_flow": [
+      "catalogued",
+      "cross_checked",
+      "generated",
+      "pkhex_passed"
+    ],
+    "required_fields": [
+      "id",
+      "generation",
+      "category",
+      "platform",
+      "transfer_route",
+      "pkhex_support",
+      "references"
+    ]
+  },
+  "sources": [
+    {
+      "id": "gen3.pokemon_box_bonus_eggs",
+      "name": "Pokémon Box Ruby & Sapphire bonus Eggs",
+      "generation": 3,
+      "category": "gift_egg",
+      "platform": "Nintendo GameCube -> Game Boy Advance",
+      "status": "cross_checked",
+      "transfer_route": [
+        "Receive Egg in Gen III GBA game",
+        "Hatch in Gen III",
+        "Pal Park",
+        "Gen IV",
+        "Poké Transfer",
+        "Gen V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "pkhex_support": {
+        "kind": "gen3 encounter/event legality + egg legality",
+        "confidence": "supported"
+      },
+      "variants": [
+        {
+          "species": "Swablu",
+          "national_dex": 333,
+          "level": 5,
+          "unlock": "start",
+          "exclusive_move": "False Swipe",
+          "ability": "Natural Cure",
+          "shiny": "allowed",
+          "ot": "hatcher"
+        },
+        {
+          "species": "Zigzagoon",
+          "national_dex": 263,
+          "level": 5,
+          "unlock": "100 deposited",
+          "exclusive_move": "ExtremeSpeed",
+          "ability": "Pickup",
+          "shiny": "allowed",
+          "ot": "hatcher"
+        },
+        {
+          "species": "Skitty",
+          "national_dex": 300,
+          "level": 5,
+          "unlock": "500 deposited",
+          "exclusive_move": "Pay Day",
+          "ability": "Cute Charm",
+          "shiny": "allowed",
+          "ot": "hatcher"
+        },
+        {
+          "species": "Pichu",
+          "national_dex": 172,
+          "level": 5,
+          "unlock": "1499 deposited",
+          "exclusive_move": "Surf",
+          "ability": "Static",
+          "shiny": "allowed",
+          "ot": "hatcher",
+          "migration_note": "Surf must be forgotten before Pal Park."
+        }
+      ],
+      "references": [
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_game-based_Pok%C3%A9mon_distributions_in_Generation_III",
+          "checked_fields": [
+            "species",
+            "unlock",
+            "level",
+            "moves",
+            "OT",
+            "ability",
+            "shiny",
+            "Pal Park restriction"
+          ],
+          "checked_date": "2026-10-04"
+        },
+        {
+          "source": "Serebii",
+          "url": "https://forums.serebii.net/threads/pok%C3%A9mon-channel-box-faq-version-2-0.119745/",
+          "checked_fields": [
+            "species",
+            "deposit thresholds",
+            "exclusive moves"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gen3.wishmkr_jirachi",
+      "name": "Pokémon Colosseum Bonus Disc — WISHMKR Jirachi",
+      "generation": 3,
+      "category": "fixed_distribution",
+      "platform": "Nintendo GameCube Bonus Disc -> Game Boy Advance",
+      "status": "cross_checked",
+      "transfer_route": [
+        "Bonus Disc",
+        "Ruby/Sapphire or compatible Gen III save",
+        "Pal Park",
+        "Gen IV",
+        "Poké Transfer",
+        "Gen V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "fixed_identity": {
+        "ot": "WISHMKR",
+        "tid": "20043",
+        "language": "ENG",
+        "level": 5,
+        "ability": "Serene Grace",
+        "moves": [
+          "Wish",
+          "Confusion",
+          "Rest"
+        ],
+        "shiny": "allowed",
+        "fateful_encounter": true
+      },
+      "pkhex_support": {
+        "kind": "EncounterGift3 / Gen III RNG correlation",
+        "confidence": "native",
+        "evidence": "EncountersWC3 WISHMKR + MYSTRY/Channel RNG legality"
+      },
+      "references": [
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_game-based_Pok%C3%A9mon_distributions_in_Generation_III",
+          "checked_fields": [
+            "OT",
+            "TID",
+            "level",
+            "moves",
+            "ability",
+            "shiny",
+            "region"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gen3.ageto_celebi",
+      "name": "Japanese Colosseum Bonus Disc — Ageto Celebi",
+      "generation": 3,
+      "category": "fixed_distribution",
+      "platform": "Nintendo GameCube Bonus Disc -> Game Boy Advance",
+      "status": "cross_checked",
+      "transfer_route": [
+        "Japanese Bonus Disc",
+        "Colosseum purification requirement",
+        "Japanese Gen III GBA game",
+        "Pal Park",
+        "Gen IV",
+        "Poké Transfer",
+        "Gen V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "fixed_identity": {
+        "ot": "アゲト",
+        "tid": "31121",
+        "level": 10,
+        "ability": "Natural Cure",
+        "moves": [
+          "Confusion",
+          "Recover",
+          "Heal Bell",
+          "Safeguard"
+        ],
+        "shiny": "not_marked_as_available",
+        "fateful_encounter": true
+      },
+      "pkhex_support": {
+        "kind": "EncounterGift3Colo",
+        "confidence": "native",
+        "evidence": "Encounters3RSE Ageto gift"
+      },
+      "references": [
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Colosseum_Bonus_Disc",
+          "checked_fields": [
+            "unlock",
+            "OT",
+            "TID",
+            "level",
+            "moves",
+            "ability",
+            "region"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gen3.channel_jirachi",
+      "name": "Pokémon Channel — CHANNEL Jirachi",
+      "generation": 3,
+      "category": "fixed_distribution",
+      "platform": "Nintendo GameCube -> Game Boy Advance",
+      "status": "cross_checked",
+      "transfer_route": [
+        "Pokémon Channel",
+        "Ruby/Sapphire or compatible Gen III save",
+        "Pal Park",
+        "Gen IV",
+        "Poké Transfer",
+        "Gen V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "fixed_identity": {
+        "ot": "CHANNEL",
+        "tid": "40122",
+        "language": "ENG",
+        "level": 5,
+        "ability": "Serene Grace",
+        "moves": [
+          "Wish",
+          "Confusion",
+          "Rest"
+        ],
+        "held_item": [
+          "Salac Berry",
+          "Ganlon Berry"
+        ],
+        "shiny": "allowed"
+      },
+      "pkhex_support": {
+        "kind": "EncounterGift3 Channel RNG method",
+        "confidence": "native",
+        "evidence": "EncountersWC3 CHANNEL + MethodFinder Channel"
+      },
+      "references": [
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Channel",
+          "checked_fields": [
+            "OT",
+            "TID",
+            "level",
+            "moves",
+            "ability",
+            "held item",
+            "shiny",
+            "region"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gen3.colosseum_jp_ereader",
+      "name": "Japanese Pokémon Colosseum Card e Room Shadow Pokémon",
+      "generation": 3,
+      "category": "shadow_purified",
+      "platform": "Nintendo GameCube + e-Reader",
+      "status": "cross_checked",
+      "transfer_route": [
+        "Japanese Colosseum Card e Room",
+        "Snag",
+        "Purify",
+        "Trade to Gen III GBA game",
+        "Pal Park",
+        "Gen IV",
+        "Poké Transfer",
+        "Gen V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "variants": [
+        {
+          "species": "Togepi",
+          "national_dex": 175,
+          "level_min": 20,
+          "shadow_move": "Shadow Rush",
+          "location": "E-Reader card"
+        },
+        {
+          "species": "Mareep",
+          "national_dex": 179,
+          "level_min": 37,
+          "shadow_move": "Shadow Rush",
+          "location": "E-Reader card"
+        },
+        {
+          "species": "Scizor",
+          "national_dex": 212,
+          "level_min": 50,
+          "shadow_move": "Shadow Rush",
+          "location": "E-Reader card"
+        }
+      ],
+      "rules": [
+        "Must be purified before GBA transfer",
+        "Purified Shadow lineage carries National Ribbon",
+        "Gen III RNG/PID/IV constraints apply"
+      ],
+      "pkhex_support": {
+        "kind": "Colosseum/XD encounter + shadow/PID legality",
+        "confidence": "native"
+      },
+      "references": [
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Appendix%3APok%C3%A9mon_Colosseum_walkthrough/Obtainable_Pok%C3%A9mon_list",
+          "checked_fields": [
+            "species",
+            "minimum level",
+            "moves",
+            "location",
+            "Japanese e-Reader restriction"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gen4.ranger_manaphy_egg",
+      "name": "Pokémon Ranger series — Manaphy Egg",
+      "generation": 4,
+      "category": "gift_egg",
+      "platform": "Nintendo DS Ranger title -> Gen IV core game",
+      "status": "cross_checked",
+      "transfer_route": [
+        "Ranger Net mission",
+        "Transfer Manaphy Egg",
+        "Receive in D/P/Pt/HG/SS",
+        "Hatch",
+        "Poké Transfer",
+        "Gen V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "rules": [
+        "One Egg can be sent per Ranger save/copy",
+        "Original recipient cannot hatch it shiny",
+        "Traded Egg can hatch shiny on a different TID/SID",
+        "Hatcher becomes OT"
+      ],
+      "pkhex_support": {
+        "kind": "PGT RangerManaphy + special egg hatch legality",
+        "confidence": "native",
+        "evidence": "EncounterGenerator4.RangerManaphy / PGT.IsRangerManaphy"
+      },
+      "references": [
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_in-game_event_Pok%C3%A9mon_in_Pok%C3%A9mon_HeartGold_and_SoulSilver",
+          "checked_fields": [
+            "transfer",
+            "one-per-Ranger-copy",
+            "shiny trade/hatch behavior"
+          ],
+          "checked_date": "2026-10-04"
+        },
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Manaphy_(Pok%C3%A9mon)",
+          "checked_fields": [
+            "shiny hatch mechanics"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gen4.my_pokemon_ranch",
+      "name": "My Pokémon Ranch — Hayley trades",
+      "generation": 4,
+      "category": "fixed_trade",
+      "platform": "Nintendo Wii -> Diamond/Pearl family",
+      "status": "cross_checked",
+      "transfer_route": [
+        "My Pokémon Ranch",
+        "Trade to Gen IV core game",
+        "Poké Transfer",
+        "Gen V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "variants": [
+        {
+          "species": "Phione",
+          "national_dex": 489,
+          "level": 50,
+          "ot": "Hayley",
+          "tid": "01000",
+          "ability": "Hydration",
+          "moves": [
+            "Grass Knot",
+            "Rain Dance",
+            "Rest",
+            "Surf"
+          ],
+          "unlock": "Ranch level 15 / trade Leafeon"
+        },
+        {
+          "species": "Mew",
+          "national_dex": 151,
+          "level": 50,
+          "ot": "Hayley",
+          "tid": "01000",
+          "ability": "Synchronize",
+          "moves": [
+            "Synthesis",
+            "Return",
+            "Hypnosis",
+            "Teleport"
+          ],
+          "unlock": "Ranch level 25 / trade an Egg"
+        }
+      ],
+      "rules": [
+        "Hayley trade identities are fixed by language/region",
+        "Some Hayley trades have fixed Nature/gender/Ability and cannot be shiny"
+      ],
+      "pkhex_support": {
+        "kind": "SAV4Ranch + Gen IV legality/event data",
+        "confidence": "supported"
+      },
+      "references": [
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Hayley%27s_trades",
+          "checked_fields": [
+            "OT",
+            "TID",
+            "levels",
+            "moves",
+            "unlock",
+            "nature policy"
+          ],
+          "checked_date": "2026-10-04"
+        },
+        {
+          "source": "Serebii",
+          "url": "https://www.serebii.net/ranch/trade.shtml",
+          "checked_fields": [
+            "OT",
+            "TID",
+            "levels",
+            "moves",
+            "unlock"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gen4.battle_revolution",
+      "name": "Pokémon Battle Revolution — PKTOPIA gifts",
+      "generation": 4,
+      "category": "fixed_distribution",
+      "platform": "Nintendo Wii -> Gen IV core game",
+      "status": "cross_checked",
+      "transfer_route": [
+        "Pokémon Battle Revolution",
+        "Mystery Gift to Gen IV core game",
+        "Poké Transfer",
+        "Gen V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "variants": [
+        {
+          "species": "Pikachu",
+          "national_dex": 25,
+          "provenance_move": "Surf",
+          "notes": "Surf must be removed before Poké Transfer to Gen V."
+        },
+        {
+          "species": "Electivire",
+          "national_dex": 466,
+          "level": 50,
+          "ot": "PKTOPIA",
+          "tid": "06257",
+          "nature": "Adamant",
+          "held_item": "Magnet",
+          "moves": [
+            "ThunderPunch",
+            "Ice Punch",
+            "Cross Chop",
+            "Earthquake"
+          ]
+        },
+        {
+          "species": "Magmortar",
+          "national_dex": 467,
+          "level": 50,
+          "ot": "PKTOPIA",
+          "tid": "06257",
+          "nature": "Modest",
+          "held_item": "Charcoal",
+          "moves": [
+            "Flamethrower",
+            "Psychic",
+            "Hyper Beam",
+            "SolarBeam"
+          ]
+        }
+      ],
+      "pkhex_support": {
+        "kind": "Gen IV Mystery Gift / PCD-PGT legality",
+        "confidence": "native"
+      },
+      "references": [
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Battle_Revolution",
+          "checked_fields": [
+            "gift types",
+            "transfer",
+            "Surf Pikachu"
+          ],
+          "checked_date": "2026-10-04"
+        },
+        {
+          "source": "Serebii",
+          "url": "https://www.serebii.net/battle/elecmortar.shtml",
+          "checked_fields": [
+            "Electivire/Magmortar OT",
+            "TID",
+            "level",
+            "nature",
+            "item",
+            "moves"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gen4.pokewalker",
+      "name": "Pokéwalker course encounters",
+      "generation": 4,
+      "category": "course_encounter",
+      "platform": "Pokéwalker -> HeartGold/SoulSilver",
+      "status": "catalogued",
+      "transfer_route": [
+        "Pokéwalker",
+        "HeartGold/SoulSilver",
+        "Poké Transfer",
+        "Gen V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "rules": [
+        "27 courses total",
+        "Course/species/move combinations are provenance-relevant",
+        "Pokéwalker PID method is never shiny",
+        "Pokéwalker PID/IV RNG correlation must validate"
+      ],
+      "pkhex_support": {
+        "kind": "EncounterStatic4Pokewalker + PokewalkerRNG",
+        "confidence": "native"
+      },
+      "references": [
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9walker",
+          "checked_fields": [
+            "course count",
+            "course unlocks",
+            "encounter provenance"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gen5.dream_world",
+      "name": "Pokémon Dream World / Pokémon Global Link — Entree Forest",
+      "generation": 5,
+      "category": "online_side_source",
+      "platform": "Pokémon Global Link -> Black/White/B2W2",
+      "status": "catalogued",
+      "transfer_route": [
+        "Dream World/PGL",
+        "Entree Forest capture",
+        "Gen V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "rules": [
+        "Entree Forest Pokémon have Hidden Ability when the species has one",
+        "Dream Ball is available and guaranteed, but other legal balls may be chosen",
+        "Gender and special-move restrictions are source-specific"
+      ],
+      "pkhex_support": {
+        "kind": "EncounterStatic5Entree / DreamWorld tables",
+        "confidence": "native",
+        "evidence": "Encounters5DR + Encounters5BW DreamWorld tables"
+      },
+      "references": [
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Hidden_Ability",
+          "checked_fields": [
+            "Dream World Hidden Ability acquisition"
+          ],
+          "checked_date": "2026-10-04"
+        },
+        {
+          "source": "Serebii",
+          "url": "https://www.serebii.net/games/hiddenability.shtml",
+          "checked_fields": [
+            "Entree Forest capture",
+            "Hidden Ability",
+            "Dream Ball/other ball choice"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    },
+    {
+      "id": "gen5.dream_radar",
+      "name": "Pokémon Dream Radar",
+      "generation": 5,
+      "category": "3ds_side_source",
+      "platform": "Nintendo 3DS Dream Radar -> Black 2/White 2",
+      "status": "cross_checked",
+      "transfer_route": [
+        "Pokémon Dream Radar",
+        "Nintendo 3DS Link",
+        "Black 2/White 2 PC",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "rules": [
+        "Hidden Ability for all supported species except Rotom",
+        "Dream Ball",
+        "Met location Pokémon Dream Radar",
+        "Level scales by B2W2 badge count from 5 to 40",
+        "Treated as caught by the B2W2 player"
+      ],
+      "pkhex_support": {
+        "kind": "EncounterStatic5Radar + Encounters5DR",
+        "confidence": "native"
+      },
+      "references": [
+        {
+          "source": "Bulbapedia",
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9mon_Dream_Radar",
+          "checked_fields": [
+            "Hidden Ability",
+            "Dream Ball",
+            "met location",
+            "badge-scaled levels",
+            "trainer ownership"
+          ],
+          "checked_date": "2026-10-04"
+        },
+        {
+          "source": "Serebii",
+          "url": "https://www.serebii.net/itemdex/dreamball.shtml",
+          "checked_fields": [
+            "Dream Ball Gen V availability/Entree Forest behavior"
+          ],
+          "checked_date": "2026-10-04"
+        }
+      ]
+    }
+  ]
+}
