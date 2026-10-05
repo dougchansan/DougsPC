@@ -40,6 +40,18 @@ jobs:
         with:
           dotnet-version: "10.0.x"
       - run: dotnet build helpers/pkhex-validator/LegacyBox.PKHeXValidator.csproj --configuration Release
+      - run: dotnet build helpers/pkhex-catalog/LegacyBox.EncounterCatalog.csproj --configuration Release
+      - name: Confirm PKHeX catalog finds Red VC Venusaur origin
+        run: |
+          dotnet run --no-build --configuration Release --project helpers/pkhex-catalog/LegacyBox.EncounterCatalog.csproj -- 3 RD > /tmp/venusaur-red.json
+          python - <<'PY'
+          import json
+          data = json.load(open("/tmp/venusaur-red.json"))
+          assert data["requestedSpecies"] == 3
+          assert data["requestedVersion"] == "RD"
+          assert data["count"] > 0
+          assert any(e["species"] == 1 for e in data["encounters"]), data
+          PY
       - name: Confirm malformed PKM fails closed
         run: |
           python - <<'PY'
