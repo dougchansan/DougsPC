@@ -14,7 +14,6 @@ class VerificationStatus(str, Enum):
 class OTPolicy(str, Enum):
     TRAINER = "trainer"
     FIXED_EVENT = "fixed_event"
-    SHADOW_PURIFIED = "shadow_purified"
 
 
 class OriginKind(str, Enum):
@@ -23,6 +22,7 @@ class OriginKind(str, Enum):
     EVOLUTION = "evolution"
     GIFT = "gift"
     FIXED_EVENT = "fixed_event"
+    SHADOW_PURIFIED = "shadow_purified"
 
 
 class ShinyPolicy(str, Enum):
@@ -184,7 +184,6 @@ class CompetitiveProfile:
     application_policy: str = "prefer_if_legal"
     verification_status: str = "unverified"
     references: tuple[SourceReference, ...] = ()
-    shadow: ShadowProvenance | None = None
     notes: str = ""
 
     @classmethod
@@ -241,6 +240,7 @@ class EncounterTemplateRef:
     nature_policy: str = "random"
     verification_status: str = "unverified"
     references: tuple[SourceReference, ...] = ()
+    shadow: ShadowProvenance | None = None
 
     @classmethod
     def from_dict(cls, value: dict[str, Any]) -> "EncounterTemplateRef":
