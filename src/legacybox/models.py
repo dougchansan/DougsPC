@@ -14,6 +14,7 @@ class VerificationStatus(str, Enum):
 class OTPolicy(str, Enum):
     TRAINER = "trainer"
     FIXED_EVENT = "fixed_event"
+    SHADOW_PURIFIED = "shadow_purified"
 
 
 class OriginKind(str, Enum):
@@ -93,6 +94,35 @@ class EventIdentity:
         )
 
 
+
+
+@dataclass(frozen=True)
+class ShadowProvenance:
+    game: str
+    snag_location: str = ""
+    original_shadow_level: int | None = None
+    xd_shadow_boost: int | None = None
+    purified: bool = True
+    national_ribbon: bool = True
+    purification_move: str = ""
+
+    @classmethod
+    def from_dict(cls, value: dict[str, Any] | None) -> "ShadowProvenance | None":
+        if value is None:
+            return None
+        level = value.get("original_shadow_level")
+        boost = value.get("xd_shadow_boost")
+        return cls(
+            game=str(value["game"]).strip(),
+            snag_location=str(value.get("snag_location", "")).strip(),
+            original_shadow_level=None if level is None else int(level),
+            xd_shadow_boost=None if boost is None else int(boost),
+            purified=bool(value.get("purified", True)),
+            national_ribbon=bool(value.get("national_ribbon", True)),
+            purification_move=str(value.get("purification_move", "")).strip(),
+        )
+
+
 @dataclass(frozen=True)
 class SourceReference:
     source: str
@@ -154,6 +184,7 @@ class CompetitiveProfile:
     application_policy: str = "prefer_if_legal"
     verification_status: str = "unverified"
     references: tuple[SourceReference, ...] = ()
+    shadow: ShadowProvenance | None = None
     notes: str = ""
 
     @classmethod
@@ -253,6 +284,7 @@ class EncounterTemplateRef:
             references=tuple(
                 SourceReference.from_dict(ref) for ref in value.get("references", [])
             ),
+            shadow=ShadowProvenance.from_dict(value.get("shadow")),
         )
 
 
