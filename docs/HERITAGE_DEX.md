@@ -173,3 +173,48 @@ A Shadow Pokémon itself cannot be exported to the GBA core games. The transfera
 Nature and IVs are not globally fixed for Shadow Pokémon: they are generated when first encountered and then remain fixed for that save/Shadow Monitor entry. Archive generation must therefore create a valid Gen III RNG-consistent specimen rather than assigning arbitrary modern IVs after the fact.
 
 Competitive optimization happens only after those origin constraints are satisfied. EVs may be trained after purification; Shadow battles themselves do not accumulate EVs.
+
+
+## Remaining completeness gaps
+
+Archive Mode is not complete until the non-main-series transfer ecosystem is covered. Required source families include:
+
+- Pokémon Box Ruby & Sapphire bonus Eggs and their exclusive moves
+- WISHMKR Jirachi, Ageto Celebi, and CHANNEL Jirachi
+- Japanese Colosseum Card e Room Shadow Togepi, Mareep, and Scizor
+- Pokémon Ranger Manaphy Eggs
+- My Pokémon Ranch Mew/Phione and relevant trades
+- Pokémon Battle Revolution gifts
+- Pokéwalker course-specific Pokémon and move combinations
+- Dream World / Pokémon Global Link Hidden Ability lineages
+- Pokémon Dream Radar Hidden Ability, Dream Ball, and badge-dependent level variants
+- Gen VI/VII special demos, Bank distributions, QR/game-based distributions where they create distinct provenance
+
+### Variant explosion guardrails
+
+Archive Mode must stay useful rather than becoming an arbitrary Cartesian product.
+
+By default, LegacyBox does **not** create a separate archive specimen for every Nature, IV roll, EV spread, optional ribbon subset, language, gender, or ordinary Ball.
+
+Those fields become separate archive variants only when they represent a distinct legal origin or preserved historical feature. Examples include Dream Ball Dream Radar Pokémon, Cherish Ball events, fixed event Nature/IVs, gender-locked distributions, special ribbon lineages, exclusive legacy moves, or ability access that only exists through a particular source.
+
+Competitive Nature/IV/EV data remains a derived preferred build, not a provenance dimension.
+
+### Additional metadata still required
+
+Before generation is considered production-ready, LegacyBox still needs:
+
+- generation-specific TID/SID/OT-gender profiles
+- PID/IV/ability/gender RNG correlation rules for Gen III/IV sources
+- met/egg/hatch dates and locations where the format stores them
+- origin marks and transfer-specific metadata
+- relearn moves and move-reminder state
+- required ribbons and provenance-significant optional ribbons
+- friendship/handler metadata where migration changes it
+- Poké Ball legality
+- language/console-region locks
+- explicit pre-transfer vs post-transfer move history when migration requires forgetting a move
+- form-change/fusion/storage exclusions
+- Ability changes between generations and ability-slot remapping
+
+All of these remain subordinate to the generated PKM's final PKHeX legality result.
