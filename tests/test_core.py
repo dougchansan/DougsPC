@@ -428,6 +428,21 @@ class LegacyBoxCoreTests(unittest.TestCase):
             with self.assertRaises(ManifestError):
                 load_manifest(path)
 
+    def test_wishmkr_does_not_claim_later_fateful_flag(self) -> None:
+        manifest = load_manifest(ROOT / "manifests" / "side-source-smoke.json")
+        wishmkr = next(
+            e for e in manifest.entries
+            if e.national_dex == 385 and e.event_identity.ot == "WISHMKR"
+        )
+        self.assertIsNone(wishmkr.event_identity.fateful_encounter)
+        self.assertEqual(
+            wishmkr.event_identity.locked_fields["gen3_met_location"],
+            "Fateful Encounter",
+        )
+        self.assertFalse(
+            wishmkr.event_identity.locked_fields["gen3_obedience_flag"]
+        )
+
     def test_duplicate_dex_form_is_rejected(self) -> None:
         payload = {
             "name": "duplicate",
