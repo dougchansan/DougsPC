@@ -1087,5 +1087,12 @@
         }
       ]
     }
-  ]
+  ],
+  "progress": {
+    "total_source_families": 17,
+    "catalogued": 5,
+    "cross_checked": 12,
+    "generated": 0,
+    "pkhex_passed": 0
+  }
 }
