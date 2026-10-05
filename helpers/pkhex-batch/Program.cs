@@ -193,7 +193,7 @@ foreach (var entry in root.GetProperty("entries").EnumerateArray())
     }
 
     ApplyCompetitiveEVs(best, entry);
-    ApplyCompetitiveMoves(best, entry);
+    var moveSelection = ApplyCompetitiveMovesPreservingLegality(best, entry);
     best.HealPP();
     best.RefreshChecksum();
 
@@ -247,6 +247,9 @@ foreach (var entry in root.GetProperty("entries").EnumerateArray())
         desiredNature = desiredNatureName,
         natureMatch = desiredNature is Nature.Random || best.Nature == desiredNature,
         ability = GameInfo.Strings.abilitylist[best.Ability],
+        competitiveMovesRequested = moveSelection.Requested,
+        competitiveMovesRejected = moveSelection.Rejected,
+        usedLegalMoveFallback = moveSelection.UsedFallback,
         actualIVs,
         desiredIVs,
         exactIVs,
@@ -492,33 +495,132 @@ static void ApplyCompetitiveEVs(PK7 pk, JsonElement entry)
     pk.SetEVs(values);
 }
 
-static void ApplyCompetitiveMoves(PK7 pk, JsonElement entry)
+static (bool UsedFallback, string[] Requested, string[] Rejected)
+    ApplyCompetitiveMovesPreservingLegality(PK7 pk, JsonElement entry)
+{
+    var requested = GetCompetitiveMoveRequests(entry);
+    if (requested.Length == 0)
+        return (false, [], []);
+
+    Span<ushort> full = stackalloc ushort[4];
+    full.Clear();
+    for (int i = 0; i < requested.Length && i < 4; i++)
+        full[i] = requested[i].ID;
+
+    pk.SetMoves(full);
+    pk.HealPP();
+
+    var fullAnalysis = new LegalityAnalysis(pk);
+    if (fullAnalysis.Valid)
+        return (false, requested.Select(x => x.Label).ToArray(), []);
+
+    // Only use the move fallback when normal field checks are clean. This keeps
+    // a real provenance/encounter failure from being accidentally hidden.
+    if (fullAnalysis.Results.Any(check => !check.Valid))
+    {
+        return (
+            false,
+            requested.Select(x => x.Label).ToArray(),
+            requested.Select(x => x.Label).ToArray()
+        );
+    }
+
+    Span<ushort> suggested = stackalloc ushort[4];
+    pk.GetMoveSet(suggested, false);
+    var accepted = suggested.ToArray();
+
+    pk.SetMoves(accepted);
+    pk.HealPP();
+    var baseline = new LegalityAnalysis(pk);
+    if (!baseline.Valid)
+    {
+        // Retry with PKHeX's broader legal-movepool suggestion.
+        pk.GetMoveSet(suggested, true);
+        accepted = suggested.ToArray();
+        pk.SetMoves(accepted);
+        pk.HealPP();
+        baseline = new LegalityAnalysis(pk);
+    }
+
+    if (!baseline.Valid)
+    {
+        return (
+            true,
+            requested.Select(x => x.Label).ToArray(),
+            requested.Select(x => x.Label).ToArray()
+        );
+    }
+
+    for (int i = 0; i < requested.Length && i < 4; i++)
+    {
+        var req = requested[i];
+        if (accepted.Contains(req.ID))
+            continue;
+
+        var trial = (ushort[])accepted.Clone();
+        int duplicate = Array.IndexOf(trial, req.ID);
+        if (duplicate >= 0)
+            continue;
+
+        trial[i] = req.ID;
+        pk.SetMoves(trial);
+        pk.HealPP();
+
+        if (new LegalityAnalysis(pk).Valid)
+            accepted = trial;
+        else
+            pk.SetMoves(accepted);
+    }
+
+    pk.SetMoves(accepted);
+    pk.HealPP();
+
+    var acceptedSet = accepted.Where(x => x != 0).ToHashSet();
+    var rejected = requested
+        .Where(x => !acceptedSet.Contains(x.ID))
+        .Select(x => x.Label)
+        .ToArray();
+
+    return (
+        true,
+        requested.Select(x => x.Label).ToArray(),
+        rejected
+    );
+}
+
+static (ushort ID, string Label)[] GetCompetitiveMoveRequests(JsonElement entry)
 {
     if (!entry.TryGetProperty("competitive", out var comp))
-        return;
+        return [];
     if (!comp.TryGetProperty("moves", out var moves) || moves.ValueKind != JsonValueKind.Array)
-        return;
+        return [];
 
     var names = GameInfo.Strings.movelist;
-    Span<ushort> ids = stackalloc ushort[4];
-    ids.Clear();
-    int index = 0;
+    var result = new List<(ushort ID, string Label)>(4);
+
     foreach (var node in moves.EnumerateArray())
     {
-        if (index == 4)
+        if (result.Count == 4)
             break;
+
         var text = node.GetString();
         if (string.IsNullOrWhiteSpace(text))
             continue;
+
         var lookup = text.StartsWith("Hidden Power ", StringComparison.OrdinalIgnoreCase)
             ? "Hidden Power"
             : text;
-        int move = Array.FindIndex(names, x => x.Equals(lookup, StringComparison.OrdinalIgnoreCase));
+        int move = Array.FindIndex(
+            names,
+            x => x.Equals(lookup, StringComparison.OrdinalIgnoreCase)
+        );
         if (move < 0)
             throw new InvalidOperationException($"Unknown move: {text}");
-        ids[index++] = checked((ushort)move);
+
+        result.Add((checked((ushort)move), text));
     }
-    pk.SetMoves(ids);
+
+    return result.ToArray();
 }
 
 static string[] GetMoveNames(PKM pk)
