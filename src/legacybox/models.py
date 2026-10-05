@@ -37,6 +37,30 @@ class PokerusStatus(str, Enum):
     CURED = "cured"
 
 
+class OriginEvidenceStatus(str, Enum):
+    GENERATED_CANDIDATE = "generated_candidate"
+    IMPORTED_SOURCE_BYTES = "imported_source_bytes"
+    USER_ATTESTED_ORIGINAL = "user_attested_original"
+    UNKNOWN = "unknown"
+
+
+class BankTransferStatus(str, Enum):
+    NOT_ATTEMPTED = "not_attempted"
+    USER_CONFIRMED_OFFICIAL_MOVE = "user_confirmed_official_move"
+    NOT_APPLICABLE = "not_applicable"
+
+
+class HomeProvenanceStatus(str, Enum):
+    PRE_HOME = "pre_home"
+    TRACKER_OBSERVED = "tracker_observed"
+    USER_CONFIRMED_OFFICIAL_MOVE_AND_TRACKER_OBSERVED = "user_confirmed_official_move_and_tracker_observed"
+    NOT_APPLICABLE = "not_applicable"
+
+
+class HomeServerVerificationStatus(str, Enum):
+    UNVERIFIABLE_LOCALLY = "unverifiable_locally"
+
+
 @dataclass(frozen=True)
 class TrainerProfile:
     name: str
@@ -167,6 +191,69 @@ class TraitPlan:
         )
 
 
+
+
+
+
+@dataclass(frozen=True)
+class ProvenanceTrust:
+    """Separates local legality from historical/online provenance evidence."""
+
+    origin_evidence: OriginEvidenceStatus = OriginEvidenceStatus.GENERATED_CANDIDATE
+    bank_transfer: BankTransferStatus = BankTransferStatus.NOT_ATTEMPTED
+    home_provenance: HomeProvenanceStatus = HomeProvenanceStatus.PRE_HOME
+    home_server_verification: HomeServerVerificationStatus = (
+        HomeServerVerificationStatus.UNVERIFIABLE_LOCALLY
+    )
+    tracker_present: bool | None = None
+    post_home_snapshot_sha256: str = ""
+    notes: str = ""
+
+    @classmethod
+    def from_dict(cls, value: dict[str, Any] | None) -> "ProvenanceTrust":
+        value = value or {}
+        tracker_present = value.get("tracker_present")
+        return cls(
+            origin_evidence=OriginEvidenceStatus(
+                str(
+                    value.get(
+                        "origin_evidence",
+                        OriginEvidenceStatus.GENERATED_CANDIDATE.value,
+                    )
+                )
+            ),
+            bank_transfer=BankTransferStatus(
+                str(
+                    value.get(
+                        "bank_transfer",
+                        BankTransferStatus.NOT_ATTEMPTED.value,
+                    )
+                )
+            ),
+            home_provenance=HomeProvenanceStatus(
+                str(
+                    value.get(
+                        "home_provenance",
+                        HomeProvenanceStatus.PRE_HOME.value,
+                    )
+                )
+            ),
+            home_server_verification=HomeServerVerificationStatus(
+                str(
+                    value.get(
+                        "home_server_verification",
+                        HomeServerVerificationStatus.UNVERIFIABLE_LOCALLY.value,
+                    )
+                )
+            ),
+            tracker_present=(
+                None if tracker_present is None else bool(tracker_present)
+            ),
+            post_home_snapshot_sha256=str(
+                value.get("post_home_snapshot_sha256", "")
+            ).strip().lower(),
+            notes=str(value.get("notes", "")).strip(),
+        )
 
 
 @dataclass(frozen=True)
@@ -303,6 +390,7 @@ class DexEntry:
     target_moves: tuple[str, ...] = ()
     traits: TraitPlan = TraitPlan()
     competitive: CompetitiveProfile = CompetitiveProfile()
+    provenance_trust: ProvenanceTrust = ProvenanceTrust()
     notes: str = ""
 
     @property
@@ -333,6 +421,7 @@ class DexEntry:
             ),
             traits=TraitPlan.from_dict(value.get("traits")),
             competitive=CompetitiveProfile.from_dict(value.get("competitive")),
+            provenance_trust=ProvenanceTrust.from_dict(value.get("provenance_trust")),
             notes=str(value.get("notes", "")).strip(),
         )
 
