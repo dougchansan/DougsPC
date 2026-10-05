@@ -1,0 +1,79 @@
+{
+  "name": "Gen VII smoke set",
+  "target_generation": 7,
+  "entries": [
+    {
+      "national_dex": 722,
+      "species": "Rowlet",
+      "form": "Normal",
+      "target_level": 5,
+      "template": {
+        "template_id": "usum-starter-rowlet",
+        "source_game": "Ultra Sun/Ultra Moon",
+        "generation": 7,
+        "method": "starter"
+      },
+      "notes": "Template reference is a planning identifier until validated by the legality backend."
+    },
+    {
+      "national_dex": 731,
+      "species": "Pikipek",
+      "form": "Normal",
+      "target_level": 3,
+      "template": {
+        "template_id": "usum-route1-pikipek",
+        "source_game": "Ultra Sun/Ultra Moon",
+        "generation": 7,
+        "method": "wild"
+      }
+    },
+    {
+      "national_dex": 734,
+      "species": "Yungoos",
+      "form": "Normal",
+      "target_level": 3,
+      "template": {
+        "template_id": "usum-route1-yungoos",
+        "source_game": "Ultra Sun/Ultra Moon",
+        "generation": 7,
+        "method": "wild"
+      }
+    },
+    {
+      "national_dex": 736,
+      "species": "Grubbin",
+      "form": "Normal",
+      "target_level": 3,
+      "template": {
+        "template_id": "usum-route1-grubbin",
+        "source_game": "Ultra Sun/Ultra Moon",
+        "generation": 7,
+        "method": "wild"
+      }
+    },
+    {
+      "national_dex": 744,
+      "species": "Rockruff",
+      "form": "Normal",
+      "target_level": 11,
+      "template": {
+        "template_id": "usum-ten-carat-hill-rockruff",
+        "source_game": "Ultra Sun/Ultra Moon",
+        "generation": 7,
+        "method": "wild"
+      }
+    },
+    {
+      "national_dex": 757,
+      "species": "Salandit",
+      "form": "Normal",
+      "target_level": 16,
+      "template": {
+        "template_id": "usum-wela-volcano-park-salandit",
+        "source_game": "Ultra Sun/Ultra Moon",
+        "generation": 7,
+        "method": "wild"
+      }
+    }
+  ]
+}
