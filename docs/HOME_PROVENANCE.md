@@ -166,3 +166,34 @@ LegacyBox therefore interprets an official Bank/Transporter success only as:
 It does **not** upgrade `origin_evidence: generated_candidate` to an original/caught status.
 
 This keeps the audit record honest even if official checks are incomplete or change over time.
+
+## Expected Bank -> HOME representation changes
+
+PKHeX's current HOME-format implementation models a pre-Switch Pokémon as common/core HOME data plus a SWSH-compatible child record when it first arrives from Bank.
+
+For a PK7-origin Pokémon, the SWSH child carries forward or derives:
+
+- moves and PP / PP Ups;
+- relearn moves;
+- Ball;
+- met and Egg locations;
+- Pokérus state;
+- Ability and Ability slot.
+
+HOME-format conversion also performs Gen VII -> Gen VIII string/glyph handling and can normalize the species name for an unnicknamed Pokémon. When a Pokémon is materialized into a particular Switch game, game-specific met/Egg fields may be remapped while the HOME core retains the historical origin information.
+
+LegacyBox therefore compares two layers rather than expecting every byte to remain identical:
+
+```text
+PRE-HOME native/core provenance
+        |
+        v
+HOME core history
+        |
+        +--> SWSH child
+        +--> BDSP child (if visited)
+        +--> PLA child (if visited)
+        +--> SV child (if visited)
+```
+
+An expected HOME child transformation is not treated as tampering. Conversely, changing immutable core-origin fields manually after HOME entry remains provenance-breaking.
