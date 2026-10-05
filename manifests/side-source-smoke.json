@@ -94,11 +94,12 @@
         "ot": "WISHMKR",
         "tid": "20043",
         "language": "ENG",
-        "fateful_encounter": true,
         "distribution_id": "US Colosseum Bonus Disc",
         "locked_fields": {
           "ability": "Serene Grace",
-          "level": 5
+          "level": 5,
+          "gen3_met_location": "Fateful Encounter",
+          "gen3_obedience_flag": false
         }
       },
       "target_moves": [
@@ -157,7 +158,8 @@
         "Gen V",
         "Poké Transporter",
         "Pokémon Bank"
-      ]
+      ],
+      "notes": "Gen III 'Fateful Encounter' is the met-location concept here; WISHMKR does not carry the Gen III obedience flag that becomes the later fateful-encounter flag."
     },
     {
       "national_dex": 251,
@@ -168,11 +170,11 @@
       "event_identity": {
         "ot": "アゲト",
         "tid": "31121",
-        "fateful_encounter": true,
         "distribution_id": "Japanese Colosseum Bonus Disc",
         "locked_fields": {
           "ability": "Natural Cure",
-          "level": 10
+          "level": 10,
+          "gen3_met_location": "Fateful Encounter"
         }
       },
       "target_moves": [
@@ -233,7 +235,8 @@
         "Gen V",
         "Poké Transporter",
         "Pokémon Bank"
-      ]
+      ],
+      "notes": "Gen III met-location semantics are stored separately from later fateful-encounter flag semantics."
     },
     {
       "national_dex": 151,
