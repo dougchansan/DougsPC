@@ -12,12 +12,14 @@
 
 ## M0.5 — Heritage Dex provenance
 
-- [x] Default trainer profile: Kento
+- [x] Default trainer profile: Doug
 - [x] Per-entry player OT vs fixed-event OT policy
 - [x] Cross-generation Gen I–VII provenance smoke manifest
-- [ ] Build reviewed origin-game assignment for #001–#807
+- [x] Build #001–#807 curation index with debut-generation/source pools
+- [ ] Assign a reviewed encounter template to every #001–#807 entry
 - [ ] Add generation-specific Trainer ID/SID policy
-- [ ] Add fixed-event exception table
+- [x] Add fixed-event identity model and fail-closed validation
+- [ ] Populate the fixed-event exception table from verified distribution templates
 
 ## M1 — Real Gen VII legality proof
 
