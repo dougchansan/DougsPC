@@ -25,3 +25,29 @@ jobs:
           code=$?
           set -e
           test "$code" -eq 3
+
+
+  pkhex-validator:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: kwsch/PKHeX
+          ref: master
+          path: external/PKHeX
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+      - run: dotnet build helpers/pkhex-validator/LegacyBox.PKHeXValidator.csproj --configuration Release
+      - name: Confirm malformed PKM fails closed
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          Path("/tmp/bad.pk7").write_bytes(b"not a pokemon")
+          PY
+          set +e
+          dotnet run --no-build --configuration Release --project helpers/pkhex-validator/LegacyBox.PKHeXValidator.csproj -- /tmp/bad.pk7
+          code=$?
+          set -e
+          test "$code" -eq 2
