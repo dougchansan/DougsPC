@@ -1,0 +1,306 @@
+{
+  "schema_version": 1,
+  "trainer": {
+    "name": "Doug",
+    "language": "ENG"
+  },
+  "generations": [
+    {
+      "national_dex_range": [
+        1,
+        151
+      ],
+      "debut_generation": 1,
+      "region_family": "Kanto",
+      "candidate_source_titles": [
+        "Red (Virtual Console)",
+        "Blue (Virtual Console)",
+        "Yellow (Virtual Console)"
+      ],
+      "platform": "Nintendo 3DS Virtual Console",
+      "baseline_migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex_range": [
+        152,
+        251
+      ],
+      "debut_generation": 2,
+      "region_family": "Johto",
+      "candidate_source_titles": [
+        "Gold (Virtual Console)",
+        "Silver (Virtual Console)",
+        "Crystal (Virtual Console)"
+      ],
+      "platform": "Nintendo 3DS Virtual Console",
+      "baseline_migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex_range": [
+        252,
+        386
+      ],
+      "debut_generation": 3,
+      "region_family": "Hoenn/Kanto",
+      "candidate_source_titles": [
+        "Ruby",
+        "Sapphire",
+        "Emerald",
+        "FireRed",
+        "LeafGreen"
+      ],
+      "platform": "Game Boy Advance",
+      "baseline_migration_route": [
+        "Pal Park",
+        "Generation IV",
+        "Poké Transfer",
+        "Generation V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex_range": [
+        387,
+        493
+      ],
+      "debut_generation": 4,
+      "region_family": "Sinnoh/Johto/Kanto",
+      "candidate_source_titles": [
+        "Diamond",
+        "Pearl",
+        "Platinum",
+        "HeartGold",
+        "SoulSilver"
+      ],
+      "platform": "Nintendo DS",
+      "baseline_migration_route": [
+        "Poké Transfer",
+        "Generation V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex_range": [
+        494,
+        649
+      ],
+      "debut_generation": 5,
+      "region_family": "Unova",
+      "candidate_source_titles": [
+        "Black",
+        "White",
+        "Black 2",
+        "White 2"
+      ],
+      "platform": "Nintendo DS",
+      "baseline_migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex_range": [
+        650,
+        721
+      ],
+      "debut_generation": 6,
+      "region_family": "Kalos/Hoenn",
+      "candidate_source_titles": [
+        "X",
+        "Y",
+        "Omega Ruby",
+        "Alpha Sapphire"
+      ],
+      "platform": "Nintendo 3DS",
+      "baseline_migration_route": [
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex_range": [
+        722,
+        807
+      ],
+      "debut_generation": 7,
+      "region_family": "Alola",
+      "candidate_source_titles": [
+        "Sun",
+        "Moon",
+        "Ultra Sun",
+        "Ultra Moon"
+      ],
+      "platform": "Nintendo 3DS",
+      "baseline_migration_route": [
+        "Pokémon Bank"
+      ]
+    }
+  ],
+  "event_policy": {
+    "rule": "Fixed distribution identity is immutable and overrides the trainer profile.",
+    "preserved_fields": [
+      "OT",
+      "TID",
+      "SID where applicable",
+      "language locks",
+      "distribution identifier",
+      "Fateful Encounter",
+      "other template-locked fields"
+    ],
+    "player_ot": "Doug"
+  },
+  "verification_policy": {
+    "required_human_sources": [
+      "Bulbapedia",
+      "Serebii"
+    ],
+    "require_pkhex_pass": true,
+    "checked_fields": [
+      "source title",
+      "location",
+      "level/range",
+      "encounter moves",
+      "target-level moves",
+      "ability",
+      "held item",
+      "OT/event identity",
+      "shiny restrictions",
+      "transfer effects"
+    ],
+    "disagreement_rule": "Do not generate until the discrepancy is resolved against game data and PKHeX."
+  },
+  "trait_policy": {
+    "shiny": "Curated only. Every forced shiny must pass encounter-specific shiny rules and PKHeX; fixed events keep their distribution state.",
+    "pokerus": "Curated active/cured cases are allowed only with a recorded acquisition generation.",
+    "virtual_console_pokerus": "Poké Transporter strips VC Pokérus; final Gen VII Pokérus must be acquired after Transporter."
+  },
+  "competitive_policy": {
+    "source": "Smogon/Showdown analyses",
+    "rules": [
+      "Competitive values are desired derived values, not provenance.",
+      "Fixed event fields are immutable.",
+      "Selected ability must be reachable from the chosen provenance; otherwise adapt the set.",
+      "EV total must be <=510 and each stat <=252.",
+      "IVs must be 0..31; Hidden Power sets use explicit legal patterns.",
+      "Pure special attackers prefer 0 Attack IV when compatible.",
+      "VC nature/IV requests must be realized through Poké Transporter mechanics rather than stamped onto the PK7.",
+      "Every concrete generated candidate must still pass PKHeX."
+    ]
+  },
+  "archive_mode": {
+    "strategy": "Enumerate real encounter templates per species across all supported Gen I-VII source games; deduplicate only materially identical provenance.",
+    "variant_dimensions": [
+      "origin game",
+      "origin generation",
+      "persistent/regional form",
+      "legally available ability slot or Hidden Ability",
+      "event distribution identity",
+      "shiny eligibility/state",
+      "language/console-region provenance when stored",
+      "special move/ribbon provenance",
+      "Shadow/Purified GameCube lineage",
+      "side-game transfer lineage",
+      "course/distribution-specific move provenance"
+    ],
+    "avoid_cartesian_product": true,
+    "supported_source_families": {
+      "gen1": [
+        "Red VC",
+        "Blue VC",
+        "Yellow VC"
+      ],
+      "gen2": [
+        "Gold VC",
+        "Silver VC",
+        "Crystal VC"
+      ],
+      "gen3": [
+        "Ruby",
+        "Sapphire",
+        "Emerald",
+        "FireRed",
+        "LeafGreen",
+        "Pokémon Colosseum",
+        "Pokémon XD: Gale of Darkness"
+      ],
+      "gen4": [
+        "Diamond",
+        "Pearl",
+        "Platinum",
+        "HeartGold",
+        "SoulSilver"
+      ],
+      "gen5": [
+        "Black",
+        "White",
+        "Black 2",
+        "White 2"
+      ],
+      "gen6": [
+        "X",
+        "Y",
+        "Omega Ruby",
+        "Alpha Sapphire"
+      ],
+      "gen7": [
+        "Sun",
+        "Moon",
+        "Ultra Sun",
+        "Ultra Moon"
+      ],
+      "gen3_side_games": [
+        "Pokémon Box Ruby & Sapphire bonus Eggs",
+        "Pokémon Colosseum Bonus Disc — WISHMKR Jirachi",
+        "Pokémon Colosseum Japanese Bonus Disc — Ageto Celebi",
+        "Pokémon Channel — CHANNEL Jirachi",
+        "Japanese Pokémon Colosseum Card e Room — Shadow Togepi/Mareep/Scizor"
+      ],
+      "gen4_side_games": [
+        "Pokémon Ranger / Shadows of Almia / Guardian Signs — Manaphy Egg",
+        "My Pokémon Ranch — Hayley Mew/Phione and other trades",
+        "Pokémon Battle Revolution — PKTOPIA gifts",
+        "Pokéwalker — course-specific encounters and special moves"
+      ],
+      "gen5_side_games": [
+        "Pokémon Dream World / Pokémon Global Link — Entree Forest Hidden Ability origins",
+        "Pokémon Dream Radar — Hidden Ability / Dream Ball / badge-scaled level origins"
+      ]
+    },
+    "shadow_policy": {
+      "transferable_state": "purified only",
+      "required_ribbon": "National Ribbon",
+      "ev_training": "after purification",
+      "nature_iv_rule": "Generate valid Gen III RNG-consistent values at first encounter and preserve them.",
+      "xd_special_moves": "Preserve purification-exclusive move provenance where applicable."
+    },
+    "deduplication_policy": {
+      "rule": "Keep separate archive records only when the provenance is materially distinct in stored PKM data or is historically meaningful lineage metadata the user elected to preserve.",
+      "do_not_enumerate_by_default": [
+        "every possible legal Poké Ball when provenance is otherwise identical",
+        "every EV spread",
+        "every IV combination",
+        "every nature",
+        "every optional ribbon subset",
+        "every language when language does not change distribution/provenance",
+        "every gender unless form, event, breeding, or legality changes"
+      ],
+      "preserve_separately": [
+        "fixed or special balls such as Cherish/Dream/Safari/Sport when provenance-relevant",
+        "required or origin-significant ribbons",
+        "exclusive/legacy moves",
+        "ability-slot and Hidden Ability acquisition lineage",
+        "regional/persistent forms",
+        "fixed event identities",
+        "Shadow/Purified provenance",
+        "source games/generations when materially distinct"
+      ]
+    }
+  }
+}

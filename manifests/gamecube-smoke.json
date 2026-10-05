@@ -1,0 +1,260 @@
+{
+  "name": "LegacyBox GameCube provenance smoke set",
+  "target_generation": 7,
+  "trainer": {
+    "name": "Doug",
+    "language": "ENG",
+    "id_strategy": "deterministic-per-origin"
+  },
+  "entries": [
+    {
+      "national_dex": 196,
+      "species": "Espeon",
+      "form": "Normal",
+      "target_level": 25,
+      "ot_policy": "trainer",
+      "target_moves": [
+        "Confusion",
+        "Return",
+        "Reflect",
+        "Helping Hand"
+      ],
+      "template": {
+        "template_id": "colosseum-starter-espeon",
+        "source_game": "Pokémon Colosseum",
+        "generation": 3,
+        "method": "starter",
+        "origin_kind": "gift",
+        "source_platform": "Nintendo GameCube",
+        "origin_region": "Orre",
+        "origin_species": "Espeon",
+        "origin_national_dex": 196,
+        "location": "Start / Outskirt Stand",
+        "level_min": 25,
+        "level_max": 25,
+        "encounter_moves": [
+          "Confusion",
+          "Return",
+          "Reflect",
+          "Helping Hand"
+        ],
+        "ability": "Synchronize",
+        "held_item": "None",
+        "nature_policy": "random",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_in-game_event_Pok%C3%A9mon_in_Pok%C3%A9mon_Colosseum_and_Pok%C3%A9mon_XD",
+            "checked_fields": [
+              "level",
+              "moves",
+              "ability",
+              "OT",
+              "IV/nature policy"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/colosseum/pokemon.shtml",
+            "checked_fields": [
+              "level",
+              "start provenance"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
+      },
+      "migration_route": [
+        "Trade to Generation III GBA game",
+        "Pal Park",
+        "Generation IV",
+        "Poké Transfer",
+        "Generation V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "notes": "Native Colosseum starter; not a Shadow Pokémon and therefore does not carry the National Ribbon solely from origin."
+    },
+    {
+      "national_dex": 296,
+      "species": "Makuhita",
+      "form": "Normal",
+      "target_level": 30,
+      "ot_policy": "trainer",
+      "target_moves": [
+        "Focus Energy",
+        "Vital Throw",
+        "Cross Chop"
+      ],
+      "traits": {
+        "shiny": "random_legal",
+        "shiny_phase": "origin",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "colosseum-shadow-makuhita",
+        "source_game": "Pokémon Colosseum",
+        "generation": 3,
+        "method": "shadow-snag",
+        "origin_kind": "shadow_purified",
+        "source_platform": "Nintendo GameCube",
+        "origin_region": "Orre",
+        "origin_species": "Makuhita",
+        "origin_national_dex": 296,
+        "location": "Phenac City",
+        "level_min": 30,
+        "level_max": 30,
+        "encounter_moves": [
+          "Shadow Rush",
+          "Focus Energy",
+          "Vital Throw",
+          "Cross Chop"
+        ],
+        "ability": "Thick Fat or Guts",
+        "held_item": "None",
+        "nature_policy": "random Gen III RNG",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/Appendix%3APok%C3%A9mon_Colosseum_walkthrough/Obtainable_Pok%C3%A9mon_list",
+            "checked_fields": [
+              "shadow status",
+              "level",
+              "moves",
+              "trainer",
+              "location"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/colosseum/pokemon.shtml",
+            "checked_fields": [
+              "shadow status",
+              "level",
+              "location",
+              "trainer"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "shadow": {
+          "game": "Pokémon Colosseum",
+          "snag_location": "Phenac City — Miror B. Peon Trudly",
+          "original_shadow_level": 30,
+          "purified": true,
+          "national_ribbon": true
+        }
+      },
+      "migration_route": [
+        "Purify in Pokémon Colosseum",
+        "Trade to Generation III GBA game",
+        "Pal Park",
+        "Generation IV",
+        "Poké Transfer",
+        "Generation V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "notes": "Nature, IVs, gender and PID are generated on the first Shadow encounter and preserved; EV training begins only after purification."
+    },
+    {
+      "national_dex": 216,
+      "species": "Teddiursa",
+      "form": "Normal",
+      "target_level": 11,
+      "ot_policy": "trainer",
+      "target_moves": [
+        "Return",
+        "Refresh",
+        "Lick",
+        "Metal Claw"
+      ],
+      "traits": {
+        "shiny": "random_legal",
+        "shiny_phase": "origin",
+        "pokerus": "none"
+      },
+      "template": {
+        "template_id": "xd-shadow-teddiursa",
+        "source_game": "Pokémon XD: Gale of Darkness",
+        "generation": 3,
+        "method": "shadow-snag",
+        "origin_kind": "shadow_purified",
+        "source_platform": "Nintendo GameCube",
+        "origin_region": "Orre",
+        "origin_species": "Teddiursa",
+        "origin_national_dex": 216,
+        "location": "Pokémon HQ Lab",
+        "level_min": 11,
+        "level_max": 11,
+        "encounter_moves": [
+          "Shadow Blitz",
+          "Shadow Mist",
+          "Lick",
+          "Metal Claw"
+        ],
+        "ability": "Pickup",
+        "held_item": "None",
+        "nature_policy": "random Gen III RNG",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/Walkthrough%3APok%C3%A9mon_XD/Shadow_Pok%C3%A9mon_list",
+            "checked_fields": [
+              "shadow status",
+              "level",
+              "moves",
+              "trainer",
+              "location",
+              "held item"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/xd/pokemon.shtml",
+            "checked_fields": [
+              "shadow status",
+              "level",
+              "location",
+              "trainer"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://serebii.net/xd/pokemon-attacks.shtml",
+            "checked_fields": [
+              "purification-exclusive move"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ],
+        "shadow": {
+          "game": "Pokémon XD: Gale of Darkness",
+          "snag_location": "Pokémon HQ Lab — Spy Naps",
+          "original_shadow_level": 11,
+          "purified": true,
+          "national_ribbon": true,
+          "purification_move": "Refresh"
+        }
+      },
+      "migration_route": [
+        "Purify in Pokémon XD",
+        "Trade to Generation III GBA game",
+        "Pal Park",
+        "Generation IV",
+        "Poké Transfer",
+        "Generation V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ],
+      "notes": "XD purification preserves the special move Refresh as provenance. Shadow moves themselves are not transferable to the GBA core games."
+    }
+  ]
+}

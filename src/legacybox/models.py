@@ -1,0 +1,459 @@
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from enum import Enum
+from typing import Any
+
+
+class VerificationStatus(str, Enum):
+    PASSED = "PASSED"
+    FAILED = "FAILED"
+    UNVERIFIED = "UNVERIFIED"
+
+
+class OTPolicy(str, Enum):
+    TRAINER = "trainer"
+    FIXED_EVENT = "fixed_event"
+
+
+class OriginKind(str, Enum):
+    NATIVE = "native"
+    VIRTUAL_CONSOLE = "virtual_console"
+    EVOLUTION = "evolution"
+    GIFT = "gift"
+    FIXED_EVENT = "fixed_event"
+    SHADOW_PURIFIED = "shadow_purified"
+
+
+class ShinyPolicy(str, Enum):
+    RANDOM_LEGAL = "random_legal"
+    FORCE_SHINY = "force_shiny"
+    FORCE_NON_SHINY = "force_non_shiny"
+
+
+class PokerusStatus(str, Enum):
+    NONE = "none"
+    ACTIVE = "active"
+    CURED = "cured"
+
+
+class OriginEvidenceStatus(str, Enum):
+    GENERATED_CANDIDATE = "generated_candidate"
+    IMPORTED_SOURCE_BYTES = "imported_source_bytes"
+    USER_ATTESTED_ORIGINAL = "user_attested_original"
+    UNKNOWN = "unknown"
+
+
+class BankTransferStatus(str, Enum):
+    NOT_ATTEMPTED = "not_attempted"
+    USER_CONFIRMED_OFFICIAL_MOVE = "user_confirmed_official_move"
+    NOT_APPLICABLE = "not_applicable"
+
+
+class HomeProvenanceStatus(str, Enum):
+    PRE_HOME = "pre_home"
+    TRACKER_OBSERVED = "tracker_observed"
+    USER_CONFIRMED_OFFICIAL_MOVE_AND_TRACKER_OBSERVED = "user_confirmed_official_move_and_tracker_observed"
+    NOT_APPLICABLE = "not_applicable"
+
+
+class HomeServerVerificationStatus(str, Enum):
+    UNVERIFIABLE_LOCALLY = "unverifiable_locally"
+
+
+@dataclass(frozen=True)
+class TrainerProfile:
+    name: str
+    language: str = "ENG"
+    id_strategy: str = "deterministic-per-origin"
+
+    @classmethod
+    def from_dict(cls, value: dict[str, Any] | None) -> "TrainerProfile":
+        value = value or {}
+        return cls(
+            name=str(value.get("name", "Doug")).strip(),
+            language=str(value.get("language", "ENG")).strip().upper(),
+            id_strategy=str(
+                value.get("id_strategy", "deterministic-per-origin")
+            ).strip(),
+        )
+
+
+@dataclass(frozen=True)
+class EventIdentity:
+    """Distribution-controlled identity that LegacyBox must not overwrite."""
+
+    ot: str
+    tid: str | None = None
+    sid: str | None = None
+    language: str | None = None
+    distribution_id: str | None = None
+    fateful_encounter: bool | None = None
+    locked_fields: dict[str, Any] = field(default_factory=dict)
+
+    @classmethod
+    def from_dict(cls, value: dict[str, Any] | None) -> "EventIdentity | None":
+        if value is None:
+            return None
+        return cls(
+            ot=str(value["ot"]).strip(),
+            tid=None if value.get("tid") is None else str(value["tid"]).strip(),
+            sid=None if value.get("sid") is None else str(value["sid"]).strip(),
+            language=(
+                None
+                if value.get("language") is None
+                else str(value["language"]).strip().upper()
+            ),
+            distribution_id=(
+                None
+                if value.get("distribution_id") is None
+                else str(value["distribution_id"]).strip()
+            ),
+            fateful_encounter=(
+                None
+                if value.get("fateful_encounter") is None
+                else bool(value["fateful_encounter"])
+            ),
+            locked_fields=dict(value.get("locked_fields", {})),
+        )
+
+
+
+
+@dataclass(frozen=True)
+class ShadowProvenance:
+    game: str
+    snag_location: str = ""
+    original_shadow_level: int | None = None
+    xd_shadow_boost: int | None = None
+    purified: bool = True
+    national_ribbon: bool = True
+    purification_move: str = ""
+
+    @classmethod
+    def from_dict(cls, value: dict[str, Any] | None) -> "ShadowProvenance | None":
+        if value is None:
+            return None
+        level = value.get("original_shadow_level")
+        boost = value.get("xd_shadow_boost")
+        return cls(
+            game=str(value["game"]).strip(),
+            snag_location=str(value.get("snag_location", "")).strip(),
+            original_shadow_level=None if level is None else int(level),
+            xd_shadow_boost=None if boost is None else int(boost),
+            purified=bool(value.get("purified", True)),
+            national_ribbon=bool(value.get("national_ribbon", True)),
+            purification_move=str(value.get("purification_move", "")).strip(),
+        )
+
+
+@dataclass(frozen=True)
+class SourceReference:
+    source: str
+    url: str
+    checked_fields: tuple[str, ...] = ()
+    checked_date: str = ""
+
+    @classmethod
+    def from_dict(cls, value: dict[str, Any]) -> "SourceReference":
+        return cls(
+            source=str(value["source"]).strip(),
+            url=str(value["url"]).strip(),
+            checked_fields=tuple(
+                str(field).strip()
+                for field in value.get("checked_fields", [])
+                if str(field).strip()
+            ),
+            checked_date=str(value.get("checked_date", "")).strip(),
+        )
+
+
+@dataclass(frozen=True)
+class TraitPlan:
+    shiny: ShinyPolicy = ShinyPolicy.RANDOM_LEGAL
+    shiny_phase: str = "origin"
+    pokerus: PokerusStatus = PokerusStatus.NONE
+    pokerus_acquired_generation: int | None = None
+
+    @classmethod
+    def from_dict(cls, value: dict[str, Any] | None) -> "TraitPlan":
+        value = value or {}
+        gen = value.get("pokerus_acquired_generation")
+        return cls(
+            shiny=ShinyPolicy(
+                str(value.get("shiny", ShinyPolicy.RANDOM_LEGAL.value))
+            ),
+            shiny_phase=str(value.get("shiny_phase", "origin")).strip(),
+            pokerus=PokerusStatus(
+                str(value.get("pokerus", PokerusStatus.NONE.value))
+            ),
+            pokerus_acquired_generation=None if gen is None else int(gen),
+        )
+
+
+
+
+
+
+@dataclass(frozen=True)
+class ProvenanceTrust:
+    """Separates local legality from historical/online provenance evidence."""
+
+    origin_evidence: OriginEvidenceStatus = OriginEvidenceStatus.GENERATED_CANDIDATE
+    bank_transfer: BankTransferStatus = BankTransferStatus.NOT_ATTEMPTED
+    home_provenance: HomeProvenanceStatus = HomeProvenanceStatus.PRE_HOME
+    home_server_verification: HomeServerVerificationStatus = (
+        HomeServerVerificationStatus.UNVERIFIABLE_LOCALLY
+    )
+    tracker_present: bool | None = None
+    post_home_snapshot_sha256: str = ""
+    notes: str = ""
+
+    @classmethod
+    def from_dict(cls, value: dict[str, Any] | None) -> "ProvenanceTrust":
+        value = value or {}
+        tracker_present = value.get("tracker_present")
+        return cls(
+            origin_evidence=OriginEvidenceStatus(
+                str(
+                    value.get(
+                        "origin_evidence",
+                        OriginEvidenceStatus.GENERATED_CANDIDATE.value,
+                    )
+                )
+            ),
+            bank_transfer=BankTransferStatus(
+                str(
+                    value.get(
+                        "bank_transfer",
+                        BankTransferStatus.NOT_ATTEMPTED.value,
+                    )
+                )
+            ),
+            home_provenance=HomeProvenanceStatus(
+                str(
+                    value.get(
+                        "home_provenance",
+                        HomeProvenanceStatus.PRE_HOME.value,
+                    )
+                )
+            ),
+            home_server_verification=HomeServerVerificationStatus(
+                str(
+                    value.get(
+                        "home_server_verification",
+                        HomeServerVerificationStatus.UNVERIFIABLE_LOCALLY.value,
+                    )
+                )
+            ),
+            tracker_present=(
+                None if tracker_present is None else bool(tracker_present)
+            ),
+            post_home_snapshot_sha256=str(
+                value.get("post_home_snapshot_sha256", "")
+            ).strip().lower(),
+            notes=str(value.get("notes", "")).strip(),
+        )
+
+
+@dataclass(frozen=True)
+class CompetitiveProfile:
+    format: str = ""
+    role: str = ""
+    source_generation: int | None = None
+    level: int | None = None
+    nature: str = ""
+    ability: str = ""
+    item: str = ""
+    moves: tuple[str, ...] = ()
+    evs: dict[str, int] = field(default_factory=dict)
+    ivs: dict[str, int] = field(default_factory=dict)
+    application_policy: str = "prefer_if_legal"
+    verification_status: str = "unverified"
+    references: tuple[SourceReference, ...] = ()
+    notes: str = ""
+
+    @classmethod
+    def from_dict(cls, value: dict[str, Any] | None) -> "CompetitiveProfile":
+        value = value or {}
+        src_gen = value.get("source_generation")
+        level = value.get("level")
+        return cls(
+            format=str(value.get("format", "")).strip(),
+            role=str(value.get("role", "")).strip(),
+            source_generation=None if src_gen is None else int(src_gen),
+            level=None if level is None else int(level),
+            nature=str(value.get("nature", "")).strip(),
+            ability=str(value.get("ability", "")).strip(),
+            item=str(value.get("item", "")).strip(),
+            moves=tuple(
+                str(move).strip()
+                for move in value.get("moves", [])
+                if str(move).strip()
+            ),
+            evs={str(k): int(v) for k, v in dict(value.get("evs", {})).items()},
+            ivs={str(k): int(v) for k, v in dict(value.get("ivs", {})).items()},
+            application_policy=str(
+                value.get("application_policy", "prefer_if_legal")
+            ).strip(),
+            verification_status=str(
+                value.get("verification_status", "unverified")
+            ).strip(),
+            references=tuple(
+                SourceReference.from_dict(ref) for ref in value.get("references", [])
+            ),
+            notes=str(value.get("notes", "")).strip(),
+        )
+
+
+@dataclass(frozen=True)
+class EncounterTemplateRef:
+    template_id: str
+    source_game: str
+    generation: int
+    method: str
+    source_registry_id: str = ""
+    origin_kind: OriginKind = OriginKind.NATIVE
+    source_platform: str = ""
+    origin_region: str = ""
+    origin_species: str = ""
+    origin_national_dex: int | None = None
+    evolution_path: tuple[str, ...] = ()
+    location: str = ""
+    level_min: int | None = None
+    level_max: int | None = None
+    encounter_moves: tuple[str, ...] = ()
+    ability: str = ""
+    held_item: str = ""
+    nature_policy: str = "random"
+    verification_status: str = "unverified"
+    references: tuple[SourceReference, ...] = ()
+    shadow: ShadowProvenance | None = None
+
+    @classmethod
+    def from_dict(cls, value: dict[str, Any]) -> "EncounterTemplateRef":
+        level_min = value.get("level_min")
+        level_max = value.get("level_max")
+        return cls(
+            template_id=str(value["template_id"]).strip(),
+            source_registry_id=str(value.get("source_registry_id", "")).strip(),
+            source_game=str(value["source_game"]).strip(),
+            generation=int(value["generation"]),
+            method=str(value["method"]).strip(),
+            origin_kind=OriginKind(
+                str(value.get("origin_kind", OriginKind.NATIVE.value))
+            ),
+            source_platform=str(value.get("source_platform", "")).strip(),
+            origin_region=str(value.get("origin_region", "")).strip(),
+            origin_species=str(value.get("origin_species", "")).strip(),
+            origin_national_dex=(
+                None
+                if value.get("origin_national_dex") is None
+                else int(value["origin_national_dex"])
+            ),
+            evolution_path=tuple(
+                str(stage).strip()
+                for stage in value.get("evolution_path", [])
+                if str(stage).strip()
+            ),
+            location=str(value.get("location", "")).strip(),
+            level_min=None if level_min is None else int(level_min),
+            level_max=None if level_max is None else int(level_max),
+            encounter_moves=tuple(
+                str(move).strip()
+                for move in value.get("encounter_moves", [])
+                if str(move).strip()
+            ),
+            ability=str(value.get("ability", "")).strip(),
+            held_item=str(value.get("held_item", "")).strip(),
+            nature_policy=str(value.get("nature_policy", "random")).strip(),
+            verification_status=str(
+                value.get("verification_status", "unverified")
+            ).strip(),
+            references=tuple(
+                SourceReference.from_dict(ref) for ref in value.get("references", [])
+            ),
+            shadow=ShadowProvenance.from_dict(value.get("shadow")),
+        )
+
+
+@dataclass(frozen=True)
+class DexEntry:
+    national_dex: int
+    species: str
+    form: str
+    target_level: int
+    template: EncounterTemplateRef
+    ot_policy: OTPolicy = OTPolicy.TRAINER
+    event_identity: EventIdentity | None = None
+    migration_route: tuple[str, ...] = ()
+    target_moves: tuple[str, ...] = ()
+    traits: TraitPlan = TraitPlan()
+    competitive: CompetitiveProfile = CompetitiveProfile()
+    provenance_trust: ProvenanceTrust = ProvenanceTrust()
+    notes: str = ""
+
+    @property
+    def key(self) -> str:
+        form = "" if self.form == "Normal" else f"-{self.form}"
+        return f"{self.national_dex:03d}-{self.species}{form}"
+
+    @classmethod
+    def from_dict(cls, value: dict[str, Any]) -> "DexEntry":
+        policy = OTPolicy(str(value.get("ot_policy", OTPolicy.TRAINER.value)))
+        return cls(
+            national_dex=int(value["national_dex"]),
+            species=str(value["species"]).strip(),
+            form=str(value.get("form", "Normal")).strip() or "Normal",
+            target_level=int(value["target_level"]),
+            template=EncounterTemplateRef.from_dict(value["template"]),
+            ot_policy=policy,
+            event_identity=EventIdentity.from_dict(value.get("event_identity")),
+            migration_route=tuple(
+                str(stage).strip()
+                for stage in value.get("migration_route", [])
+                if str(stage).strip()
+            ),
+            target_moves=tuple(
+                str(move).strip()
+                for move in value.get("target_moves", [])
+                if str(move).strip()
+            ),
+            traits=TraitPlan.from_dict(value.get("traits")),
+            competitive=CompetitiveProfile.from_dict(value.get("competitive")),
+            provenance_trust=ProvenanceTrust.from_dict(value.get("provenance_trust")),
+            notes=str(value.get("notes", "")).strip(),
+        )
+
+
+@dataclass(frozen=True)
+class LivingDexManifest:
+    name: str
+    target_generation: int
+    trainer: TrainerProfile
+    entries: tuple[DexEntry, ...]
+
+    @classmethod
+    def from_dict(cls, value: dict[str, Any]) -> "LivingDexManifest":
+        return cls(
+            name=str(value["name"]).strip(),
+            target_generation=int(value["target_generation"]),
+            trainer=TrainerProfile.from_dict(value.get("trainer")),
+            entries=tuple(DexEntry.from_dict(item) for item in value["entries"]),
+        )
+
+
+@dataclass(frozen=True)
+class LegalityResult:
+    entry_key: str
+    status: VerificationStatus
+    backend: str
+    messages: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
+class AuditEntryResult:
+    entry_key: str
+    structural_status: VerificationStatus
+    legality: LegalityResult
+    structural_messages: tuple[str, ...] = ()

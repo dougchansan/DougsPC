@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>LegacyBox.PKHeXValidator</AssemblyName>
+    <RootNamespace>LegacyBox.PKHeXValidator</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../external/PKHeX/PKHeX.Core/PKHeX.Core.csproj" />
+  </ItemGroup>
+
+</Project>
