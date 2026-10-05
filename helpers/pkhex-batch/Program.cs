@@ -83,14 +83,33 @@ foreach (var entry in root.GetProperty("entries").EnumerateArray())
         Shiny = requestedShiny,
     };
 
-    var rough = EntityBlank.GetBlank(sourceTrainer);
-    rough.Species = targetSpecies;
-    rough.Form = 0;
-    rough.Gender = rough.GetSaneGender();
+    var generationTrainer = sourceTrainer;
+    var catalogVersion = sourceVersion;
+    var encounter = ResolveEncounter(targetSpecies, generationTrainer, catalogVersion);
+    bool usedCanonicalGen1GiftFallback = false;
 
-    var encounter = EncounterMovesetGenerator
-        .GenerateEncounters(rough, sourceTrainer, ReadOnlyMemory<ushort>.Empty, sourceVersion)
-        .FirstOrDefault();
+    // PKHeX intentionally collapses the Yellow Lv.10 Bulbasaur/Charmander/Squirtle
+    // gifts into the shared Lv.5 RBY static templates when catch rate + initial moves
+    // are equivalent. Preserve Yellow as the Transporter source, but use the shared
+    // canonical static as the native legality seed when the YW-filtered lookup is empty.
+    if (
+        encounter is null
+        && sourceVersion == GameVersion.YW
+        && IsYellowCanonicalGiftFamily(templateNode)
+    )
+    {
+        catalogVersion = GameVersion.RD;
+        generationTrainer = new SimpleTrainerInfo(catalogVersion)
+        {
+            OT = trainerName,
+            TID16 = sourceTrainer.TID16,
+            SID16 = 0,
+            Language = (int)LanguageID.English,
+            Gender = 0,
+        };
+        encounter = ResolveEncounter(targetSpecies, generationTrainer, catalogVersion);
+        usedCanonicalGen1GiftFallback = encounter is not null;
+    }
 
     if (encounter is null)
     {
@@ -106,7 +125,7 @@ foreach (var entry in root.GetProperty("entries").EnumerateArray())
         continue;
     }
 
-    if (encounter.ConvertToPKM(sourceTrainer, criteria) is not PK1 native)
+    if (encounter.ConvertToPKM(generationTrainer, criteria) is not PK1 native)
     {
         results.Add(new
         {
@@ -205,6 +224,8 @@ foreach (var entry in root.GetProperty("entries").EnumerateArray())
         originLevelMin = encounter.LevelMin,
         originLevelMax = encounter.LevelMax,
         sourceVersion = sourceVersion.ToString(),
+        catalogVersion = catalogVersion.ToString(),
+        usedCanonicalGen1GiftFallback,
         ot = best.OriginalTrainerName,
         tid = best.TID16,
         level = best.CurrentLevel,
@@ -251,6 +272,35 @@ File.WriteAllText(
 
 Console.WriteLine(File.ReadAllText(reportPath));
 return failed == 0 ? 0 : 3;
+
+
+static IEncounterable? ResolveEncounter(
+    ushort targetSpecies,
+    ITrainerInfo trainer,
+    GameVersion version)
+{
+    var rough = EntityBlank.GetBlank(trainer);
+    rough.Species = targetSpecies;
+    rough.Form = 0;
+    rough.Gender = rough.GetSaneGender();
+
+    return EncounterMovesetGenerator
+        .GenerateEncounters(
+            rough,
+            trainer,
+            ReadOnlyMemory<ushort>.Empty,
+            version
+        )
+        .FirstOrDefault();
+}
+
+static bool IsYellowCanonicalGiftFamily(JsonElement templateNode)
+{
+    if (!templateNode.TryGetProperty("origin_national_dex", out var originNode))
+        return false;
+
+    return originNode.GetInt32() is 1 or 4 or 7;
+}
 
 static GameVersion GetVersion(string source)
 {
