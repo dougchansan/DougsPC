@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "trainer": {
+    "name": "Doug",
+    "language": "ENG"
+  },
+  "generations": [
+    {
+      "national_dex_range": [
+        1,
+        151
+      ],
+      "debut_generation": 1,
+      "region_family": "Kanto",
+      "candidate_source_titles": [
+        "Red (Virtual Console)",
+        "Blue (Virtual Console)",
+        "Yellow (Virtual Console)"
+      ],
+      "platform": "Nintendo 3DS Virtual Console",
+      "baseline_migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex_range": [
+        152,
+        251
+      ],
+      "debut_generation": 2,
+      "region_family": "Johto",
+      "candidate_source_titles": [
+        "Gold (Virtual Console)",
+        "Silver (Virtual Console)",
+        "Crystal (Virtual Console)"
+      ],
+      "platform": "Nintendo 3DS Virtual Console",
+      "baseline_migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex_range": [
+        252,
+        386
+      ],
+      "debut_generation": 3,
+      "region_family": "Hoenn/Kanto",
+      "candidate_source_titles": [
+        "Ruby",
+        "Sapphire",
+        "Emerald",
+        "FireRed",
+        "LeafGreen"
+      ],
+      "platform": "Game Boy Advance",
+      "baseline_migration_route": [
+        "Pal Park",
+        "Generation IV",
+        "Poké Transfer",
+        "Generation V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex_range": [
+        387,
+        493
+      ],
+      "debut_generation": 4,
+      "region_family": "Sinnoh/Johto/Kanto",
+      "candidate_source_titles": [
+        "Diamond",
+        "Pearl",
+        "Platinum",
+        "HeartGold",
+        "SoulSilver"
+      ],
+      "platform": "Nintendo DS",
+      "baseline_migration_route": [
+        "Poké Transfer",
+        "Generation V",
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex_range": [
+        494,
+        649
+      ],
+      "debut_generation": 5,
+      "region_family": "Unova",
+      "candidate_source_titles": [
+        "Black",
+        "White",
+        "Black 2",
+        "White 2"
+      ],
+      "platform": "Nintendo DS",
+      "baseline_migration_route": [
+        "Poké Transporter",
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex_range": [
+        650,
+        721
+      ],
+      "debut_generation": 6,
+      "region_family": "Kalos/Hoenn",
+      "candidate_source_titles": [
+        "X",
+        "Y",
+        "Omega Ruby",
+        "Alpha Sapphire"
+      ],
+      "platform": "Nintendo 3DS",
+      "baseline_migration_route": [
+        "Pokémon Bank"
+      ]
+    },
+    {
+      "national_dex_range": [
+        722,
+        807
+      ],
+      "debut_generation": 7,
+      "region_family": "Alola",
+      "candidate_source_titles": [
+        "Sun",
+        "Moon",
+        "Ultra Sun",
+        "Ultra Moon"
+      ],
+      "platform": "Nintendo 3DS",
+      "baseline_migration_route": [
+        "Pokémon Bank"
+      ]
+    }
+  ],
+  "event_policy": {
+    "rule": "Fixed distribution identity is immutable and overrides the trainer profile.",
+    "preserved_fields": [
+      "OT",
+      "TID",
+      "SID where applicable",
+      "language locks",
+      "distribution identifier",
+      "Fateful Encounter",
+      "other template-locked fields"
+    ],
+    "player_ot": "Doug"
+  }
+}
