@@ -132,3 +132,44 @@ Rules:
 - Hyper Training is not treated as rewriting the underlying IV value.
 
 Every competitive profile records whether it is a direct Smogon set or a provenance-adapted version.
+
+
+## Archive Mode variants
+
+The living dex answers “one representative per species.” Archive Mode answers “which legally distinct versions of this species can exist?”
+
+LegacyBox treats a variant as materially distinct when at least one of these changes:
+
+- origin game or generation
+- persistent form or regional form
+- ability slot / Hidden Ability availability
+- fixed event distribution identity
+- shiny eligibility or fixed shiny state
+- origin language/region when it affects stored provenance
+- special ribbon or move provenance
+- GameCube Shadow -> Purified lineage
+- transfer-specific provenance that survives into later generations
+
+We do **not** blindly take the Cartesian product of every field. Each variant must correspond to a real obtainable path.
+
+### Colosseum and XD
+
+Pokémon Colosseum and Pokémon XD: Gale of Darkness are first-class Generation III origin sources.
+
+A Shadow-origin archive record preserves:
+
+- Colosseum vs XD
+- snag encounter/location
+- original Shadow encounter level
+- XD Shadow Boost where applicable
+- generated Nature/IV/gender/PID constraints
+- purification status
+- National Ribbon
+- XD purification-exclusive special move, when applicable
+- later GBA -> DS -> Bank migration chain
+
+A Shadow Pokémon itself cannot be exported to the GBA core games. The transferable lineage is the **purified** Pokémon. Purification grants the National Ribbon, and the purified Pokémon can then be traded to Ruby/Sapphire/Emerald/FireRed/LeafGreen before continuing through later generations.
+
+Nature and IVs are not globally fixed for Shadow Pokémon: they are generated when first encountered and then remain fixed for that save/Shadow Monitor entry. Archive generation must therefore create a valid Gen III RNG-consistent specimen rather than assigning arbitrary modern IVs after the fact.
+
+Competitive optimization happens only after those origin constraints are satisfied. EVs may be trained after purification; Shadow battles themselves do not accumulate EVs.
