@@ -52,6 +52,18 @@ def main() -> int:
         if not source.get("pkhex_support"):
             raise SystemExit(f"{source['id']}: PKHeX support mapping is required")
 
+    expected_progress = {
+        "total_source_families": len(sources),
+        "catalogued": sum(s["status"] == "catalogued" for s in sources),
+        "cross_checked": sum(s["status"] == "cross_checked" for s in sources),
+        "generated": sum(s["status"] == "generated" for s in sources),
+        "pkhex_passed": sum(s["status"] == "pkhex_passed" for s in sources),
+    }
+    if payload.get("progress") != expected_progress:
+        raise SystemExit(
+            f"side-source progress mismatch: expected {expected_progress}, got {payload.get('progress')}"
+        )
+
     box = next(x for x in sources if x["id"] == "gen3.pokemon_box_bonus_eggs")
     if {v["exclusive_move"] for v in box["variants"]} != {"False Swipe", "ExtremeSpeed", "Pay Day", "Surf"}:
         raise SystemExit("Pokémon Box exclusive move set mismatch")
@@ -61,7 +73,13 @@ def main() -> int:
     if "5 to 40" not in rules or "Dream Ball" not in rules:
         raise SystemExit("Dream Radar badge-level/Dream Ball rules missing")
 
-    print(f"Side-source registry OK: {len(sources)} source families catalogued.")
+    print(
+        "Side-source registry OK: "
+        f"{len(sources)} total, "
+        f"{expected_progress['cross_checked']} cross-checked, "
+        f"{expected_progress['catalogued']} catalogued, "
+        f"{expected_progress['pkhex_passed']} PKHeX-passed."
+    )
     return 0
 
 
