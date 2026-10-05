@@ -11,6 +11,29 @@ class VerificationStatus(str, Enum):
     UNVERIFIED = "UNVERIFIED"
 
 
+class OTPolicy(str, Enum):
+    TRAINER = "trainer"
+    FIXED_EVENT = "fixed_event"
+
+
+@dataclass(frozen=True)
+class TrainerProfile:
+    name: str
+    language: str = "ENG"
+    id_strategy: str = "deterministic-per-origin"
+
+    @classmethod
+    def from_dict(cls, value: dict[str, Any] | None) -> "TrainerProfile":
+        value = value or {}
+        return cls(
+            name=str(value.get("name", "Kento")).strip(),
+            language=str(value.get("language", "ENG")).strip().upper(),
+            id_strategy=str(
+                value.get("id_strategy", "deterministic-per-origin")
+            ).strip(),
+        )
+
+
 @dataclass(frozen=True)
 class EncounterTemplateRef:
     template_id: str
@@ -35,6 +58,8 @@ class DexEntry:
     form: str
     target_level: int
     template: EncounterTemplateRef
+    ot_policy: OTPolicy = OTPolicy.TRAINER
+    fixed_ot: str | None = None
     notes: str = ""
 
     @property
@@ -44,12 +69,16 @@ class DexEntry:
 
     @classmethod
     def from_dict(cls, value: dict[str, Any]) -> "DexEntry":
+        policy = OTPolicy(str(value.get("ot_policy", OTPolicy.TRAINER.value)))
+        fixed_ot = value.get("fixed_ot")
         return cls(
             national_dex=int(value["national_dex"]),
             species=str(value["species"]).strip(),
             form=str(value.get("form", "Normal")).strip() or "Normal",
             target_level=int(value["target_level"]),
             template=EncounterTemplateRef.from_dict(value["template"]),
+            ot_policy=policy,
+            fixed_ot=None if fixed_ot is None else str(fixed_ot).strip(),
             notes=str(value.get("notes", "")).strip(),
         )
 
@@ -58,6 +87,7 @@ class DexEntry:
 class LivingDexManifest:
     name: str
     target_generation: int
+    trainer: TrainerProfile
     entries: tuple[DexEntry, ...]
 
     @classmethod
@@ -65,6 +95,7 @@ class LivingDexManifest:
         return cls(
             name=str(value["name"]).strip(),
             target_generation=int(value["target_generation"]),
+            trainer=TrainerProfile.from_dict(value.get("trainer")),
             entries=tuple(DexEntry.from_dict(item) for item in value["entries"]),
         )
 
