@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from .models import LivingDexManifest
+from .models import LivingDexManifest, OTPolicy
 
 
 class ManifestError(ValueError):
@@ -35,6 +35,8 @@ def validate_manifest_structure(manifest: LivingDexManifest) -> list[str]:
         problems.append("manifest name must not be empty")
     if not 1 <= manifest.target_generation <= 9:
         problems.append("target_generation must be between 1 and 9")
+    if not manifest.trainer.name:
+        problems.append("trainer name must not be empty")
     if not manifest.entries:
         problems.append("manifest must contain at least one entry")
 
@@ -58,6 +60,15 @@ def validate_manifest_structure(manifest: LivingDexManifest) -> list[str]:
             )
         if not entry.template.method:
             problems.append(f"{entry.key}: encounter method must not be empty")
+
+        if entry.ot_policy is OTPolicy.FIXED_EVENT and not entry.fixed_ot:
+            problems.append(
+                f"{entry.key}: fixed_event OT policy requires fixed_ot"
+            )
+        if entry.ot_policy is OTPolicy.TRAINER and entry.fixed_ot:
+            problems.append(
+                f"{entry.key}: trainer OT policy must not specify fixed_ot"
+            )
 
         dex_form = (entry.national_dex, entry.form.casefold())
         if dex_form in seen_dex:
