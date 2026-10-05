@@ -28,18 +28,44 @@ def main() -> int:
     if len(set(species)) != 807:
         raise SystemExit("species names must be unique in the base living dex")
 
-    invalid = [
-        entry["national_dex"]
+    allowed = {"pending_encounter_template", "cross_checked_template", "pkhex_passed"}
+    unknown = [
+        (entry["national_dex"], entry["curation_status"])
         for entry in entries
-        if entry["curation_status"] != "pending_encounter_template"
+        if entry["curation_status"] not in allowed
     ]
-    if invalid:
-        raise SystemExit(
-            "bootstrap index must fail closed; unexpected curated entries: "
-            + ", ".join(map(str, invalid))
-        )
+    if unknown:
+        raise SystemExit(f"unknown curation statuses: {unknown}")
 
-    print("Heritage Dex index OK: 807/807 entries inventoried; 0 claimed curated.")
+    verified = [
+        entry for entry in entries
+        if entry["curation_status"] == "cross_checked_template"
+    ]
+    pending = [
+        entry for entry in entries
+        if entry["curation_status"] == "pending_encounter_template"
+    ]
+    legalized = [
+        entry for entry in entries
+        if entry["curation_status"] == "pkhex_passed"
+    ]
+
+    progress = payload.get("progress", {})
+    expected = {
+        "total": 807,
+        "cross_checked_templates": len(verified),
+        "pending_encounter_templates": len(pending),
+        "pkhex_legalized": len(legalized),
+    }
+    if progress != expected:
+        raise SystemExit(f"progress block mismatch: expected {expected}, got {progress}")
+
+    print(
+        "Heritage Dex index OK: "
+        f"{len(verified)} cross-checked, "
+        f"{len(legalized)} PKHeX-passed, "
+        f"{len(pending)} pending."
+    )
     return 0
 
 
