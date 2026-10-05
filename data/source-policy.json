@@ -205,7 +205,9 @@
       "shiny eligibility/state",
       "language/console-region provenance when stored",
       "special move/ribbon provenance",
-      "Shadow/Purified GameCube lineage"
+      "Shadow/Purified GameCube lineage",
+      "side-game transfer lineage",
+      "course/distribution-specific move provenance"
     ],
     "avoid_cartesian_product": true,
     "supported_source_families": {
@@ -252,6 +254,23 @@
         "Moon",
         "Ultra Sun",
         "Ultra Moon"
+      ],
+      "gen3_side_games": [
+        "Pokémon Box Ruby & Sapphire bonus Eggs",
+        "Pokémon Colosseum Bonus Disc — WISHMKR Jirachi",
+        "Pokémon Colosseum Japanese Bonus Disc — Ageto Celebi",
+        "Pokémon Channel — CHANNEL Jirachi",
+        "Japanese Pokémon Colosseum Card e Room — Shadow Togepi/Mareep/Scizor"
+      ],
+      "gen4_side_games": [
+        "Pokémon Ranger / Shadows of Almia / Guardian Signs — Manaphy Egg",
+        "My Pokémon Ranch — Hayley Mew/Phione and other trades",
+        "Pokémon Battle Revolution — PKTOPIA gifts",
+        "Pokéwalker — course-specific encounters and special moves"
+      ],
+      "gen5_side_games": [
+        "Pokémon Dream World / Pokémon Global Link — Entree Forest Hidden Ability origins",
+        "Pokémon Dream Radar — Hidden Ability / Dream Ball / badge-scaled level origins"
       ]
     },
     "shadow_policy": {
@@ -260,6 +279,28 @@
       "ev_training": "after purification",
       "nature_iv_rule": "Generate valid Gen III RNG-consistent values at first encounter and preserve them.",
       "xd_special_moves": "Preserve purification-exclusive move provenance where applicable."
+    },
+    "deduplication_policy": {
+      "rule": "Keep separate archive records only when the provenance is materially distinct in stored PKM data or is historically meaningful lineage metadata the user elected to preserve.",
+      "do_not_enumerate_by_default": [
+        "every possible legal Poké Ball when provenance is otherwise identical",
+        "every EV spread",
+        "every IV combination",
+        "every nature",
+        "every optional ribbon subset",
+        "every language when language does not change distribution/provenance",
+        "every gender unless form, event, breeding, or legality changes"
+      ],
+      "preserve_separately": [
+        "fixed or special balls such as Cherish/Dream/Safari/Sport when provenance-relevant",
+        "required or origin-significant ribbons",
+        "exclusive/legacy moves",
+        "ability-slot and Hidden Ability acquisition lineage",
+        "regional/persistent forms",
+        "fixed event identities",
+        "Shadow/Purified provenance",
+        "source games/generations when materially distinct"
+      ]
     }
   }
 }
