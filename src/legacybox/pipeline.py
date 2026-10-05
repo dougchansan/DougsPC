@@ -8,9 +8,19 @@ from .backend import LegalityBackend, UnconfiguredLegalityBackend
 from .manifest import validate_manifest_structure
 from .models import (
     AuditEntryResult,
+    DexEntry,
     LivingDexManifest,
+    OTPolicy,
     VerificationStatus,
 )
+
+
+def resolve_effective_ot(manifest: LivingDexManifest, entry: DexEntry) -> str:
+    if entry.ot_policy is OTPolicy.FIXED_EVENT:
+        if entry.event_identity is None:
+            raise ValueError(f"{entry.key}: missing fixed event identity")
+        return entry.event_identity.ot
+    return manifest.trainer.name
 
 
 def generation_plan(manifest: LivingDexManifest) -> list[dict[str, object]]:
@@ -27,10 +37,19 @@ def generation_plan(manifest: LivingDexManifest) -> list[dict[str, object]]:
                 "species": entry.species,
                 "form": entry.form,
                 "target_level": entry.target_level,
+                "effective_ot": resolve_effective_ot(manifest, entry),
+                "ot_policy": entry.ot_policy.value,
+                "event_identity": (
+                    None if entry.event_identity is None else asdict(entry.event_identity)
+                ),
                 "template_id": entry.template.template_id,
                 "source_game": entry.template.source_game,
+                "source_platform": entry.template.source_platform,
+                "origin_region": entry.template.origin_region,
+                "origin_kind": entry.template.origin_kind.value,
                 "generation": entry.template.generation,
                 "method": entry.template.method,
+                "migration_route": list(entry.migration_route),
             }
         )
     return plan
