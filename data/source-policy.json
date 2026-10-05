@@ -155,5 +155,30 @@
       "other template-locked fields"
     ],
     "player_ot": "Doug"
+  },
+  "verification_policy": {
+    "required_human_sources": [
+      "Bulbapedia",
+      "Serebii"
+    ],
+    "require_pkhex_pass": true,
+    "checked_fields": [
+      "source title",
+      "location",
+      "level/range",
+      "encounter moves",
+      "target-level moves",
+      "ability",
+      "held item",
+      "OT/event identity",
+      "shiny restrictions",
+      "transfer effects"
+    ],
+    "disagreement_rule": "Do not generate until the discrepancy is resolved against game data and PKHeX."
+  },
+  "trait_policy": {
+    "shiny": "Curated only. Every forced shiny must pass encounter-specific shiny rules and PKHeX; fixed events keep their distribution state.",
+    "pokerus": "Curated active/cured cases are allowed only with a recorded acquisition generation.",
+    "virtual_console_pokerus": "Poké Transporter strips VC Pokérus; final Gen VII Pokérus must be acquired after Transporter."
   }
 }
