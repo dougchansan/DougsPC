@@ -79,3 +79,21 @@ LegacyBox separates four independent concepts:
 A generated candidate may pass local legality and later traverse the official Bank->HOME path without becoming historically legitimate at its original encounter. Likewise, a nonzero HOME tracker is evidence that must be recorded but cannot be authenticated locally.
 
 See `docs/HOME_PROVENANCE.md`.
+
+
+## 9. Official Bank handoff
+
+LegacyBox3DS automates only the local preparation boundary:
+
+```
+validated PK7 batch
+  -> LBX1 SD bundle
+  -> LegacyBox3DS hash verification
+  -> Gen VII save injection
+  -> normal save commit
+  -> official Pokémon Bank application
+```
+
+The official Pokémon Bank application remains the only component that authenticates to Nintendo and talks to the Bank service. LegacyBox does not proxy, emulate, or reverse-engineer Bank's private network/authentication protocol.
+
+The initial save-writing adapter uses PKSM's public script API because PKSM already supports Gen VII save access and PKX injection on CFW. The standalone LegacyBox3DS writer is a later milestone and will preserve the same fail-closed/no-overwrite semantics.
