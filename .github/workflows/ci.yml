@@ -83,7 +83,7 @@ jobs:
           assert data["count"] > 0
           assert any(
               e["species"] == 7
-              and e["levelMin"] == 10
+              and e["levelMin"] == 5
               and e["ability"] == "OnlyHidden"
               and e["fixedBall"] == "Poke"
               for e in data["encounters"]
