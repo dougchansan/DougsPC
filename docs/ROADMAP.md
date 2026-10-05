@@ -21,6 +21,23 @@
 - [x] Add fixed-event identity model and fail-closed validation
 - [ ] Populate the fixed-event exception table from verified distribution templates
 
+## M0.75 — Source completeness
+
+- [x] Main-series Gen I–VII source families
+- [x] Colosseum/XD native + Shadow/Purified model
+- [ ] Pokémon Box Ruby & Sapphire bonus Eggs
+- [ ] Colosseum Bonus Disc: WISHMKR Jirachi / Ageto Celebi
+- [ ] Pokémon Channel Jirachi
+- [ ] Japanese Colosseum e-Reader Shadow Togepi/Mareep/Scizor
+- [ ] Pokémon Ranger Manaphy Egg lineages
+- [ ] My Pokémon Ranch Mew / Phione
+- [ ] Pokémon Battle Revolution gifts
+- [ ] Pokéwalker course/special-move provenance
+- [ ] Pokémon Dream World / PGL Hidden Ability origins
+- [ ] Pokémon Dream Radar origins and badge-dependent levels
+- [ ] Gen VI/VII special demos / Bank distributions / QR or other game-based gifts
+- [ ] Determine which side-game source distinctions survive in PKM data vs lineage-only metadata
+
 ## M1 — Real Gen VII legality proof
 
 - [ ] Resolve smoke-set encounter templates against a real encounter database
