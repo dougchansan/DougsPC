@@ -46,6 +46,24 @@ def generation_plan(manifest: LivingDexManifest) -> list[dict[str, object]]:
                         entry.traits.pokerus_acquired_generation
                     ),
                 },
+                "competitive": {
+                    "format": entry.competitive.format,
+                    "role": entry.competitive.role,
+                    "source_generation": entry.competitive.source_generation,
+                    "level": entry.competitive.level,
+                    "nature": entry.competitive.nature,
+                    "ability": entry.competitive.ability,
+                    "item": entry.competitive.item,
+                    "moves": list(entry.competitive.moves),
+                    "evs": entry.competitive.evs,
+                    "ivs": entry.competitive.ivs,
+                    "application_policy": entry.competitive.application_policy,
+                    "verification_status": entry.competitive.verification_status,
+                    "references": [
+                        asdict(ref) for ref in entry.competitive.references
+                    ],
+                    "notes": entry.competitive.notes,
+                },
                 "effective_ot": resolve_effective_ot(manifest, entry),
                 "ot_policy": entry.ot_policy.value,
                 "event_identity": (
