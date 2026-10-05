@@ -15,6 +15,7 @@ jobs:
       - run: python -m pip install -e .
       - run: python -m unittest discover -s tests -v
       - run: python scripts/check_heritage_index.py
+      - run: python scripts/check_side_sources.py
       - run: legacybox plan manifests/heritage-smoke.json > /tmp/heritage-plan.json
       - run: legacybox plan manifests/heritage-001-009.json > /tmp/heritage-001-009-plan.json
       - run: legacybox plan manifests/gamecube-smoke.json > /tmp/gamecube-plan.json
@@ -86,6 +87,30 @@ jobs:
               and e["fixedBall"] == "Poke"
               for e in data["encounters"]
           ), data
+          PY
+      - name: Confirm PKHeX catalog exposes Pokéwalker
+        run: |
+          dotnet run --no-build --configuration Release --project helpers/pkhex-catalog/LegacyBox.EncounterCatalog.csproj -- 25 HG > /tmp/pikachu-hg.json
+          python - <<'PY'
+          import json
+          data = json.load(open("/tmp/pikachu-hg.json"))
+          assert any(e["type"] == "EncounterStatic4Pokewalker" for e in data["encounters"]), data
+          PY
+      - name: Confirm PKHeX catalog exposes Dream World
+        run: |
+          dotnet run --no-build --configuration Release --project helpers/pkhex-catalog/LegacyBox.EncounterCatalog.csproj -- 60 B > /tmp/poliwag-b.json
+          python - <<'PY'
+          import json
+          data = json.load(open("/tmp/poliwag-b.json"))
+          assert any("Entree" in e["type"] for e in data["encounters"]), data
+          PY
+      - name: Confirm PKHeX catalog exposes Dream Radar
+        run: |
+          dotnet run --no-build --configuration Release --project helpers/pkhex-catalog/LegacyBox.EncounterCatalog.csproj -- 641 B2 > /tmp/tornadus-b2.json
+          python - <<'PY'
+          import json
+          data = json.load(open("/tmp/tornadus-b2.json"))
+          assert any(e["type"] == "EncounterStatic5Radar" for e in data["encounters"]), data
           PY
       - name: Confirm malformed PKM fails closed
         run: |
