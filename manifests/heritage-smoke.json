@@ -13,19 +13,66 @@
       "form": "Normal",
       "target_level": 12,
       "ot_policy": "trainer",
+      "target_moves": [
+        "ThunderShock",
+        "Tail Whip",
+        "Thunder Wave",
+        "Quick Attack"
+      ],
+      "traits": {
+        "shiny": "force_shiny",
+        "shiny_phase": "after_transporter",
+        "pokerus": "cured",
+        "pokerus_acquired_generation": 7
+      },
       "template": {
-        "template_id": "vc-yellow-viridian-forest-pikachu",
+        "template_id": "vc-yellow-starter-pikachu",
         "source_game": "Yellow (Virtual Console)",
         "generation": 1,
-        "method": "wild",
+        "method": "starter",
         "origin_kind": "virtual_console",
         "source_platform": "Nintendo 3DS Virtual Console",
-        "origin_region": "Kanto"
+        "origin_region": "Kanto",
+        "location": "Pallet Town",
+        "level_min": 5,
+        "level_max": 5,
+        "encounter_moves": [
+          "ThunderShock",
+          "Growl"
+        ],
+        "ability": "No Ability at origin; Lightning Rod after VC Transporter",
+        "held_item": "None",
+        "nature_policy": "Transporter-derived",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Yellow)",
+            "checked_fields": [
+              "location",
+              "level",
+              "moves"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/yellow/gift.shtml",
+            "checked_fields": [
+              "location",
+              "level",
+              "OT",
+              "moves"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
       },
       "migration_route": [
         "Poké Transporter",
         "Pokémon Bank"
-      ]
+      ],
+      "notes": "Gen I VC shininess is determined during Transporter from Gen I DVs. Pokérus is intentionally acquired in Gen VII because Transporter strips VC Pokérus."
     },
     {
       "national_dex": 155,
@@ -33,6 +80,15 @@
       "form": "Normal",
       "target_level": 5,
       "ot_policy": "trainer",
+      "target_moves": [
+        "Tackle",
+        "Leer"
+      ],
+      "traits": {
+        "shiny": "random_legal",
+        "shiny_phase": "origin",
+        "pokerus": "none"
+      },
       "template": {
         "template_id": "vc-crystal-starter-cyndaquil",
         "source_game": "Crystal (Virtual Console)",
@@ -40,7 +96,43 @@
         "method": "starter",
         "origin_kind": "virtual_console",
         "source_platform": "Nintendo 3DS Virtual Console",
-        "origin_region": "Johto"
+        "origin_region": "Johto",
+        "location": "New Bark Town",
+        "level_min": 5,
+        "level_max": 5,
+        "encounter_moves": [
+          "Tackle",
+          "Leer"
+        ],
+        "ability": "No Ability at origin; Flash Fire after VC Transporter",
+        "held_item": "Berry in Gen II; Poké Transporter does not transfer held items",
+        "nature_policy": "Transporter-derived",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_in-game_event_Pok%C3%A9mon_in_Generation_II",
+            "checked_fields": [
+              "location",
+              "level",
+              "OT",
+              "moves",
+              "transfer ability"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/crystal/gift.shtml",
+            "checked_fields": [
+              "location",
+              "level",
+              "OT",
+              "moves"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
       },
       "migration_route": [
         "Poké Transporter",
@@ -53,6 +145,16 @@
       "form": "Normal",
       "target_level": 5,
       "ot_policy": "trainer",
+      "target_moves": [
+        "Tackle",
+        "Growl"
+      ],
+      "traits": {
+        "shiny": "random_legal",
+        "shiny_phase": "origin",
+        "pokerus": "cured",
+        "pokerus_acquired_generation": 3
+      },
       "template": {
         "template_id": "emerald-starter-mudkip",
         "source_game": "Emerald",
@@ -60,7 +162,43 @@
         "method": "starter",
         "origin_kind": "gift",
         "source_platform": "Game Boy Advance",
-        "origin_region": "Hoenn"
+        "origin_region": "Hoenn",
+        "location": "Route 101",
+        "level_min": 5,
+        "level_max": 5,
+        "encounter_moves": [
+          "Tackle",
+          "Growl"
+        ],
+        "ability": "Torrent",
+        "held_item": "None",
+        "nature_policy": "random",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_in-game_event_Pok%C3%A9mon_in_Pok%C3%A9mon_Emerald",
+            "checked_fields": [
+              "location",
+              "level",
+              "OT",
+              "moves",
+              "ability",
+              "held item"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/pokedex-rs/258.shtml",
+            "checked_fields": [
+              "game availability",
+              "moves",
+              "ability"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
       },
       "migration_route": [
         "Pal Park",
@@ -77,6 +215,17 @@
       "form": "Normal",
       "target_level": 1,
       "ot_policy": "trainer",
+      "target_moves": [
+        "Quick Attack",
+        "Foresight",
+        "Endure"
+      ],
+      "traits": {
+        "shiny": "random_legal",
+        "shiny_phase": "hatch",
+        "pokerus": "active",
+        "pokerus_acquired_generation": 4
+      },
       "template": {
         "template_id": "platinum-riley-egg-riolu",
         "source_game": "Platinum",
@@ -84,7 +233,45 @@
         "method": "gift-egg",
         "origin_kind": "gift",
         "source_platform": "Nintendo DS",
-        "origin_region": "Sinnoh"
+        "origin_region": "Sinnoh",
+        "location": "Iron Island gift Egg; met location becomes hatch location",
+        "level_min": 1,
+        "level_max": 1,
+        "encounter_moves": [
+          "Quick Attack",
+          "Foresight",
+          "Endure"
+        ],
+        "ability": "Steadfast or Inner Focus",
+        "held_item": "None",
+        "nature_policy": "random",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_in-game_event_Pok%C3%A9mon_in_Pok%C3%A9mon_Platinum",
+            "checked_fields": [
+              "method",
+              "level",
+              "OT",
+              "moves",
+              "ability",
+              "held item"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/pokedex-dp/447.shtml",
+            "checked_fields": [
+              "method",
+              "location",
+              "moves",
+              "abilities"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
       },
       "migration_route": [
         "Poké Transfer",
@@ -97,8 +284,19 @@
       "national_dex": 551,
       "species": "Sandile",
       "form": "Normal",
-      "target_level": 15,
+      "target_level": 19,
       "ot_policy": "trainer",
+      "target_moves": [
+        "Torment",
+        "Sand Tomb",
+        "Assurance",
+        "Mud-Slap"
+      ],
+      "traits": {
+        "shiny": "force_shiny",
+        "shiny_phase": "origin",
+        "pokerus": "none"
+      },
       "template": {
         "template_id": "black-white-desert-resort-sandile",
         "source_game": "Black/White",
@@ -106,12 +304,66 @@
         "method": "wild",
         "origin_kind": "native",
         "source_platform": "Nintendo DS",
-        "origin_region": "Unova"
+        "origin_region": "Unova",
+        "location": "Desert Resort",
+        "level_min": 19,
+        "level_max": 22,
+        "encounter_moves": [
+          "Torment",
+          "Sand Tomb",
+          "Assurance",
+          "Mud-Slap"
+        ],
+        "ability": "Intimidate or Moxie",
+        "held_item": "None",
+        "nature_policy": "random",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/Desert_Resort",
+            "checked_fields": [
+              "location",
+              "level range",
+              "encounter rate"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/pokedex-bw/location/551.shtml",
+            "checked_fields": [
+              "location",
+              "level range",
+              "encounter rate"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/Sandile_(Pok%C3%A9mon)/Generation_V_learnset",
+            "checked_fields": [
+              "moves by level"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/pokedex-bw/551.shtml",
+            "checked_fields": [
+              "moves",
+              "abilities",
+              "held item"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
       },
       "migration_route": [
         "Poké Transporter",
         "Pokémon Bank"
-      ]
+      ],
+      "notes": "Corrected from provisional Lv.15; Black/White Desert Resort encounters are Lv.19-22."
     },
     {
       "national_dex": 653,
@@ -119,6 +371,16 @@
       "form": "Normal",
       "target_level": 5,
       "ot_policy": "trainer",
+      "target_moves": [
+        "Scratch",
+        "Tail Whip",
+        "Ember"
+      ],
+      "traits": {
+        "shiny": "force_non_shiny",
+        "shiny_phase": "origin",
+        "pokerus": "none"
+      },
       "template": {
         "template_id": "xy-starter-fennekin",
         "source_game": "X/Y",
@@ -126,7 +388,44 @@
         "method": "starter",
         "origin_kind": "gift",
         "source_platform": "Nintendo 3DS",
-        "origin_region": "Kalos"
+        "origin_region": "Kalos",
+        "location": "Aquacorde Town",
+        "level_min": 5,
+        "level_max": 5,
+        "encounter_moves": [
+          "Scratch",
+          "Tail Whip",
+          "Ember"
+        ],
+        "ability": "Blaze",
+        "held_item": "None",
+        "nature_policy": "random",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/List_of_in-game_event_Pok%C3%A9mon_in_Pok%C3%A9mon_X_and_Y",
+            "checked_fields": [
+              "location",
+              "level",
+              "OT",
+              "moves",
+              "ability",
+              "held item"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/pokedex-xy/653.shtml",
+            "checked_fields": [
+              "game availability",
+              "moves",
+              "ability"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
       },
       "migration_route": [
         "Pokémon Bank"
@@ -138,6 +437,16 @@
       "form": "Normal",
       "target_level": 5,
       "ot_policy": "trainer",
+      "target_moves": [
+        "Tackle",
+        "Leafage",
+        "Growl"
+      ],
+      "traits": {
+        "shiny": "random_legal",
+        "shiny_phase": "origin",
+        "pokerus": "none"
+      },
       "template": {
         "template_id": "usum-starter-rowlet",
         "source_game": "Ultra Sun/Ultra Moon",
@@ -145,11 +454,47 @@
         "method": "starter",
         "origin_kind": "gift",
         "source_platform": "Nintendo 3DS",
-        "origin_region": "Alola"
+        "origin_region": "Alola",
+        "location": "Route 1",
+        "level_min": 5,
+        "level_max": 5,
+        "encounter_moves": [
+          "Tackle",
+          "Leafage",
+          "Growl"
+        ],
+        "ability": "Overgrow",
+        "held_item": "None",
+        "nature_policy": "random",
+        "verification_status": "cross_checked",
+        "references": [
+          {
+            "source": "Bulbapedia",
+            "url": "https://bulbapedia.bulbagarden.net/wiki/Professor_Kukui",
+            "checked_fields": [
+              "level",
+              "moves",
+              "ability",
+              "held item"
+            ],
+            "checked_date": "2026-10-04"
+          },
+          {
+            "source": "Serebii",
+            "url": "https://www.serebii.net/pokedex-sm/722.shtml",
+            "checked_fields": [
+              "location",
+              "moves",
+              "ability"
+            ],
+            "checked_date": "2026-10-04"
+          }
+        ]
       },
       "migration_route": [
         "Pokémon Bank"
-      ]
+      ],
+      "notes": "Uses Growl. Serebii's USUM gift page currently lists Leer, but Serebii's Pokédex learnset and Bulbapedia agree on Growl; PKHeX remains the final legality gate."
     }
   ]
 }
