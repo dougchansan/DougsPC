@@ -1,5 +1,6 @@
 #include <3ds.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "legacybox.h"
@@ -20,18 +21,24 @@ int main(void)
     gfxInitDefault();
     consoleInit(GFX_TOP, NULL);
 
-    LbxBatch batch;
     char error[160] = {0};
-    bool loaded = lbx_load_batch(&batch, error, sizeof(error));
+    LbxBatch* batch = calloc(1, sizeof(*batch));
+    bool loaded = false;
     bool verified = false;
     int verified_count = 0;
+
+    if (!batch) {
+        snprintf(error, sizeof(error), "Out of memory allocating batch state.");
+    } else {
+        loaded = lbx_load_batch(batch, error, sizeof(error));
+    }
 
     draw_header();
 
     if (loaded) {
-        printf("Batch: %.16s...\n", batch.batch_id);
-        printf("Files: %d\n", batch.count);
-        printf("Target: Box %d onward\n", batch.start_box + 1);
+        printf("Batch: %.16s...\n", batch->batch_id);
+        printf("Files: %d\n", batch->count);
+        printf("Target: Box %d onward\n", batch->start_box + 1);
     } else {
         printf("No usable batch: %s\n", error);
         printf("Expected: %s\n", LBX_MANIFEST);
@@ -46,15 +53,15 @@ int main(void)
 
         if ((down & KEY_A) && loaded) {
             draw_header();
-            printf("Verifying %d files...\n", batch.count);
+            printf("Verifying %d files...\n", batch->count);
             gfxFlushBuffers();
             gfxSwapBuffers();
             gspWaitForVBlank();
 
             memset(error, 0, sizeof(error));
-            verified = lbx_verify_batch(&batch, &verified_count, error, sizeof(error));
+            verified = lbx_verify_batch(batch, &verified_count, error, sizeof(error));
             if (verified)
-                printf("PASS: %d/%d files match SHA256.\n", verified_count, batch.count);
+                printf("PASS: %d/%d files match SHA256.\n", verified_count, batch->count);
             else
                 printf("FAIL after %d files: %s\n", verified_count, error);
         }
@@ -65,7 +72,7 @@ int main(void)
                 printf("Verify with A first. Nothing staged.\n");
             } else {
                 memset(error, 0, sizeof(error));
-                if (lbx_write_ready_flag(&batch, error, sizeof(error))) {
+                if (lbx_write_ready_flag(batch, error, sizeof(error))) {
                     printf("Batch marked READY.\n\n");
                     printf("Next:\n");
                     printf("1. Exit LegacyBox3DS.\n");
@@ -84,6 +91,7 @@ int main(void)
         gspWaitForVBlank();
     }
 
+    free(batch);
     gfxExit();
     return 0;
 }
