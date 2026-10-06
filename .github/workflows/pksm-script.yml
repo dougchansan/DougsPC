@@ -16,6 +16,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: pksm-script-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   interpreter-tests:
     runs-on: ubuntu-latest
@@ -28,9 +32,11 @@ jobs:
           ref: e9ab1c9186bcaeab9c68e449192df03e033e3ef4
           path: external/picoc
       - name: Build PKSM's pinned PicoC for host-side tests
-        run: make -C external/picoc -j2
+        run: |
+          # Disable interactive line editing only; leave parser/evaluator unchanged.
+          sed -i '/^#define USE_READLINE$/d' external/picoc/platform/platform.h
+          make -C external/picoc -j2 LDFLAGS=-lm
       - name: Exercise script with mocked PKSM save API
-        if: hashFiles('scripts/test_pksm_picoc.py') != ''
         run: python3 scripts/test_pksm_picoc.py external/picoc/picoc
       - name: Package host diagnostic interpreter and matching source
         if: always()
