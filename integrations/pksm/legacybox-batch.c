@@ -108,8 +108,7 @@ static int read_pk7(char* filename, char* out, int size)
 
 int main(int argc, char** argv)
 {
-    (void)argc;
-    (void)argv;
+    // PicoC rejects casts to void; leave unused entry-point arguments alone.
 
     if (!file_exists(READY))
     {
