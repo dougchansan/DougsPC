@@ -1,0 +1,44 @@
+name: PKSM script compatibility
+
+on:
+  push:
+    paths:
+      - 'integrations/pksm/**'
+      - 'scripts/test_pksm_picoc.py'
+      - '.github/workflows/pksm-script.yml'
+  pull_request:
+    paths:
+      - 'integrations/pksm/**'
+      - 'scripts/test_pksm_picoc.py'
+      - '.github/workflows/pksm-script.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  interpreter-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: FlagBrew/picoc
+          ref: e9ab1c9186bcaeab9c68e449192df03e033e3ef4
+          path: external/picoc
+      - name: Build PKSM's pinned PicoC for host-side tests
+        run: make -C external/picoc -j2
+      - name: Exercise script with mocked PKSM save API
+        if: hashFiles('scripts/test_pksm_picoc.py') != ''
+        run: python3 scripts/test_pksm_picoc.py external/picoc/picoc
+      - name: Package host diagnostic interpreter and matching source
+        if: always()
+        run: |
+          tar -czf picoc-host-debug.tar.gz --exclude=.git --exclude=build -C external picoc
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: picoc-host-debug
+          path: picoc-host-debug.tar.gz
+          retention-days: 7
