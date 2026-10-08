@@ -15,6 +15,7 @@ Directory.CreateDirectory(outputDirectory);
 
 using var document = JsonDocument.Parse(File.ReadAllText(manifestPath));
 var root = document.RootElement;
+var rngSettings = TransferRngSettings.Read(root);
 var trainerName = root.GetProperty("trainer").GetProperty("name").GetString() ?? "Doug";
 var trainerLanguage = root.GetProperty("trainer").TryGetProperty("language", out var langNode)
     ? langNode.GetString() ?? "ENG"
@@ -155,7 +156,10 @@ foreach (var entry in root.GetProperty("entries").EnumerateArray())
 
     var desiredIVs = GetDesiredIVs(entry);
     var desiredHiddenPower = GetDesiredHiddenPower(entry);
-    const int attempts = 50_000;
+    int attempts = rngSettings.SearchAttempts;
+    var transferSeed = rngSettings.SeedFor(targetSpecies, templateNode.GetProperty("template_id").GetString() ?? "");
+    var transferRolls = transferSeed is ulong seed ? new TransferRolls(seed) : null;
+    int attemptsUsed = 0;
     PK7? best = null;
     int bestScore = int.MinValue;
     bool exactIVs = false;
@@ -164,6 +168,8 @@ foreach (var entry in root.GetProperty("entries").EnumerateArray())
     for (int attempt = 0; attempt < attempts; attempt++)
     {
         var candidate = native.ConvertToPK7();
+        transferRolls?.Apply(candidate, native.IsShiny);
+        attemptsUsed++;
         var score = ScoreIVs(candidate, desiredIVs, desiredHiddenPower, out var ivExact, out var hpMatch);
 
         if (score > bestScore)
@@ -250,6 +256,11 @@ foreach (var entry in root.GetProperty("entries").EnumerateArray())
         competitiveMovesRequested = moveSelection.Requested,
         competitiveMovesRejected = moveSelection.Rejected,
         usedLegalMoveFallback = moveSelection.UsedFallback,
+        pidHex = best.PID.ToString("X8"),
+        encryptionConstantHex = best.EncryptionConstant.ToString("X8"),
+        rngSeed = transferSeed?.ToString("X16"),
+        rngAlgorithm = transferSeed.HasValue ? "LBX-VC-ROLLS-1/SplitMix64" : "PKHeX default",
+        attemptsUsed,
         actualIVs,
         desiredIVs,
         exactIVs,
@@ -277,6 +288,7 @@ var report = new
     passed,
     failed,
     allLegal = failed == 0,
+    rng = rngSettings,
     results,
 };
 
@@ -647,3 +659,4 @@ static string Sanitize(string value)
     return new string(value.Select(ch => invalid.Contains(ch) ? '_' : ch).ToArray())
         .Replace(' ', '_');
 }
+

@@ -1,0 +1,9 @@
+{
+  "schema": "LBX-CONTROL-1",
+  "segments": [
+    {
+      "checkpoint": "A harmless menu is visible and moving right will only change selection. After sending, confirm one rightward move.",
+      "actions": [{"buttons": ["RIGHT"], "hold": 0.15, "wait": 0.3}]
+    }
+  ]
+}

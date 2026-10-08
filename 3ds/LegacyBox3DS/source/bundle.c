@@ -149,13 +149,17 @@ bool lbx_write_ready_flag(const LbxBatch* batch, char* error, size_t error_size)
         return false;
     }
 
-    FILE* f = fopen(LBX_READY_FLAG, "wb");
+    FILE* f = fopen(LBX_READY_FLAG ".tmp", "wb");
     if (!f) {
         set_error(error, error_size, "cannot write ready.flag");
         return false;
     }
 
-    fprintf(f, "LBX1\n%s\n%d\n", batch->batch_id, batch->count);
-    fclose(f);
-    return true;
+    bool ok = fprintf(f, "LBX1\n%s\n%d\n", batch->batch_id, batch->count) > 0;
+    if (fclose(f) != 0) ok = false;
+    if (ok && rename(LBX_READY_FLAG ".tmp", LBX_READY_FLAG) == 0) return true;
+    remove(LBX_READY_FLAG ".tmp");
+    set_error(error, error_size, "ready.flag write/rename failed");
+    return false;
 }
+

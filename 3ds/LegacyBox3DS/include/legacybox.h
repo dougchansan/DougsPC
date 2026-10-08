@@ -4,7 +4,9 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#ifndef LBX_ROOT
 #define LBX_ROOT "/3ds/LegacyBox"
+#endif
 #define LBX_INBOX LBX_ROOT "/inbox/current"
 #define LBX_MANIFEST LBX_INBOX "/batch.tsv"
 #define LBX_READY_FLAG LBX_ROOT "/ready.flag"
@@ -29,3 +31,4 @@ typedef struct {
 bool lbx_load_batch(LbxBatch* out, char* error, size_t error_size);
 bool lbx_verify_batch(const LbxBatch* batch, int* verified, char* error, size_t error_size);
 bool lbx_write_ready_flag(const LbxBatch* batch, char* error, size_t error_size);
+
