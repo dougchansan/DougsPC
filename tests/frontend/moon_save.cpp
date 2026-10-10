@@ -24,12 +24,15 @@ static LbxSaveIO io={read,write,nullptr,"Test Moon"};
 static std::shared_ptr<uint8_t[]> copy_data(const Bytes& b) {
     auto p=std::shared_ptr<uint8_t[]>(new uint8_t[b.size()]);memcpy(p.get(),b.data(),b.size());return p;
 }
+static Bytes pokemon();
 static Bytes blank() {
     auto p=std::shared_ptr<uint8_t[]>(new uint8_t[LBX_MOON_SAVE_SIZE]{});
     // The final block excludes its signature when computing CRC; real saves carry these block IDs.
     for(int i=0;i<37;i++){p[0x6BC18+i*8]=i;p[0x6BC19+i*8]=0;}
     pksm::SavSUMO save(p);save.version(pksm::GameVersion::MN);save.language(pksm::Language::ENG);
-    save.otName("Kento");save.TID(123);save.SID(456);save.finishEditing();assert(save.checksumsValid());
+    save.otName("Kento");save.TID(123);save.SID(456);
+    auto b=pokemon();auto original=pksm::PKX::getPKM<pksm::Generation::SEVEN>(b.data(),b.size());
+    save.pkm(*original,7,0,false);save.pkm(*original,7,1,false);save.finishEditing();assert(save.checksumsValid());
     return Bytes(p.get(),p.get()+LBX_MOON_SAVE_SIZE);
 }
 static void file(const fs::path& p,const Bytes& b) {std::ofstream f(p,std::ios::binary);f.write((const char*)b.data(),b.size());assert(f.good());}

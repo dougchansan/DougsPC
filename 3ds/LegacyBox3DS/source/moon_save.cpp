@@ -150,11 +150,13 @@ static bool prepare_selected(const LbxFrontend* s,const LbxSaveIO* io,LbxSearchP
     for(int i=0;ok && i<count;i++) {
         ok=!!fgets(line,sizeof(line),f) && sscanf(line,"%d\t%95[^\t]\t%64s",&dex,name,digest)==3 &&
            dex>=1 && dex<=807 && !seen[dex-1] && safe_name(name) && strlen(digest)==64;
-        if(!ok)break;seen[dex-1]=true;
+        if(!ok)break;
+        seen[dex-1]=true;
         if(!s->selected[dex-1])continue;
         char path[256];Bytes bytes;snprintf(path,sizeof(path),LBX_ROOT "/templates/%s",name);
         ok=read_file(path,bytes,260) && (bytes.size()==232 || bytes.size()==260);
-        if(!ok)break;hash(bytes.data(),bytes.size(),actual);ok=!strcmp(actual,digest);if(!ok)break;
+        if(!ok)break;
+        hash(bytes.data(),bytes.size(),actual);ok=!strcmp(actual,digest);if(!ok)break;
         auto pk=pksm::PKX::getPKM<pksm::Generation::SEVEN>(bytes.data(),bytes.size());
         ok=pk && valid_pk(*pk) && u16(pk->species())==dex;
         if(!ok)break;

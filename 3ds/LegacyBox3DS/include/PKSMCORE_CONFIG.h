@@ -7,3 +7,7 @@
 #ifndef _PKSMCORE_PERSONAL_FOLDER
 #define _PKSMCORE_PERSONAL_FOLDER "romfs:/personals/"
 #endif
+
+#ifdef __3DS__
+#define _PKSMCORE_GETLINE_FUNC __getline
+#endif

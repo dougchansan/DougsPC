@@ -22,3 +22,9 @@ implementations. Our adapter uses libctru directly and supports Moon only.
 
 PokéSprite artwork remains credited and licensed separately in the sprite pack.
 PKHeX is used by the PC helpers and CI; it is not a runtime 3DS legality engine.
+
+## PKHeX helpers
+
+The optional PC helpers link against PKHeX.Core under GPL-3.0-or-later and must
+be distributed and used under the applicable PKHeX/GPL terms. The Python core
+continues to use validation as an external adapter boundary.
