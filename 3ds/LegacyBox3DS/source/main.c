@@ -6,11 +6,8 @@
 #include "legacybox.h"
 #include "frontend.h"
 #include "templates.h"
+#include "box_ui.h"
 
-static const char* tabs[]={"Browse","Options","Presets","Batch","Queue"};
-static const char* steps[]={"Staged for PKSM","Save/readback confirmed","Bank box confirmed","HOME receipt confirmed"};
-static const char* natures[]={"Template","Hardy","Lonely","Brave","Adamant","Naughty","Bold","Docile","Relaxed","Impish","Lax","Timid","Hasty","Serious","Jolly","Naive","Modest","Mild","Quiet","Bashful","Rash","Calm","Gentle","Sassy","Careful","Quirky"};
-static PrintConsole top,bottom;
 static LbxFrontend state;
 static int tab, option, preset, checkpoint, seed_digit;
 static bool loaded,verified;
@@ -45,88 +42,52 @@ static void filter(void) {
     if(state.cursor>=visible_count) state.cursor=0;
 }
 static void render(void) {
-    consoleSelect(&top); consoleClear();
-    printf("LegacyBox - Preserve. Validate. Migrate.\n\n");
-    printf("%s | Selected: %d\n",tabs[tab],lbx_selected_count(&state));
-    printf("Target: Box %d onward\n\n",state.start_box+1);
-    if(visible_count) { int d=visible[state.cursor]; printf("#%03d %s (Gen %d)\n",d+1,lbx_species[d],lbx_generations[d]); }
-    printf("\n%s\n\n",message);
-    printf("Offline assembly preserves reviewed template bytes.\n");
-    printf("Existing batches can be verified and staged.\n");
-    printf("Bank/HOME confirmations are manual.\n");
-    printf("\nL/R: tab   START: exit\n");
-    consoleSelect(&bottom); consoleClear();
-    printf("Browse  Options Presets Batch   Queue\n");
-    printf("----------------------------------------\n");
-    if(tab==0) {
-        printf("Gen: %s (Y cycles filter)\n",state.generation ? "filtered":"all");
-        int first=(state.cursor/8)*8;
-        for(int row=0;row<8;row++) {
-            int v=first+row;
-            printf("\x1b[%d;1H",7+row*2);
-            if(v<visible_count) {int d=visible[v]; printf("%c [%c] #%03d %.25s",v==state.cursor?'>':' ',state.selected[d]?'x':' ',d+1,lbx_species[d]);}
-        }
-        printf("\x1b[25;1HA: toggle B: clear SELECT: assemble\n");
-        printf("\x1b[28;1HX: Save generation request");
-    } else if(tab==1) {
-        printf("Batch settings (0 = preserve template)\n\n");
-        printf("%c Level: %d\n\n",option==0?'>':' ',state.level);
-        printf("%c Nature: %s\n\n",option==1?'>':' ',natures[state.nature]);
-        printf("%c Shiny: %s\n\n",option==2?'>':' ',(const char*[]){"Template","Request shiny","Non-shiny"}[state.shiny]);
-        printf("%c Start box: %d\n\n",option==3?'>':' ',state.start_box+1);
-        printf("%c RNG: %s\n\n",option==4?'>':' ',state.rng_mode?"Fixed transfer seed":"Default random");
-        printf("%c Seed: %08lX (digit %d)\n\n",option==5?'>':' ',(unsigned long)state.rng_seed,seed_digit+1);
-        printf("%c IV search: %s rolls\n\n",option==6?'>':' ',(const char*[]){"5,000","50,000","250,000"}[state.rng_budget]);
-        printf("Up/Down: field; Left/Right: change\n");
-        printf("X: seed digit. RNG applies on PC.\n");
-        printf("Fixed events keep distribution settings.\n");
-        printf("IV/EV/moves use reviewed template.\n");
-    } else if(tab==2) {
-        printf("A applies highlighted preset\n\n");
-        const char* names[]={"Heritage #001-009","Living Dex request #001-807","Shiny heritage request","Clear selection"};
-        for(int i=0;i<4;i++) printf("%c %s\n\n",preset==i?'>':' ',names[i]);
-        printf("Shiny requests require reviewed eligibility.\n");
-        printf("Events/origin sampler: templates pending.\n");
-    } else if(tab==3) {
-        printf("Prepared batch: %s\n",loaded?"loaded":"not found");
-        if(loaded) printf("%.16s... | %d files\n",batch->batch_id,batch->count);
-        printf("\nA: Verify SHA256\n\nX: Reverify and mark READY\n\nY: Reload batch from SD\n\n");
-        printf("Integrity: %s\n",verified?"PASS":"unchecked");
-        printf("Generation request does not replace batch.\n");
-    } else {
-        printf("Manual evidence checklist for this batch\n\n");
-        for(int i=0;i<4;i++) printf("[%c] %s\n\n",checkpoint>i?'x':' ',steps[i]);
-        printf("A: Confirm next observed step\n\nB: Reset confirmations\n\n");
-        printf("Save/readback, Bank, HOME need observation.\n");
-        printf("Rosalina automation: hardware probe pending.");
-    }
+    LbxView view={.state=&state,.visible=visible,.visible_count=visible_count,
+        .tab=tab,.option=option,.preset=preset,.checkpoint=checkpoint,.seed_digit=seed_digit,
+        .loaded=loaded,.verified=verified,.batch_count=loaded?batch->count:0,.message=message};
+    lbx_ui_render(&view);
 }
 int main(void) {
-    gfxInitDefault(); consoleInit(GFX_TOP,&top); consoleInit(GFX_BOTTOM,&bottom);
+    gfxInitDefault(); lbx_ui_init();
     lbx_frontend_init(&state); filter(); batch=calloc(1,sizeof(*batch)); reload();
-    bool dirty=true;
+    int redraw=2;
     while(aptMainLoop()) {
         hidScanInput(); u32 down=hidKeysDown();
         if(down&KEY_START) break;
-        if(down&KEY_L) {tab=(tab+4)%5; dirty=true;}
-        if(down&KEY_R) {tab=(tab+1)%5; dirty=true;}
+        if(down&KEY_L) {tab=(tab+4)%5;}
+        if(down&KEY_R) {tab=(tab+1)%5;}
         if(down&KEY_TOUCH) {
             touchPosition p; hidTouchRead(&p);
-            if(p.py<16) tab=p.px/64;
-            else if(tab==0 && p.py>=48 && p.py<176) {
-                int v=(state.cursor/8)*8+(p.py-48)/16;
-                if(v<visible_count) {state.cursor=v; state.selected[visible[v]]=!state.selected[visible[v]];}
-            } else if(tab==0 && p.py>=184 && p.py<208) down|=KEY_SELECT;
-            else if(tab==0 && p.py>=208) down|=KEY_X;
-            else if(tab==1 && p.py>=40 && p.py<152) {option=(p.py-40)/16;down|=KEY_RIGHT;}
-            else if(tab==2 && p.py>=40 && p.py<104) {preset=(p.py-40)/16;down|=KEY_A;}
-            dirty=true;
+            if(p.py<24) tab=p.px/64;
+            else if(tab==0 && p.py>=26 && p.py<44) {
+                int pages=(visible_count+29)/30;
+                int page=state.cursor/30;
+                if(p.px<50) page=(page+pages-1)%pages;
+                else if(p.px>=270) page=(page+1)%pages;
+                state.cursor=page*30;
+            } else if(tab==0 && p.py>=48 && p.py<198) {
+                int v=lbx_grid_hit(p.px,p.py,(state.cursor/30)*30,visible_count);
+                if(v>=0) {state.cursor=v;state.selected[visible[v]]=!state.selected[visible[v]];}
+            } else if(tab==0 && p.py>=204 && p.py<227) {
+                if(p.px>=10 && p.px<155) down|=KEY_SELECT;
+                else if(p.px>=165 && p.px<310) down|=KEY_X;
+            } else if(tab==1 && p.py>=46 && p.py<197) {
+                int row=(p.py-46)/22;
+                if(row<7 && (p.py-46)%22<19) {option=row;down|=KEY_RIGHT;}
+            } else if(tab==2 && p.py>=52 && p.py<182) {
+                int row=(p.py-52)/34;
+                if(row<4 && (p.py-52)%34<28) {preset=row;down|=KEY_A;}
+            } else if(tab==3) {
+                if(p.py>=88 && p.py<107) down|=KEY_A;
+                else if(p.py>=120 && p.py<139) down|=KEY_X;
+                else if(p.py>=152 && p.py<171) down|=KEY_Y;
+            }
         }
         if(tab==0) {
-            if(down&KEY_UP) state.cursor=(state.cursor+visible_count-1)%visible_count;
-            if(down&KEY_DOWN) state.cursor=(state.cursor+1)%visible_count;
-            if(down&KEY_LEFT) state.cursor=(state.cursor+visible_count-8)%visible_count;
-            if(down&KEY_RIGHT) state.cursor=(state.cursor+8)%visible_count;
+            if(down&KEY_UP) state.cursor=lbx_grid_move(state.cursor,visible_count,0,-1);
+            if(down&KEY_DOWN) state.cursor=lbx_grid_move(state.cursor,visible_count,0,1);
+            if(down&KEY_LEFT) state.cursor=lbx_grid_move(state.cursor,visible_count,-1,0);
+            if(down&KEY_RIGHT) state.cursor=lbx_grid_move(state.cursor,visible_count,1,0);
             if(down&KEY_A) state.selected[visible[state.cursor]]=!state.selected[visible[state.cursor]];
             if(down&KEY_B) memset(state.selected,0,sizeof(state.selected));
             if(down&KEY_Y) {state.generation=(state.generation+1)%8;state.cursor=0;filter();}
@@ -179,9 +140,10 @@ int main(void) {
             }
             if(down&KEY_B) {if(!save_queue(0)) snprintf(message,sizeof(message),"Could not reset confirmations.");}
         }
-        if(down) dirty=true;
-        if(dirty) {render();dirty=false;}
+        if(down) redraw=2;
+        if(redraw>0) {render();redraw--;}
         gfxFlushBuffers();gfxSwapBuffers();gspWaitForVBlank();
     }
-    free(batch);gfxExit();return 0;
+    free(batch);lbx_ui_exit();gfxExit();return 0;
 }
+

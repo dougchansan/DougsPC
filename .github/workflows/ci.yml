@@ -197,3 +197,30 @@ jobs:
           path: |
             3ds/LegacyBox3DS/LegacyBox3DS.3dsx
             3ds/LegacyBox3DS/LegacyBox3DS.smdh
+
+
+  sprite-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: msikma/pokesprite
+          ref: c5aaa610ff2acdf7fd8e2dccd181bca8be9fcb3e
+          path: external/pokesprite
+          sparse-checkout: |
+            data/pokemon.json
+            icons/pokemon/regular
+            icons/pokemon/shiny
+            LICENSE
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install Pillow==11.3.0
+      - name: Build all 807 regular and shiny catalog icons
+        run: python scripts/build_sprite_pack.py external/pokesprite /tmp/legacybox-assets
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LegacyBox-sprite-assets
+          path: /tmp/legacybox-assets/*
