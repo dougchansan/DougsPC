@@ -655,7 +655,8 @@ static string[] GetMoveNames(PKM pk)
 static string GetHiddenPowerName(PKM pk)
 {
     var strings = GameInfo.Strings;
-    return strings.Types[pk.HPType];
+    // HPType indexes Fighting..Dark (0..15); Types also contains Normal at 0.
+    return strings.Types[pk.HPType + 1];
 }
 
 static string Sanitize(string value)
