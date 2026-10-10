@@ -1,4 +1,5 @@
 #include "frontend.h"
+#include "local_rng.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -17,8 +18,11 @@ bool lbx_save_request(const LbxFrontend* s, const char* path, char* error, size_
     int count=lbx_selected_count(s);
     if(!count || s->level<0 || s->level>100 || s->nature<0 || s->nature>25 ||
        s->shiny<0 || s->shiny>2 || s->start_box<0 || s->start_box>31 ||
-       count>960-s->start_box*30 || s->rng_mode<0 || s->rng_mode>1 || s->rng_budget<0 || s->rng_budget>2) {
+       count>960-s->start_box*30 || s->rng_mode<0 || s->rng_mode>2 || s->rng_budget<0 || s->rng_budget>2) {
         snprintf(error,size,"Empty request or invalid options/capacity."); return false;
+    }
+    if(s->rng_mode==2) for(int i=151;i<LBX_DEX_COUNT;i++) if(s->selected[i]) {
+        snprintf(error,size,"Device rolls: Gen I VC species 1-151 only."); return false;
     }
     char temp[256];
     if(snprintf(temp,sizeof(temp),"%s.tmp",path)>=(int)sizeof(temp)) {
@@ -26,9 +30,16 @@ bool lbx_save_request(const LbxFrontend* s, const char* path, char* error, size_
     }
     FILE* f=fopen(temp,"wb");
     if(!f) { snprintf(error,size,"Cannot write request on SD."); return false; }
-    bool ok=fprintf(f,"LBXR2\t%d\t%d\t%d\t%d\t%d\t%d\t%08lX\t%d\n",count,s->start_box,s->level,s->nature,s->shiny,s->rng_mode,(unsigned long)s->rng_seed,s->rng_budget)>0;
-    for(int i=0;i<LBX_DEX_COUNT && ok;i++) if(s->selected[i]) ok=fprintf(f,"%d\n",i+1)>0;
+    bool ok=fprintf(f,"%s\t%d\t%d\t%d\t%d\t%d\t%d\t%08lX\t%d\n",s->rng_mode==2?"LBXR3":"LBXR2",count,s->start_box,s->level,s->nature,s->shiny,s->rng_mode,(unsigned long)s->rng_seed,s->rng_budget)>0;
+    for(int i=0;i<LBX_DEX_COUNT && ok;i++) if(s->selected[i]) {
+        if(s->rng_mode==2) {
+            LbxLocalRoll roll=lbx_local_roll(s->rng_seed,(unsigned)i+1);
+            ok=fprintf(f,"%d\t%08lX\t%08lX\t%08lX\n",i+1,
+                (unsigned long)roll.ec,(unsigned long)roll.pid,(unsigned long)roll.ivs)>0;
+        } else ok=fprintf(f,"%d\n",i+1)>0;
+    }
     if(fclose(f)!=0) ok=false;
     if(ok && rename(temp,path)==0) return true;
     remove(temp); snprintf(error,size,"Request write/rename failed."); return false;
 }
+

@@ -165,6 +165,31 @@ jobs:
           name: legacybox-batch-001-009
           path: /tmp/legacybox-batch-001-009/*
           if-no-files-found: warn
+      - name: Check device RNG exports through real PKHeX generation
+        run: |
+          PYTHONPATH=tests python - <<'PY'
+          import json
+          from pathlib import Path
+          from test_device_rng import export_request, r
+          request=Path('/tmp/device-request.tsv')
+          export_request(request)
+          manifest=r.resolve_request(request,Path('manifests/heritage-001-009.json'))
+          Path('/tmp/device-manifest.json').write_text(json.dumps(manifest))
+          PY
+          dotnet run --no-build --configuration Release --project helpers/pkhex-batch/LegacyBox.BatchGenerator.csproj -- /tmp/device-manifest.json /tmp/device-batch
+          python - <<'PY'
+          import json
+          manifest=json.load(open('/tmp/device-manifest.json'))
+          report=json.load(open('/tmp/device-batch/batch-report.json'))
+          assert report['allLegal'] and report['passed']==9 and report['failed']==0, report
+          for entry, result in zip(manifest['entries'],report['results']):
+              rolls=entry['device_rolls']; packed=int(rolls['ivs_hex'],16)
+              assert result['encryptionConstantHex']==rolls['ec_hex'], result
+              assert result['attemptsUsed']==1, result
+              assert result['rngAlgorithm']=='LBX-DEVICE-ROLLS-1/SplitMix64', result
+              for i,key in enumerate(('HP','Atk','Def','Spe','SpA','SpD')):
+                  assert result['actualIVs'][key]==(packed>>(i*5))&31, result
+          PY
       - name: Confirm malformed PKM fails closed
         run: |
           python - <<'PY'

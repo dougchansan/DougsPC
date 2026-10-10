@@ -49,7 +49,7 @@ static void render(void) {
 }
 int main(void) {
     gfxInitDefault(); lbx_ui_init();
-    lbx_frontend_init(&state); filter(); batch=calloc(1,sizeof(*batch)); reload();
+    lbx_frontend_init(&state); state.rng_seed=(uint32_t)(svcGetSystemTick() ^ osGetTime()); filter(); batch=calloc(1,sizeof(*batch)); reload();
     int redraw=2;
     while(aptMainLoop()) {
         hidScanInput(); u32 down=hidKeysDown();
@@ -99,20 +99,21 @@ int main(void) {
             }
             if(down&KEY_X) {
                 mkdir(LBX_ROOT,0777);
-                if(lbx_save_request(&state,LBX_REQUEST,message,sizeof(message))) snprintf(message,sizeof(message),"Saved request.tsv. Process with PC helper.");
+                if(lbx_save_request(&state,LBX_REQUEST,message,sizeof(message))) snprintf(message,sizeof(message),state.rng_mode==2?"Device rolls saved. PC builds/checks Pokemon files.":"Saved request.tsv. Process with PC helper.");
             }
         } else if(tab==1) {
             if(down&KEY_UP) option=(option+6)%7;
             if(down&KEY_DOWN) option=(option+1)%7;
             int delta=(down&KEY_RIGHT)?1:(down&KEY_LEFT)?-1:0;
             if(option==5) {
+                if(down&KEY_Y) state.rng_seed=(uint32_t)(svcGetSystemTick() ^ osGetTime());
                 if(down&KEY_X) seed_digit=(seed_digit+1)%8;
                 unsigned shift=(unsigned)(7-seed_digit)*4;
                 unsigned nibble=((state.rng_seed>>shift)+delta+16)&15u;
                 state.rng_seed=(state.rng_seed&~(15u<<shift))|(nibble<<shift);
-            } else {
+            } else if(option!=6 || state.rng_mode!=2) {
                 int* fields[]={&state.level,&state.nature,&state.shiny,&state.start_box,&state.rng_mode,NULL,&state.rng_budget};
-                int limits[]={101,26,3,32,2,1,3};
+                int limits[]={101,26,3,32,3,1,3};
                 *fields[option]=(*fields[option]+delta+limits[option])%limits[option];
             }
         } else if(tab==2) {

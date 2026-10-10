@@ -17,7 +17,7 @@ INCLUDES    := include
 GRAPHICS    :=
 GFXBUILD    := $(BUILD)
 
-APP_TITLE       := LegacyBox3DS
+APP_TITLE       := Doug's PC
 APP_DESCRIPTION := Verify and stage LegacyBox batches for official Pokemon Bank handoff
 APP_AUTHOR      := LegacyBox
 
@@ -73,3 +73,4 @@ $(OUTPUT).elf: $(OFILES)
 -include $(DEPSDIR)/*.d
 
 endif
+

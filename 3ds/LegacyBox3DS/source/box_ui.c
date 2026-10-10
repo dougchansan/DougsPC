@@ -51,6 +51,7 @@ static void text(int x,int y,const char* s,unsigned color,int scale) {
         else if(c>='0'&&c<='9') memcpy(glyph,font[26+c-'0'],5);
         else if(c=='-') memset(glyph,8,5);
         else if(c=='_') memset(glyph,64,5);
+        else if(c=='\'') glyph[2]=3;
         else if(c=='.') glyph[2]=64;
         else if(c==':') glyph[2]=20;
         else if(c=='/') {glyph[0]=64;glyph[1]=32;glyph[2]=24;glyph[3]=4;glyph[4]=2;}
@@ -115,7 +116,7 @@ static void card(int y,const char* label,const char* value,bool active) {
 void lbx_ui_render(const LbxView* v) {
     cache(v);const LbxFrontend* s=v->state;char line[100];
     screen(GFX_TOP,400);
-    rect(0,0,400,34,PANEL);text(14,10,"LEGACYBOX",INK,2);text(235,14,"PRESERVE / MIGRATE",TEAL,1);
+    rect(0,0,400,34,PANEL);text(14,10,"DOUG'S PC",INK,2);text(235,14,"PRESERVE / MIGRATE",TEAL,1);
     snprintf(line,sizeof(line),"%d SELECTED / BOX %d ONWARD",lbx_selected_count(s),s->start_box+1);text(14,47,line,TEAL,1);
     if(v->visible_count) {
         int d=v->visible[s->cursor];
@@ -150,15 +151,15 @@ void lbx_ui_render(const LbxView* v) {
         text(12,232,"Y: FILTER  B: CLEAR  L/R: TABS",MUTED,1);
     } else if(v->tab==1) {
         text(12,31,"BATCH OPTIONS / TEMPLATE = PRESERVE",MUTED,1);
-        snprintf(line,sizeof(line),"%d",s->level);card(46,"LEVEL",s->level?line:"Template",v->option==0);
+        snprintf(line,sizeof(line),"%d",s->level);card(46,"LEVEL",s->level?line:"Preserve",v->option==0);
         card(68,"NATURE",natures[s->nature],v->option==1);
         card(90,"SHINY",(const char*[]){"Template","Request shiny","Non-shiny"}[s->shiny],v->option==2);
         snprintf(line,sizeof(line),"%d",s->start_box+1);card(112,"START BOX",line,v->option==3);
-        card(134,"RNG",s->rng_mode?"Fixed seed":"Default random",v->option==4);
+        card(134,"RNG",(const char*[]){"PC default","PC fixed seed","Device rolls"}[s->rng_mode],v->option==4);
         snprintf(line,sizeof(line),"%08lX / DIGIT %d",(unsigned long)s->rng_seed,v->seed_digit+1);card(156,"SEED",line,v->option==5);
-        card(178,"IV SEARCH",(const char*[]){"5000","50000","250000"}[s->rng_budget],v->option==6);
+        card(178,"IV SEARCH",s->rng_mode==2?"One local candidate":(const char*[]){"5000","50000","250000"}[s->rng_budget],v->option==6);
         text(12,208,"UP/DOWN: FIELD  LEFT/RIGHT: CHANGE",MUTED,1);
-        text(12,222,"X: SEED DIGIT / RNG GENERATES ON PC",MUTED,1);
+        text(12,222,s->rng_mode==2?"X: DIGIT Y: NEW SEED / PC CHECK REQUIRED":"LEVEL: PRESERVE OR 1-100 / X: SEED DIGIT",MUTED,1);
     } else if(v->tab==2) {
         const char* names[]={"Heritage #001-009","Living Dex #001-807","Shiny heritage request","Clear selection"};
         text(12,33,"PRESETS / A OR TOUCH TO APPLY",MUTED,1);

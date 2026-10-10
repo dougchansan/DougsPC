@@ -156,7 +156,8 @@ foreach (var entry in root.GetProperty("entries").EnumerateArray())
 
     var desiredIVs = GetDesiredIVs(entry);
     var desiredHiddenPower = GetDesiredHiddenPower(entry);
-    int attempts = rngSettings.SearchAttempts;
+    var deviceRolls = DeviceTransferRoll.Read(entry, targetSpecies);
+    int attempts = deviceRolls is null ? rngSettings.SearchAttempts : 1;
     var transferSeed = rngSettings.SeedFor(targetSpecies, templateNode.GetProperty("template_id").GetString() ?? "");
     var transferRolls = transferSeed is ulong seed ? new TransferRolls(seed) : null;
     int attemptsUsed = 0;
@@ -168,7 +169,8 @@ foreach (var entry in root.GetProperty("entries").EnumerateArray())
     for (int attempt = 0; attempt < attempts; attempt++)
     {
         var candidate = native.ConvertToPK7();
-        transferRolls?.Apply(candidate, native.IsShiny);
+        if (deviceRolls is not null) deviceRolls.Apply(candidate, native.IsShiny);
+        else transferRolls?.Apply(candidate, native.IsShiny);
         attemptsUsed++;
         var score = ScoreIVs(candidate, desiredIVs, desiredHiddenPower, out var ivExact, out var hpMatch);
 
@@ -259,7 +261,7 @@ foreach (var entry in root.GetProperty("entries").EnumerateArray())
         pidHex = best.PID.ToString("X8"),
         encryptionConstantHex = best.EncryptionConstant.ToString("X8"),
         rngSeed = transferSeed?.ToString("X16"),
-        rngAlgorithm = transferSeed.HasValue ? "LBX-VC-ROLLS-1/SplitMix64" : "PKHeX default",
+        rngAlgorithm = deviceRolls is not null ? "LBX-DEVICE-ROLLS-1/SplitMix64" : transferSeed.HasValue ? "LBX-VC-ROLLS-1/SplitMix64" : "PKHeX default",
         attemptsUsed,
         actualIVs,
         desiredIVs,
@@ -660,3 +662,40 @@ static string Sanitize(string value)
         .Replace(' ', '_');
 }
 
+
+
+// Device supplies actual random fields. No host reroll or IV search in this mode.
+sealed record DeviceTransferRoll(uint EC, uint PID, uint IVs)
+{
+    public static DeviceTransferRoll? Read(JsonElement entry, ushort species)
+    {
+        if (!entry.TryGetProperty("device_rolls", out var node)) return null;
+        if (species is < 1 or > 151) throw new InvalidOperationException("Device rolls require Gen I VC.");
+        uint ReadHex(string key)
+        {
+            string value = node.GetProperty(key).GetString() ?? "";
+            if (value.Length != 8 || !uint.TryParse(value, System.Globalization.NumberStyles.AllowHexSpecifier,
+                System.Globalization.CultureInfo.InvariantCulture, out uint parsed))
+                throw new InvalidOperationException("Malformed device rolls.");
+            return parsed;
+        }
+        var roll = new DeviceTransferRoll(ReadHex("ec_hex"), ReadHex("pid_hex"), ReadHex("ivs_hex"));
+        int perfect = 0;
+        for (int i = 0; i < 6; i++) if (((roll.IVs >> (i * 5)) & 31) == 31) perfect++;
+        if ((roll.IVs >> 30) != 0 || perfect < (species == 151 ? 5 : 3))
+            throw new InvalidOperationException("Device rolls violate VC IV guarantees.");
+        return roll;
+    }
+    public void Apply(PK7 pk, bool shiny)
+    {
+        pk.EncryptionConstant = EC;
+        pk.PID = PID;
+        // Normalize shiny state to the source; this adds no random values.
+        if (shiny) pk.PID = (PID & 0xFFFF) | ((uint)((ushort)PID ^ pk.TID16 ^ pk.SID16) << 16);
+        else if (pk.IsShiny) pk.PID ^= 0x10000000;
+        Span<int> ivs = stackalloc int[6];
+        for (int i = 0; i < 6; i++) ivs[i] = (int)((IVs >> (i * 5)) & 31);
+        pk.SetIVs(ivs);
+        pk.RefreshChecksum();
+    }
+}
