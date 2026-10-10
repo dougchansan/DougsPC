@@ -123,7 +123,7 @@ void lbx_ui_render(const LbxView* v) {
         snprintf(line,sizeof(line),"#%03d",d+1);text(14,69,line,GOLD,2);
         text(14,94,lbx_species[d],INK,strlen(lbx_species[d])>17?1:2);
         snprintf(line,sizeof(line),"GENERATION %d",lbx_generations[d]);text(14,116,line,MUTED,1);
-        text(14,133,s->selected[d]?"SELECTED FOR REQUEST":"A / TOUCH TO SELECT",TEAL,1);
+        text(14,133,s->selected[d]?"SELECTED FOR MOON":"A / TOUCH TO SELECT",TEAL,1);
         rect(256,62,130,100,PANEL);sprite(s->cursor%30,261,67,3);
     }
     rect(10,170,380,46,PANEL);wrapped(18,178,v->message,60,INK);
@@ -133,6 +133,17 @@ void lbx_ui_render(const LbxView* v) {
         rect(i*64,0,64,24,i==v->tab?TEAL:PANEL);
         text(i*64+5,9,tabs[i],i==v->tab?BG:MUTED,1);
         if(i==v->tab)rect(i*64,22,64,2,GOLD);
+    }
+    if(v->save_pending) {
+        text(12,40,"REVIEW MOON SAVE",GOLD,2);
+        text(12,67,"TARGET SLOTS CHECKED EMPTY",TEAL,1);
+        text(12,83,"BOX 8 PROTECTED / BACKUP BEFORE WRITE",MUTED,1);
+        rect(10,110,145,30,TEAL);text(20,122,"A: SAVE TO MOON",BG,1);
+        rect(165,110,145,30,PANEL);text(180,122,"B: CANCEL",INK,1);
+        text(12,161,"SAVE INCLUDES COMMIT + FULL READBACK",MUTED,1);
+        text(12,185,"AFTER SUCCESS: EXIT AND OPEN BANK",TEAL,1);
+        text(12,209,"PKSM-CORE / GPLV3+ - SEE SOURCE NOTICES",MUTED,1);
+        return;
     }
     if(v->tab==0) {
         int first=(s->cursor/30)*30;
@@ -146,7 +157,7 @@ void lbx_ui_render(const LbxView* v) {
             if(s->selected[d]) {rect(x+39,y+3,6,6,TEAL);text(x+38,y+2,"+",BG,1);}
             if(index==s->cursor)outline(x,y,48,28,GOLD);
         }
-        rect(10,204,145,23,TEAL);text(17,212,"SELECT: ASSEMBLE",BG,1);
+        rect(10,204,145,23,TEAL);text(17,212,"SELECT: MOON",BG,1);
         rect(165,204,145,23,PANEL);text(172,212,"X: SAVE REQUEST",INK,1);
         text(12,232,"Y: FILTER  B: CLEAR  L/R: TABS",MUTED,1);
     } else if(v->tab==1) {
@@ -159,7 +170,7 @@ void lbx_ui_render(const LbxView* v) {
         snprintf(line,sizeof(line),"%08lX / DIGIT %d",(unsigned long)s->rng_seed,v->seed_digit+1);card(156,"SEED",line,v->option==5);
         card(178,"IV SEARCH",(const char*[]){"5000","50000","250000"}[s->rng_budget],v->option==6);
         text(12,208,"UP/DOWN: FIELD  LEFT/RIGHT: CHANGE",MUTED,1);
-        text(12,222,s->rng_mode==2?"X: DIGIT Y: NEW SEED / PC CHECK REQUIRED":"LEVEL: PRESERVE OR 1-100 / X: SEED DIGIT",MUTED,1);
+        text(12,222,s->rng_mode==2?"X: DIGIT Y: NEW SEED / REVIEWED RECIPES":"LEVEL: PRESERVE OR 1-100 / X: SEED DIGIT",MUTED,1);
     } else if(v->tab==2) {
         const char* names[]={"Heritage #001-009","Living Dex #001-807","Shiny heritage request","Clear selection"};
         text(12,33,"PRESETS / A OR TOUCH TO APPLY",MUTED,1);
@@ -169,9 +180,9 @@ void lbx_ui_render(const LbxView* v) {
     } else if(v->tab==3) {
         snprintf(line,sizeof(line),"%s / %d FILES",v->loaded?"BATCH LOADED":"NO BATCH",v->batch_count);text(12,35,line,INK,1);
         card(54,"INTEGRITY",v->verified?"PASS":"Unchecked",false);
-        card(88,"A","Verify SHA256",true);card(120,"X","Verify + READY",false);card(152,"Y","Reload from SD",false);
-        text(12,199,"READY HANDS OFF TO PKSM",TEAL,1);
-        text(12,216,"HASH PASS IS NOT A LEGALITY VERDICT",MUTED,1);
+        card(88,"A","Verify SHA256",true);card(120,"X","Prepare for Moon",false);card(152,"Y","Reload from SD",false);
+        text(12,199,"X: PREVIEW THEN BACKUP + SAVE TO MOON",TEAL,1);
+        text(12,216,"SELECT: PKSM FALLBACK READY",MUTED,1);
     } else {
         text(12,35,"OBSERVED TRANSFER CHECKLIST",MUTED,1);
         for(int i=0;i<4;i++) {rect(10,54+i*32,300,25,PANEL);rect(18,61+i*32,10,10,v->checkpoint>i?TEAL:CELL);text(36,63+i*32,steps[i],v->checkpoint>i?INK:MUTED,1);}

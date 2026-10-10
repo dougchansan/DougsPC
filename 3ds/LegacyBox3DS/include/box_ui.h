@@ -4,7 +4,7 @@ typedef struct {
     const LbxFrontend* state;
     const int* visible;
     int visible_count, tab, option, preset, checkpoint, seed_digit;
-    bool loaded, verified;
+    bool loaded, verified, save_pending;
     int batch_count;
     const char* message;
 } LbxView;

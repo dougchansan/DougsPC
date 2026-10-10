@@ -7,12 +7,13 @@
 #include "frontend.h"
 #include "templates.h"
 #include "box_ui.h"
+#include "moon_save.h"
 
 static LbxFrontend state;
 static int tab, option, preset, checkpoint, seed_digit;
 static bool loaded,verified;
 static LbxBatch* batch;
-static char message[160]="Choose Pokemon, then save a request.";
+static char message[160]="Choose Pokemon, then SELECT: prepare for Moon.";
 
 static void load_queue(void) {
     checkpoint=0;
@@ -44,7 +45,7 @@ static void filter(void) {
 static void render(void) {
     LbxView view={.state=&state,.visible=visible,.visible_count=visible_count,
         .tab=tab,.option=option,.preset=preset,.checkpoint=checkpoint,.seed_digit=seed_digit,
-        .loaded=loaded,.verified=verified,.batch_count=loaded?batch->count:0,.message=message};
+        .loaded=loaded,.verified=verified,.save_pending=lbx_moon_pending(),.batch_count=loaded?batch->count:0,.message=message};
     lbx_ui_render(&view);
 }
 static bool search_progress(int dex,int completed,int total,int attempts,int budget,int score,void* context) {
@@ -61,12 +62,22 @@ static bool search_progress(int dex,int completed,int total,int attempts,int bud
     return true;
 }
 int main(void) {
-    gfxInitDefault(); lbx_ui_init();
+    gfxInitDefault(); romfsInit(); lbx_ui_init();
     lbx_frontend_init(&state); state.rng_seed=(uint32_t)(svcGetSystemTick() ^ osGetTime()); filter(); batch=calloc(1,sizeof(*batch)); reload();
     int redraw=2;
     while(aptMainLoop()) {
         hidScanInput(); u32 down=hidKeysDown();
-        if(down&KEY_START) break;
+        if(down&KEY_START) {lbx_moon_discard();break;}
+        if(lbx_moon_pending()) {
+            if(down&KEY_TOUCH) {
+                touchPosition p;hidTouchRead(&p);
+                if(p.py>=110 && p.py<140)down|=p.px<160?KEY_A:KEY_B;
+            }
+            if(down&KEY_B) {lbx_moon_discard();snprintf(message,sizeof(message),"Preview cancelled. Moon unchanged; request kept.");}
+            else if(down&KEY_A) {lbx_moon_commit(message,sizeof(message));}
+            if(down)redraw=2;
+            goto draw_frame;
+        }
         if(down&KEY_L) {tab=(tab+4)%5;}
         if(down&KEY_R) {tab=(tab+1)%5;}
         if(down&KEY_TOUCH) {
@@ -105,10 +116,9 @@ int main(void) {
             if(down&KEY_B) memset(state.selected,0,sizeof(state.selected));
             if(down&KEY_Y) {state.generation=(state.generation+1)%8;state.cursor=0;filter();}
             if(down&KEY_SELECT) {
-                if(lbx_assemble_templates(&state,message,sizeof(message))) {
-                    char result[160]; snprintf(result,sizeof(result),"%s",message);
-                    reload(); snprintf(message,sizeof(message),"%s",result); tab=3;
-                }
+                mkdir(LBX_ROOT,0777);LbxSaveIO io;uint64_t last_progress=0;
+                if(lbx_moon_archive(&io,message,sizeof(message)) &&
+                   lbx_moon_prepare(&state,&io,search_progress,&last_progress,message,sizeof(message))) tab=3;
             }
             if(down&KEY_X) {
                 mkdir(LBX_ROOT,0777);
@@ -136,17 +146,20 @@ int main(void) {
             if(down&KEY_A) {lbx_preset(&state,preset);snprintf(message,sizeof(message),"Preset selected; review batch settings.");}
         } else if(tab==3) {
             if(down&KEY_Y) reload();
-            if(loaded && (down&(KEY_A|KEY_X))) {
+            if(loaded && (down&KEY_X)) {
+                LbxSaveIO io;
+                if(lbx_moon_archive(&io,message,sizeof(message)))lbx_moon_prepare_batch(&io,message,sizeof(message));
+            }
+            if(loaded && (down&(KEY_A|KEY_SELECT))) {
                 int count=0;
                 verified=lbx_verify_batch(batch,&count,message,sizeof(message));
                 if(!verified) remove(LBX_READY_FLAG);
                 if(verified) snprintf(message,sizeof(message),"PASS: %d/%d SHA256. Integrity only.",count,batch->count);
-                if(verified && (down&KEY_X)) {
-                    if(lbx_write_ready_flag(batch,message,sizeof(message))) {
-                        if(!save_queue(checkpoint>1?checkpoint:1)) snprintf(message,sizeof(message),"READY written; queue persistence failed.");
-                        else snprintf(message,sizeof(message),"READY. Run PKSM, save, then verify readback.");
-                    }
+                if(verified && (down&KEY_SELECT) && lbx_write_ready_flag(batch,message,sizeof(message))) {
+                    if(!save_queue(checkpoint>1?checkpoint:1))snprintf(message,sizeof(message),"READY written; queue persistence failed.");
+                    else snprintf(message,sizeof(message),"PKSM fallback READY; run injector and save in PKSM.");
                 }
+
             }
         } else if(tab==4 && loaded) {
             if(down&KEY_A) {
@@ -155,10 +168,11 @@ int main(void) {
             }
             if(down&KEY_B) {if(!save_queue(0)) snprintf(message,sizeof(message),"Could not reset confirmations.");}
         }
+draw_frame:
         if(down) redraw=2;
         if(redraw>0) {render();redraw--;}
         gfxFlushBuffers();gfxSwapBuffers();gspWaitForVBlank();
     }
-    free(batch);lbx_ui_exit();gfxExit();return 0;
+    lbx_moon_discard();free(batch);lbx_ui_exit();romfsExit();gfxExit();return 0;
 }
 

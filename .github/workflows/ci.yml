@@ -44,6 +44,12 @@ jobs:
           repository: kwsch/PKHeX
           ref: master
           path: external/PKHeX
+      - uses: actions/checkout@v4
+        with:
+          repository: FlagBrew/PKSM-Core
+          ref: d9bca6fcdf622760a0aa963565b102276e2ae2a3
+          submodules: recursive
+          path: external/PKSM-Core
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "10.0.x"
@@ -169,6 +175,26 @@ jobs:
           name: legacybox-batch-001-009
           path: /tmp/legacybox-batch-001-009/*
           if-no-files-found: warn
+      - name: Build and exercise native Moon save adapter
+        run: |
+          python scripts/build_template_pack.py /tmp/legacybox-batch-001-009 /tmp/moon-templates
+          python scripts/build_save_test.py external/PKSM-Core /tmp/moon-check
+          /tmp/moon-check/moon-test /tmp/moon-templates /tmp/native-readback
+          dotnet run --configuration Release --project helpers/native-save-check/LegacyBox.NativeSaveCheck.csproj -- /tmp/native-readback
+      - name: Package reviewed starter templates for the SD card
+        run: |
+          mkdir -p /tmp/moon-pack/3ds/LegacyBox
+          cp -r /tmp/moon-templates /tmp/moon-pack/3ds/LegacyBox/templates
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DougsPC-reviewed-starter-templates
+          path: /tmp/moon-pack/*
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: DougsPC-native-save-readback
+          path: /tmp/native-readback/*
+          if-no-files-found: warn
       - name: Check device RNG exports through real PKHeX generation
         run: |
           PYTHONPATH=tests python - <<'PY'
@@ -220,6 +246,12 @@ jobs:
       options: --user 1001
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: FlagBrew/PKSM-Core
+          ref: d9bca6fcdf622760a0aa963565b102276e2ae2a3
+          submodules: recursive
+          path: external/PKSM-Core
       - name: Build LegacyBox3DS
         run: make -C 3ds/LegacyBox3DS -j$(nproc --all)
       - name: Verify build products

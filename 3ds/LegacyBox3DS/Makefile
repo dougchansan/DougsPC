@@ -11,20 +11,22 @@ include $(DEVKITARM)/3ds_rules
 
 TARGET      := LegacyBox3DS
 BUILD       := build
-SOURCES     := source
+CORE        := ../../external/PKSM-Core
+SOURCES     := source $(CORE)/source/i18n $(CORE)/source/personal $(CORE)/source/pkx $(CORE)/source/sav $(CORE)/source/utils $(CORE)/source/wcx $(CORE)/memecrypto
 DATA        :=
-INCLUDES    := include
+INCLUDES    := include $(CORE)/include $(CORE)/include/enums $(CORE)/include/utils $(CORE)/include/personal $(CORE)/include/pkx $(CORE)/include/sav $(CORE)/include/wcx $(CORE)/memecrypto
 GRAPHICS    :=
 GFXBUILD    := $(BUILD)
+ROMFS       := romfs
 
 APP_TITLE       := Doug's PC
-APP_DESCRIPTION := Verify and stage LegacyBox batches for official Pokemon Bank handoff
+APP_DESCRIPTION := Prepare and save Pokemon to Moon for Pokemon Bank
 APP_AUTHOR      := LegacyBox
 
 ARCH        := -march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft
 CFLAGS      := -g -Wall -Wextra -O2 -mword-relocations -ffunction-sections $(ARCH)
 CFLAGS      += $(INCLUDE) -D__3DS__
-CXXFLAGS    := $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++17
+CXXFLAGS    := $(CFLAGS) -fno-rtti -std=gnu++20
 ASFLAGS     := -g $(ARCH)
 LDFLAGS     := -specs=3dsx.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 LIBS        := -lctru -lm
@@ -56,6 +58,8 @@ export _3DSXFLAGS += --smdh=$(CURDIR)/$(TARGET).smdh
 .PHONY: all clean
 
 all: $(BUILD)
+	@mkdir -p romfs/personals
+	@cp $(CORE)/personals/* romfs/personals/
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
 
 $(BUILD):
