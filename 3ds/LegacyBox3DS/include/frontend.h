@@ -16,3 +16,9 @@ void lbx_frontend_init(LbxFrontend* state);
 int lbx_selected_count(const LbxFrontend* state);
 void lbx_preset(LbxFrontend* state, int preset);
 bool lbx_save_request(const LbxFrontend* state, const char* path, char* error, size_t size);
+
+
+/* Return false to cancel; partial exports never replace the previous request. */
+typedef bool (*LbxSearchProgress)(int dex,int completed,int total,int attempts,int budget,int score,void* context);
+bool lbx_save_request_progress(const LbxFrontend* state,const char* path,char* error,size_t size,
+                               LbxSearchProgress progress,void* context);

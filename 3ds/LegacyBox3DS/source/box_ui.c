@@ -155,9 +155,9 @@ void lbx_ui_render(const LbxView* v) {
         card(68,"NATURE",natures[s->nature],v->option==1);
         card(90,"SHINY",(const char*[]){"Template","Request shiny","Non-shiny"}[s->shiny],v->option==2);
         snprintf(line,sizeof(line),"%d",s->start_box+1);card(112,"START BOX",line,v->option==3);
-        card(134,"RNG",(const char*[]){"PC default","PC fixed seed","Device rolls"}[s->rng_mode],v->option==4);
+        card(134,"RNG",(const char*[]){"PC default","PC fixed seed","Device search"}[s->rng_mode],v->option==4);
         snprintf(line,sizeof(line),"%08lX / DIGIT %d",(unsigned long)s->rng_seed,v->seed_digit+1);card(156,"SEED",line,v->option==5);
-        card(178,"IV SEARCH",s->rng_mode==2?"One local candidate":(const char*[]){"5000","50000","250000"}[s->rng_budget],v->option==6);
+        card(178,"IV SEARCH",(const char*[]){"5000","50000","250000"}[s->rng_budget],v->option==6);
         text(12,208,"UP/DOWN: FIELD  LEFT/RIGHT: CHANGE",MUTED,1);
         text(12,222,s->rng_mode==2?"X: DIGIT Y: NEW SEED / PC CHECK REQUIRED":"LEVEL: PRESERVE OR 1-100 / X: SEED DIGIT",MUTED,1);
     } else if(v->tab==2) {

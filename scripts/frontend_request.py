@@ -4,33 +4,42 @@ import argparse
 import copy
 import json
 from pathlib import Path
+try:
+    from scripts.device_profiles import search_profile
+except ModuleNotFoundError:
+    from device_profiles import search_profile
 NATURES = 'Hardy Lonely Brave Adamant Naughty Bold Docile Relaxed Impish Lax Timid Hasty Serious Jolly Naive Modest Mild Quiet Bashful Rash Calm Gentle Sassy Careful Quirky'.split()
 
 def resolve_request(request: Path, template_manifest: Path) -> dict:
     lines=request.read_text(encoding='ascii').splitlines()
     header=lines[0].split('\t') if lines else []
-    if not ((len(header)==6 and header[0]=='LBXR1') or (len(header)==9 and header[0] in ('LBXR2','LBXR3'))):
+    if not ((len(header)==6 and header[0]=='LBXR1') or (len(header)==9 and header[0] in ('LBXR2','LBXR3','LBXR4'))):
         raise ValueError('Invalid LBXR request header')
     count,box,level,nature,shiny=map(int,header[1:6])
     mode,seed,budget=0,0,1
-    if header[0] in ('LBXR2','LBXR3'):
+    if header[0] in ('LBXR2','LBXR3','LBXR4'):
         mode=int(header[6]);budget=int(header[8])
         if len(header[7])!=8 or any(c not in '0123456789abcdefABCDEF' for c in header[7]):
             raise ValueError('Seed must be eight hex digits')
         seed=int(header[7],16)
-        if mode not in ((2,) if header[0]=='LBXR3' else (0,1)) or budget not in (0,1,2):raise ValueError('Invalid RNG settings')
+        if mode not in ((2,) if header[0] in ('LBXR3','LBXR4') else (0,1)) or budget not in (0,1,2):raise ValueError('Invalid RNG settings')
     rolls={}
-    if header[0]=='LBXR3':
+    if header[0] in ('LBXR3','LBXR4'):
         dex=[]
         for line in lines[1:]:
             row=line.split('\t')
-            if len(row)!=4 or any(len(v)!=8 or any(c not in '0123456789abcdefABCDEF' for c in v) for v in row[1:]):
+            if len(row)!=(7 if header[0]=='LBXR4' else 4) or any(len(v)!=8 or any(c not in '0123456789abcdefABCDEF' for c in v) for v in row[1:4]):
                 raise ValueError('Invalid device roll row')
-            d=int(row[0]); ec,pid,ivs=(int(v,16) for v in row[1:])
+            d=int(row[0]); ec,pid,ivs=(int(v,16) for v in row[1:4])
             if not 1<=d<=151 or ivs>>30 or sum((ivs>>(i*5))&31==31 for i in range(6))<(5 if d==151 else 3):
                 raise ValueError('Invalid Gen I VC device rolls')
             dex.append(d)
             rolls[d]={'ec_hex':f'{ec:08X}','pid_hex':f'{pid:08X}','ivs_hex':f'{ivs:08X}'}
+            if header[0]=='LBXR4':
+                attempts,best_attempt=int(row[4]),int(row[5]);profile_hash=row[6]
+                if not 1<=best_attempt<=attempts<=(5000,50000,250000)[budget] or len(profile_hash)!=64 or any(c not in '0123456789abcdef' for c in profile_hash):
+                    raise ValueError('Invalid device search accounting/profile')
+                rolls[d].update(search_attempts=attempts,best_attempt=best_attempt,profile_hash=profile_hash)
     else:
         dex=list(map(int,lines[1:]))
     if not (1<=count<=807 and len(dex)==count and len(set(dex))==count and
@@ -66,12 +75,15 @@ def resolve_request(request: Path, template_manifest: Path) -> dict:
             source=e['template'].get('source_game','')
             if not any(game in source.lower() for game in ('red','blue','yellow')):
                 raise ValueError(f'Species {d}: device rolls require a Gen I VC template')
+            if header[0]=='LBXR4' and rolls[d]['profile_hash']!=search_profile(e)['hash']:
+                raise ValueError(f'Species {d}: device search targets differ from reviewed manifest; update device profiles')
             e['device_rolls']=rolls[d]
         result['entries'].append(e)
     result['rng']={'scope':'vc_transfer_rolls','mode':'fixed' if mode else 'default','seed_hex':f'{seed:08X}' if mode else None,'search_attempts':(5000,50000,250000)[budget]}
     if mode==2:
         result['rng']={'scope':'vc_transfer_rolls','mode':'default','seed_hex':None,'search_attempts':1,
-                       'producer':'LBX-DEVICE-ROLLS-1','device_seed_hex':f'{seed:08X}'}
+                       'producer':'LBX-DEVICE-SEARCH-1' if header[0]=='LBXR4' else 'LBX-DEVICE-ROLLS-1','device_seed_hex':f'{seed:08X}'}
+        if header[0]=='LBXR4':result['rng']['device_search_budget']=(5000,50000,250000)[budget]
     result['frontend_request']={'schema':header[0],'start_box':box,'status':'UNVERIFIED'}
     return result
 

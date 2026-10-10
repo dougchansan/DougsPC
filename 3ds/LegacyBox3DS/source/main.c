@@ -47,6 +47,19 @@ static void render(void) {
         .loaded=loaded,.verified=verified,.batch_count=loaded?batch->count:0,.message=message};
     lbx_ui_render(&view);
 }
+static bool search_progress(int dex,int completed,int total,int attempts,int budget,int score,void* context) {
+    uint64_t* last=context;
+    if(!aptMainLoop()) return false;
+    hidScanInput();
+    if(hidKeysDown()&(KEY_B|KEY_START)) return false;
+    uint64_t now=osGetTime();
+    if(now-*last>=100 || attempts==0 || attempts==budget) {
+        snprintf(message,sizeof(message),"Device IV search #%03d (%d/%d): %d/%d rolls. Best %d. B: cancel",
+                 dex,completed+1,total,attempts,budget,attempts?score:0);
+        render();gfxFlushBuffers();gfxSwapBuffers();gspWaitForVBlank();*last=now;
+    }
+    return true;
+}
 int main(void) {
     gfxInitDefault(); lbx_ui_init();
     lbx_frontend_init(&state); state.rng_seed=(uint32_t)(svcGetSystemTick() ^ osGetTime()); filter(); batch=calloc(1,sizeof(*batch)); reload();
@@ -99,7 +112,8 @@ int main(void) {
             }
             if(down&KEY_X) {
                 mkdir(LBX_ROOT,0777);
-                if(lbx_save_request(&state,LBX_REQUEST,message,sizeof(message))) snprintf(message,sizeof(message),state.rng_mode==2?"Device rolls saved. PC builds/checks Pokemon files.":"Saved request.tsv. Process with PC helper.");
+                uint64_t last_progress=0;
+                if(lbx_save_request_progress(&state,LBX_REQUEST,message,sizeof(message),search_progress,&last_progress)) snprintf(message,sizeof(message),state.rng_mode==2?"Device search saved. PC builds/checks Pokemon files.":"Saved request.tsv. Process with PC helper.");
             }
         } else if(tab==1) {
             if(down&KEY_UP) option=(option+6)%7;
@@ -111,7 +125,7 @@ int main(void) {
                 unsigned shift=(unsigned)(7-seed_digit)*4;
                 unsigned nibble=((state.rng_seed>>shift)+delta+16)&15u;
                 state.rng_seed=(state.rng_seed&~(15u<<shift))|(nibble<<shift);
-            } else if(option!=6 || state.rng_mode!=2) {
+            } else {
                 int* fields[]={&state.level,&state.nature,&state.shiny,&state.start_box,&state.rng_mode,NULL,&state.rng_budget};
                 int limits[]={101,26,3,32,3,1,3};
                 *fields[option]=(*fields[option]+delta+limits[option])%limits[option];

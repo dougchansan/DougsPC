@@ -8,20 +8,23 @@ static inline uint64_t lbx_rng_next(uint64_t* s) {
     z=(z^(z>>27))*UINT64_C(0x94D049BB133111EB);
     return z^(z>>31);
 }
-static inline LbxLocalRoll lbx_local_roll(uint32_t seed, unsigned dex) {
-    uint64_t state=((uint64_t)seed<<32)|dex;
+static inline LbxLocalRoll lbx_local_roll_next(uint64_t* state, unsigned dex) {
     LbxLocalRoll roll;
-    roll.ec=(uint32_t)lbx_rng_next(&state);
-    roll.pid=(uint32_t)lbx_rng_next(&state);
+    roll.ec=(uint32_t)lbx_rng_next(state);
+    roll.pid=(uint32_t)lbx_rng_next(state);
     roll.ivs=0;
     unsigned values[6], perfect[6]={0};
-    for(unsigned i=0;i<6;i++) values[i]=(unsigned)(lbx_rng_next(&state)&31);
+    for(unsigned i=0;i<6;i++) values[i]=(unsigned)(lbx_rng_next(state)&31);
     /* VC guarantees three perfect IVs (five for Mew/Celebi). */
     unsigned required=dex==151?5:3;
     for(unsigned n=0;n<required;) {
-        unsigned i=(unsigned)(lbx_rng_next(&state)%6);
+        unsigned i=(unsigned)(lbx_rng_next(state)%6);
         if(!perfect[i]) {perfect[i]=1;values[i]=31;n++;}
     }
     for(unsigned i=0;i<6;i++) roll.ivs|=(uint32_t)values[i]<<(5*i);
     return roll;
+}
+static inline LbxLocalRoll lbx_local_roll(uint32_t seed, unsigned dex) {
+    uint64_t state=((uint64_t)seed<<32)|dex;
+    return lbx_local_roll_next(&state,dex);
 }

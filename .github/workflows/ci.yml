@@ -14,6 +14,10 @@ jobs:
           python-version: "3.11"
       - run: python -m pip install -e .
       - run: python -m unittest discover -s tests -v
+      - name: Confirm native search profiles match reviewed manifest
+        run: |
+          python scripts/device_profiles.py manifests/heritage-001-009.json /tmp/device_profiles.inc
+          cmp /tmp/device_profiles.inc 3ds/LegacyBox3DS/source/device_profiles.inc
       - run: python scripts/check_heritage_index.py
       - run: python scripts/check_side_sources.py
       - run: legacybox plan manifests/heritage-smoke.json > /tmp/heritage-plan.json
@@ -185,8 +189,14 @@ jobs:
           for entry, result in zip(manifest['entries'],report['results']):
               rolls=entry['device_rolls']; packed=int(rolls['ivs_hex'],16)
               assert result['encryptionConstantHex']==rolls['ec_hex'], result
-              assert result['attemptsUsed']==1, result
-              assert result['rngAlgorithm']=='LBX-DEVICE-ROLLS-1/SplitMix64', result
+              assert result['attemptsUsed']==rolls['search_attempts'], result
+              assert result['hostConversions']==1, result
+              assert result['deviceBestAttempt']==rolls['best_attempt'], result
+              assert result['deviceProfileHash']==rolls['profile_hash'], result
+              assert result['rngAlgorithm']=='LBX-DEVICE-SEARCH-1/SplitMix64', result
+              hp_types='Fighting Flying Poison Ground Rock Bug Ghost Steel Fire Water Grass Electric Psychic Ice Dragon Dark'.split()
+              bits=sum(((packed>>(i*5))&1)<<i for i in range(6))
+              assert result['hiddenPower']==hp_types[bits*15//63], result
               for i,key in enumerate(('HP','Atk','Def','Spe','SpA','SpD')):
                   assert result['actualIVs'][key]==(packed>>(i*5))&31, result
           PY

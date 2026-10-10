@@ -261,8 +261,11 @@ foreach (var entry in root.GetProperty("entries").EnumerateArray())
         pidHex = best.PID.ToString("X8"),
         encryptionConstantHex = best.EncryptionConstant.ToString("X8"),
         rngSeed = transferSeed?.ToString("X16"),
-        rngAlgorithm = deviceRolls is not null ? "LBX-DEVICE-ROLLS-1/SplitMix64" : transferSeed.HasValue ? "LBX-VC-ROLLS-1/SplitMix64" : "PKHeX default",
-        attemptsUsed,
+        rngAlgorithm = deviceRolls is not null ? (deviceRolls.ProfileHash is null ? "LBX-DEVICE-ROLLS-1/SplitMix64" : "LBX-DEVICE-SEARCH-1/SplitMix64") : transferSeed.HasValue ? "LBX-VC-ROLLS-1/SplitMix64" : "PKHeX default",
+        attemptsUsed = deviceRolls?.SearchAttempts ?? attemptsUsed,
+        hostConversions = attemptsUsed,
+        deviceBestAttempt = deviceRolls?.BestAttempt,
+        deviceProfileHash = deviceRolls?.ProfileHash,
         actualIVs,
         desiredIVs,
         exactIVs,
@@ -665,7 +668,7 @@ static string Sanitize(string value)
 
 
 // Device supplies actual random fields. No host reroll or IV search in this mode.
-sealed record DeviceTransferRoll(uint EC, uint PID, uint IVs)
+sealed record DeviceTransferRoll(uint EC, uint PID, uint IVs, int SearchAttempts, int BestAttempt, string? ProfileHash)
 {
     public static DeviceTransferRoll? Read(JsonElement entry, ushort species)
     {
@@ -679,7 +682,13 @@ sealed record DeviceTransferRoll(uint EC, uint PID, uint IVs)
                 throw new InvalidOperationException("Malformed device rolls.");
             return parsed;
         }
-        var roll = new DeviceTransferRoll(ReadHex("ec_hex"), ReadHex("pid_hex"), ReadHex("ivs_hex"));
+        int attempts = node.TryGetProperty("search_attempts", out var count) ? count.GetInt32() : 1;
+        int bestAttempt = node.TryGetProperty("best_attempt", out var best) ? best.GetInt32() : 1;
+        string? profileHash = node.TryGetProperty("profile_hash", out var hash) ? hash.GetString() : null;
+        if (attempts is < 1 or > 250000 || bestAttempt < 1 || bestAttempt > attempts ||
+            (profileHash is not null && (profileHash.Length != 64 || profileHash.Any(c => !"0123456789abcdef".Contains(c)))))
+            throw new InvalidOperationException("Invalid device search accounting.");
+        var roll = new DeviceTransferRoll(ReadHex("ec_hex"), ReadHex("pid_hex"), ReadHex("ivs_hex"), attempts, bestAttempt, profileHash);
         int perfect = 0;
         for (int i = 0; i < 6; i++) if (((roll.IVs >> (i * 5)) & 31) == 31) perfect++;
         if ((roll.IVs >> 30) != 0 || perfect < (species == 151 ? 5 : 3))
