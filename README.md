@@ -1,4 +1,4 @@
-# LegacyBox
+# Doug's PC
 
 **Preserve. Validate. Migrate.**
 
@@ -55,7 +55,7 @@ See `docs/ARCHITECTURE.md` and `docs/ROADMAP.md`.
 
 ## Licensing note
 
-PKHeX.Core is GPL-3.0-or-later. LegacyBox currently keeps its legality interface backend-neutral so we can make an explicit licensing decision before directly linking or incorporating GPL code.
+The native 3DS app now links unmodified PKSM-Core under GPLv3-or-later. PC helpers link PKHeX.Core under GPL-3.0-or-later. See `LICENSE` and `THIRD_PARTY.md` for attribution and distribution terms. The Python legality interface remains an external adapter boundary.
 
 ## Disclaimer
 
@@ -85,6 +85,7 @@ The project records origin evidence, local legality, official Bank-transfer evid
 
 ## LegacyBox3DS
 
-`3ds/LegacyBox3DS` is the 3DS-side batch stager. It verifies an LBX1 bundle and hands the verified batch to the Gen VII save adapter. The initial adapter is a PKSM script that preflights all target PC slots before injecting any PK7s.
+`3ds/LegacyBox3DS` is Doug's PC on the 3DS. It can now prepare reviewed starter templates using device search, preview empty Moon destinations, back up the original save, commit it, and verify full readback. Box 8 is protected. Request export and the PKSM injector remain available. See `3ds/LegacyBox3DS/README.md` for the new one-app workflow, its current #001–#009 device recipes, installation, and the first hardware test.
 
 Pokémon Bank itself remains the official network client; LegacyBox does not implement Nintendo's private Bank protocol.
+
